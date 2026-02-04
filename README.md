@@ -4,6 +4,9 @@ Course materials for the Wheeled Inverted Pendulum practical exercise at the Uni
 
 ## 📁 Contents
 
+### 📄 Lecture notes (English)
+- **text2026_en.pdf** – Full lecture text (English) for the Wheeled Inverted Pendulum exercise. Same content as the printed handout; all appendix PDFs are embedded. Update this file from the LaTeX build when you release a new version (see “Keeping the PDF in sync” below).
+
 ### 🛠️ debug_tools/
 Debugging and visualization tools with complete documentation:
 
