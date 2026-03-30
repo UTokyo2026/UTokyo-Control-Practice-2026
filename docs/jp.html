@@ -1,0 +1,2950 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="精密工学科" />
+  <title>自走式倒立振子の製作</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<nav class="site-nav"><a href="index.html" class="home">&#8962; ホーム</a><span class="sep">|</span><span style="color:#a0b0ff;font-family:sans-serif;font-size:0.85rem;">日本語</span><span class="lang-switch"><a href="en.html">English</a></span></nav><div class="pdf-banner"><span style="flex:1">PDFをダウンロード</span><a href="text2026_jp.pdf" target="_blank">PDF (日本語)</a></div>
+<header id="title-block-header">
+<h1 class="title">自走式倒立振子の製作</h1>
+<p class="author">精密工学科</p>
+<p class="date">2026年度 S1S2</p>
+</header>
+<div class="tcolorbox">
+<p><span> </span></p>
+<p><strong></strong></p>
+</div>
+<h1 class="unnumbered" id="授業日程">授業日程</h1>
+<p>実施時間は原則として <strong>月曜 13:00–18:30（JST,
+Asia/Tokyo）</strong> です． 本演習は <strong>3つのコホート</strong>が
+<strong>各4週間</strong>で実施します． <strong>Week 0</strong>
+は事前準備期間とし，Week 1
+開始前までに必要なセットアップを済ませてください（Week 0
+自体はカレンダーには表示していません）．</p>
+<p><strong>凡例：</strong> ; ; ; ; <strong>バッジ：</strong>
+<code>C#-W#</code> = コホート/週，<code>OFF</code> = 休講．</p>
+<div class="minipage">
+<p><strong>2026年4月</strong></p>
+</div>
+<div class="minipage">
+<p><strong>2026年5月</strong></p>
+</div>
+<div class="minipage">
+<p><strong>2026年6月</strong></p>
+</div>
+<div class="minipage">
+<p><strong>2026年7月</strong></p>
+</div>
+<h1 class="unnumbered"
+id="週ごとの課題と進め方">週ごとの課題と進め方</h1>
+<div class="tabular">
+<p><span>|c|L<span>4.5cm</span>|L<span>7cm</span>|L<span>3.5cm</span>|</span>
+<strong>週</strong> &amp; <strong>内容</strong> &amp;
+<strong>担当の目安</strong> &amp; <strong>提出物</strong><br />
+<strong>Week 0</strong> &amp;
+<strong>事前準備とテキスト学習</strong><br />
+- テキストと理論背景の確認<br />
+- PC とソフトウェア環境の準備<br />
+- MATLAB, Keil Studio Cloud, Processing, Fritzing の準備 &amp;
+<strong>全員：</strong><br />
+- テキスト全体に目を通す<br />
+- PC 環境を整える</p>
+<p><strong>学生A：</strong> ハードウェアキット内容の確認（<a
+href="#app:partslist"><span style="color: brandD">付録<span
+data-reference-type="ref"
+data-reference="app:partslist">[app:partslist]</span>参照</span></a>）<br />
+<strong>学生B：</strong> Keil Studio Cloud の準備と Processing
+の導入（<a href="#sec:w1-microcontroller-setup"><span
+style="color: brandD">第<span data-reference-type="ref"
+data-reference="sec:w1-microcontroller-setup">3.3.2</span>節参照</span></a>;
+<a href="#app:processing"><span style="color: brandD">付録<span
+data-reference-type="ref"
+data-reference="app:processing">[app:processing]</span>参照</span></a>）<br />
+<strong>学生C：</strong> Fritzing と MATLAB の準備（<a
+href="#sec:w1-breadboard-wiring-design"><span
+style="color: brandD">第<span data-reference-type="ref"
+data-reference="sec:w1-breadboard-wiring-design">3.3.3</span>節参照</span></a>;
+<a href="#sec:matlab-setup"><span style="color: brandD">第<span
+data-reference-type="ref"
+data-reference="sec:matlab-setup">4.5.2</span>節参照</span></a>） &amp;
+なし<br />
+<strong>Week 1</strong> &amp; <strong>組立と立ち上げ</strong><br />
+- 機械組立<br />
+- マイコンの立ち上げとデバッグ<br />
+- ブレッドボード配線設計（Fritzing）<br />
+- 統合作業とデバッグ &amp; <strong>Step 1（個別）：</strong><br />
+- <strong>学生A：</strong> 機械組立（<a
+href="#sec:w1-mechanical-assembly"><span style="color: brandD">第<span
+data-reference-type="ref"
+data-reference="sec:w1-mechanical-assembly">3.3.1</span>節参照</span></a>）<br />
+- <strong>学生B：</strong> マイコン立ち上げとデバッグ（<a
+href="#sec:w1-microcontroller-setup"><span style="color: brandD">第<span
+data-reference-type="ref"
+data-reference="sec:w1-microcontroller-setup">3.3.2</span>節参照</span></a>）<br />
+- <strong>学生C：</strong> Fritzing による配線設計（<a
+href="#sec:w1-breadboard-wiring-design"><span
+style="color: brandD">第<span data-reference-type="ref"
+data-reference="sec:w1-breadboard-wiring-design">3.3.3</span>節参照</span></a>）<br />
+<strong>Step 2（全員）：</strong> 統合とデバッグ（<a
+href="#sec:w1-circuit-assembly"><span style="color: brandD">第<span
+data-reference-type="ref"
+data-reference="sec:w1-circuit-assembly">3.4</span>節参照</span></a>）
+&amp; - 倒立デモ動画<br />
+<strong>Week 2</strong> &amp;
+<strong>エンコーダと位置制御</strong><br />
+- エンコーダの製作と信号確認<br />
+- 位置制御の導入とシミュレーション比較 &amp; <strong>学生A：</strong>
+エンコーダのハードウェア（<a href="#sec:w2-task-a"><span
+style="color: brandD">第<span data-reference-type="ref"
+data-reference="sec:w2-task-a">4.3</span>節参照</span></a>）<br />
+<strong>学生B：</strong> mbed 側の読み取りと制御（<a
+href="#sec:w2-task-b"><span style="color: brandD">第<span
+data-reference-type="ref"
+data-reference="sec:w2-task-b">4.4</span>節参照</span></a>）<br />
+<strong>学生C：</strong> シミュレーションと比較（<a
+href="#sec:w2-task-c"><span style="color: brandD">第<span
+data-reference-type="ref"
+data-reference="sec:w2-task-c">4.5</span>節参照</span></a>） &amp;
+<strong>グループレポート：</strong><br />
+- 位置制御の動画<br />
+- エンコーダ A/B 波形<br />
+- シミュレーションと実機の比較<br />
+<strong>Week 3</strong> &amp;
+<strong>高度なモデル化と負荷試験</strong><br />
+- 車輪ダイナミクスと床面摩擦の追加<br />
+- 負荷付き実機試験<br />
+- MATLAB での PID 調整と他手法比較 &amp; <strong>学生A：</strong><br />
+- 倒立振子への負荷取り付け<br />
+- 負荷付き実機試験と動画記録<br />
+<strong>学生B：</strong><br />
+- MATLAB/Simscape モデル拡張（車輪 + 摩擦）<br />
+- 拡張シミュレーションの実行と整理<br />
+<strong>学生C：</strong><br />
+- 負荷条件での PID 調整<br />
+- LQR / MPC 等との比較と実機差の整理 &amp;
+<strong>グループレポート：</strong><br />
+- 拡張シミュレーション結果<br />
+- 負荷試験動画<br />
+- PID 調整と制御比較の記録<br />
+<strong>Week 4</strong> &amp; <strong>最終発表</strong><br />
+- 発表スライド作成<br />
+- 実機デモ<br />
+- 質疑応答と議論 &amp; <strong>全員：</strong><br />
+- 理論，設計，シミュレーション，実機結果，課題を含む 10
+分発表を準備<br />
+- 倒立制御のライブデモを実施<br />
+- 技術的な質問に答える &amp; <strong>最終提出：</strong><br />
+- スライド<br />
+- 最終デモ動画<br />
+- 発表と質疑応答<br />
+</p>
+</div>
+<p><span id="tab:schedule" data-label="tab:schedule"></span></p>
+<h1 class="unnumbered" id="評価基準">評価基準</h1>
+<div class="tabular">
+<p><span>|C<span>1.35cm</span>|L<span>3.0cm</span>|L<span>3.3cm</span>|L<span>7.4cm</span>|</span>
+<strong>週</strong> &amp; <strong>提出物</strong> &amp;
+<strong>評価項目</strong> &amp; <strong>配点基準</strong><br />
+</p>
+<p><strong>W0</strong><br />
+<span style="color: brandD">(0 pts)</span></p>
+<p>&amp; 事前準備確認 &amp; 完了のみ &amp; 提出物なし．<br />
+&amp; &amp; 倒立の成立 (20点) &amp; <strong><span
+style="color: brandD">20</span></strong> —
+15 秒以上の倒立，かつ全体が画角内<br />
+<strong><span style="color: brandD">12</span></strong> —
+倒立は達成したが15 秒未満，または安定性が不十分<br />
+<strong><span style="color: brandD">0</span></strong> — 倒立未達<br />
+&amp; &amp; 組立状態の確認 (5点) &amp; <strong><span
+style="color: brandD">5</span></strong> —
+機械，ブレッドボード，配線が確認できる<br />
+<strong><span style="color: brandD">0</span></strong> —
+確認できない<br />
+&amp; &amp; 動画の明瞭さ (5点) &amp; <strong><span
+style="color: brandD">5</span></strong> — 重要部分が終始見えている<br />
+<strong><span style="color: brandD">3</span></strong> —
+一部遮蔽はあるが挙動は判別可能<br />
+<strong><span style="color: brandD">0</span></strong> — 判読不能<br />
+&amp; &amp; 位置制御 (8点) &amp; <strong><span
+style="color: brandD">8</span></strong> — <span
+class="math inline">\(\pm\)</span>0.5 m 以内で10 秒以上倒立<br />
+<strong><span style="color: brandD">5</span></strong> —
+倒立は維持したが位置ずれが大きい<br />
+<strong><span style="color: brandD">0</span></strong> —
+5 秒以内に倒立を失う<br />
+&amp; &amp; エンコーダ (7点) &amp; <strong><span
+style="color: brandD">7</span></strong> — A/B
+波形にラベルがあり，回転方向反転まで確認<br />
+<strong><span style="color: brandD">5</span></strong> —
+波形はあるが方向確認が不十分<br />
+<strong><span style="color: brandD">2</span></strong> —
+パルス数のみで位相解析なし<br />
+<strong><span style="color: brandD">0</span></strong> — 未提出<br />
+&amp; &amp; シミュレーション比較 (5点) &amp; <strong><span
+style="color: brandD">5</span></strong> — <span
+class="math inline">\(x(t)\)</span>, <span
+class="math inline">\(\dot{x}(t)\)</span>
+の比較図があり，差の説明もある<br />
+<strong><span style="color: brandD">3</span></strong> —
+比較図はあるが説明がない<br />
+<strong><span style="color: brandD">1</span></strong> —
+定性的説明のみ<br />
+&amp; &amp; 拡張モデル (6点) &amp; <strong><span
+style="color: brandD">6</span></strong> —
+車輪慣性，摩擦，数値パラメータが明示されている<br />
+<strong><span style="color: brandD">4</span></strong> —
+3要素中2つを満たす<br />
+<strong><span style="color: brandD">2</span></strong> —
+3要素中1つのみ<br />
+<strong><span style="color: brandD">0</span></strong> — Week 2
+から拡張なし<br />
+&amp; &amp; 負荷試験 (7点) &amp; <strong><span
+style="color: brandD">7</span></strong> —
+5 秒以上安定し，負荷質量と位置も明記<br />
+<strong><span style="color: brandD">5</span></strong> —
+安定はしたが負荷条件が不十分<br />
+<strong><span style="color: brandD">2</span></strong> —
+試行はあり，記録もある<br />
+<strong><span style="color: brandD">0</span></strong> — 未提出<br />
+&amp; &amp; 制御比較 (7点) &amp; <strong><span
+style="color: brandD">7</span></strong> — PID
+指標と別構造の制御法を同一指標で比較<br />
+<strong><span style="color: brandD">4</span></strong> — PID
+のみ，または同系統の比較のみ<br />
+<strong><span style="color: brandD">2</span></strong> —
+定性的議論のみ<br />
+&amp; &amp; スライド (10点) &amp; <strong><span
+style="color: brandD">10</span></strong> —
+理論，設計，検証，学びの4要素がデータ付きである<br />
+<strong><span style="color: brandD">7</span></strong> —
+4要素中3つを満たす<br />
+<strong><span style="color: brandD">3</span></strong> —
+2要素以下，または文字中心<br />
+&amp; &amp; デモ動画 (10点) &amp; <strong><span
+style="color: brandD">10</span></strong> — 10 秒以上安定し，ON/OFF
+の流れも明確<br />
+<strong><span style="color: brandD">6</span></strong> — 安定はしたが
+ON/OFF の流れが不明瞭<br />
+<strong><span style="color: brandD">2</span></strong> —
+失敗していても正直に記録されている<br />
+<strong><span style="color: brandD">0</span></strong> — 未提出<br />
+&amp; &amp; 質疑応答 (10点) &amp; <strong><span
+style="color: brandD">5</span></strong> —
+技術的質問に2問以上正しく答えられる<br />
+<strong><span style="color: brandD">5</span></strong> —
+回答が提出資料と整合している<br />
+<span><em>各項目内で部分点を与えることがあります．</em></span><br />
+</p>
+</div>
+<h1 class="unnumbered" id="演習前に読んでください"><span
+style="color: warnRed">※※※ <u>演習前に読んでください</u> ※※※</span></h1>
+<ul>
+<li><p><strong>本テキストの予習</strong>：演習実施前に，本テキストを読んで，作業の概要や理論的背景を理解しておいてください．テキストを読まずにいきなり作業をすると，演習続行が困難になるような致命的ミスにつながります．</p></li>
+<li><p><strong>補助資料の所在</strong>：今年度版の補助資料（デバッグツール，サンプルプログラム，付録PDF，MATLABモデルなど）は，
+以下に整理されています<a href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a>．特に
+には，実験で利用する制御プログラムと Processing
+用ツールが入っています．</p></li>
+<li><p><strong>パソコンの準備</strong>：今期の実践演習は，設計演習室の
+PC を利用しますので，自前 PC を用意する必要はありません．一方，自前 PC
+でも実施可能です．その場合，Windows もしくは Macintosh
+が必要です．また，制御用マイコンと接続するために USB
+ポート（Type-A）が必要です．Type-C ポートしかない場合には，Type-A
+に接続可能なハブを準備してください．</p></li>
+<li><p><strong>作業は当日</strong>：プログラム環境のインストール，機構の組み立て等については，演習当日に説明します．</p></li>
+</ul>
+<h1 id="演習の目的">演習の目的</h1>
+<div class="wrapfigure">
+<p><span>r</span><span>45mm</span></p>
+<div class="center">
+<p><img src="pendulum_image.png" style="width:42mm" alt="image" /></p>
+</div>
+</div>
+<p>本演習では，自走式倒立振子を（ほぼ）一から製作することを通じて，</p>
+<ul>
+<li><p>組み込みマイコンの基本的な使い方</p></li>
+<li><p>エンコーダの原理と構造</p></li>
+<li><p>センサ信号処理の基礎</p></li>
+<li><p>フィードバック制御の基礎</p></li>
+</ul>
+<p>を習得することを目的とします．<br />
+倒立振子（とうりつしんし，inverted
+pendulum）とは，文字通り「振り子」を倒立させたシステムです．倒立した振り子は不安定ですが，振り子の傾斜に応じてベース部分を動かすことで安定な倒立状態を保つことができます．傾斜に応じてベース部分を動かす，という操作は「フィードバック制御」の典型的な事例であり，倒立振子はそのわかりやすさから制御やメカトロニクスの演習教材として広く用いられています．</p>
+<p>倒立振子には，リニアステージ上に振り子を取り付けたタイプと，振り子自体が自走するタイプとがあり，後者が本演習の自走式倒立振子にあたります．自走式倒立振子の原理は，セグウェイに代表される移動装置や，自走式ロボットなどに利用されています．</p>
+<p>自走式倒立振子は演習教材キットなども市販されていますが，本演習ではあえてそうしたキットは用いず，<span
+style="color: warnRed"><em>基礎的なパーツのみを用いて自ら倒立振子を組み上げていくことで，その構成や仕組みをより深く理解することをめざします．</em></span>また，フィードバック制御においてはセンサがとても重要になりますが，センサを（よりプリミティブなセンサ素子を使って）自作することにより，<span
+style="color: warnRed"><em>センサの難しさや重要性を体感してもらいたいと思います</em></span>．</p>
+<h1 id="倒立振子制御の概要">倒立振子制御の概要</h1>
+<h2 id="倒立振子のモデル">倒立振子のモデル</h2>
+<p>はじめに，自走式倒立振子の制御の概要について考えます． 図<a
+href="#fig:model" data-reference-type="ref"
+data-reference="fig:model">[fig:model]</a>は簡略化した倒立振子のモデルです．タイヤ（質量<span
+class="math inline">\(m_w\)</span>，慣性モーメント<span
+class="math inline">\(j_w\)</span>）の軸から振り子（＝倒立振子の本体，質量<span
+class="math inline">\(m_p\)</span>，慣性モーメント<span
+class="math inline">\(j_p\)</span>）が立っています．タイヤと振り子の間にはモータがあり，モータを駆動すると両者に互いに逆向きのトルク（<span
+class="math inline">\(\pm\tau\)</span>）が生じます．水平方向のタイヤ中心位置を<span
+class="math inline">\(x\)</span>とします．簡単のため地面からタイヤに働く摩擦以外には，摩擦・損失は無いものとします．我々が制御したいのは，倒立振子の角度<span
+class="math inline">\(\theta\)</span>とタイヤ位置<span
+class="math inline">\(x\)</span>（＝本体位置）です．</p>
+<p>図<a href="#fig:model_disassembled" data-reference-type="ref"
+data-reference="fig:model_disassembled">1</a>のように，振り子とタイヤに分けて，それぞれの運動方程式を考えます．まず，振り子の運動方程式は，
+<span class="math display">\[\begin{eqnarray}
+\textrm{水平方向} &amp;&amp; m_p \frac{d^2}{dt^2}(x+l\sin{\theta})=m_p
+(\ddot{x}+l\ddot{\theta}\cos{\theta}-l\dot{\theta}^2\sin{\theta}) = H
+\label{eq:pH}\\
+\textrm{鉛直方向} &amp;&amp; m_p
+\frac{d^2}{dt^2}(l\cos{\theta})=-m_p(l\ddot{\theta}\sin{\theta}+l\dot{\theta}^2\cos{\theta})=V-m_p
+g \label{eq:pV}\\
+\textrm{回転方向} &amp;&amp;
+j_p\ddot{\theta}=lV\sin{\theta}-lH\cos{\theta}-\tau \label{eq:pR}
+\end{eqnarray}\]</span> と書き表せます．ただし，<span
+class="math inline">\(H\)</span>と<span
+class="math inline">\(V\)</span>はタイヤと振り子の間に働く力の水平成分と鉛直成分です．
+一方，タイヤの運動方程式は， <span
+class="math display">\[\begin{eqnarray}
+\textrm{水平方向} &amp;&amp; m_w \ddot{x} = F-H \label{eq:wH}\\
+\textrm{回転方向} &amp;&amp; j_w\ddot{\phi}=\tau -rF \label{eq:wR}
+\end{eqnarray}\]</span>
+となります（鉛直方向は地面からの抗力と釣り合うだけなので省きました）．ただし，<span
+class="math inline">\(F\)</span>は地面から受ける摩擦力（これによってタイヤが進む）であり，タイヤと地面の間の滑りはない（<span
+class="math inline">\(x=r\phi\)</span>）ものとします．これら一連の式から，内力<span
+class="math inline">\(H, V\)</span>と摩擦力<span
+class="math inline">\(F\)</span>を消去して，振り子角度<span
+class="math inline">\(\theta\)</span>と位置<span
+class="math inline">\(x\)</span>だけで表した式を求めます．</p>
+<figure id="fig:model_disassembled" data-latex-placement="tb">
+<div class="minipage">
+<div class="center">
+<embed src="model.eps" />
+</div>
+</div>
+<div class="minipage">
+<div class="center">
+<embed src="model_disassembled.eps" />
+</div>
+</div>
+<figcaption>各部に働く力とトルク</figcaption>
+</figure>
+<p>まず，式(<a href="#eq:pH" data-reference-type="ref"
+data-reference="eq:pH">[eq:pH]</a>)，(<a href="#eq:pV"
+data-reference-type="ref"
+data-reference="eq:pV">[eq:pV]</a>)から得られる<span
+class="math inline">\(H,V\)</span>を式(<a href="#eq:pR"
+data-reference-type="ref"
+data-reference="eq:pR">[eq:pR]</a>)に代入すると次式が得られます． <span
+class="math display">\[\begin{equation}
+j_p\ddot{\theta}=m_p gl \sin{\theta} - m_p l \ddot{x}\cos{\theta} - m_p
+l^2 \ddot{\theta} -\tau
+\label{eq:rotation0}
+\end{equation}\]</span> 次に，式(<a href="#eq:wH"
+data-reference-type="ref" data-reference="eq:wH">[eq:wH]</a>)，(<a
+href="#eq:wR" data-reference-type="ref"
+data-reference="eq:wR">[eq:wR]</a>)より<span
+class="math inline">\(F\)</span>を消去し，<span
+class="math inline">\(H\)</span>を求めると， <span
+class="math display">\[\begin{equation}
+H = \frac{\tau}{r}-\left( m_w + \frac{j_w}{r^2} \right) \ddot{x}
+\end{equation}\]</span> となりますので，これを式(<a href="#eq:pH"
+data-reference-type="ref"
+data-reference="eq:pH">[eq:pH]</a>)に代入すると， <span
+class="math display">\[\begin{equation}
+\frac{\tau}{r} = \left( (m_p+m_w) + \frac{j_w}{r^2} \right)\ddot{x} +
+m_pl\cos{\theta}\ddot{\theta} - l\sin{\theta}\dot{\theta}^2
+\label{eq:horizontal0}
+\end{equation}\]</span></p>
+<p>式(<a href="#eq:rotation0" data-reference-type="ref"
+data-reference="eq:rotation0">[eq:rotation0]</a>)，(<a
+href="#eq:horizontal0" data-reference-type="ref"
+data-reference="eq:horizontal0">[eq:horizontal0]</a>)が倒立振子の基本式となりますが，これらの式は非線形項（<span
+class="math inline">\(\sin\)</span>や<span
+class="math inline">\(\dot{\theta}^2\)</span>など）を含んでおり，このままでは扱いにくいため，傾斜角<span
+class="math inline">\(\theta\)</span>が微小であると仮定して線形近似（<span
+class="math inline">\(\sin{\theta} \simeq \theta\)</span>，<span
+class="math inline">\(\cos{\theta} \simeq 1\)</span>, <span
+class="math inline">\(\dot{\theta}^2 \simeq
+0\)</span>）します．すると，次の線形微分方程式のペアが得られます．これが倒立振子の線形近似モデルです．
+<span class="math display">\[\begin{eqnarray}
+&amp;&amp; (j_p + m_p l^2)\ddot{\theta} = m_p gl\theta -
+m_pl\ddot{x}-\tau \label{eq:rot}\\
+&amp;&amp; \frac{\tau}{r} = \left(
+(m_p+m_w)+\frac{j_w}{r^2}\right)\ddot{x} + m_pl\ddot{\theta}
+\label{eq:hor}
+\end{eqnarray}\]</span></p>
+<h2 id="振り子角度の制御">振り子角度の制御</h2>
+<p>最終的には振り子の回転角<span
+class="math inline">\(\theta\)</span>と本体位置<span
+class="math inline">\(x\)</span>の両者を同時に制御したいのですが，まずは振り子の回転角<span
+class="math inline">\(\theta\)</span>のみに注目し，<span
+class="math inline">\(\theta=0\)</span>となるように制御する，すなわち，振り子を倒立させることだけを考えます．そのために，式(<a
+href="#eq:hor" data-reference-type="ref"
+data-reference="eq:hor">[eq:hor]</a>)から<span
+class="math inline">\(\ddot{x}\)</span>を求めて式(<a href="#eq:rot"
+data-reference-type="ref"
+data-reference="eq:rot">[eq:rot]</a>)に代入し，<span
+class="math inline">\(\theta\)</span>のみの微分方程式を得ます． <span
+class="math display">\[\begin{equation}
+\left(j_p + m_p l^2 \left(1-\frac{m_p}{M}\right) \right)\ddot{\theta} -
+m_pgl\theta = -\left(1+\frac{m_pl}{Mr}\right)\tau
+\end{equation}\]</span> ただし，<span class="math inline">\(M = m_p +
+m_w + \frac{j_w}{r^2}\)</span>です．係数が複雑なので簡単に置き換えると，
+<span class="math display">\[\begin{equation}
+I\ddot{\theta} - m_p gl \theta = -A \tau
+\label{eq:simple}
+\end{equation}\]</span> となります．この式が表すものは，図<a
+href="#fig:simple_pendulum" data-reference-type="ref"
+data-reference="fig:simple_pendulum">[fig:simple_pendulum]</a>のように，質量<span
+class="math inline">\(m_p\)</span>，軸周りの慣性モーメント<span
+class="math inline">\(I\)</span>の振り子が固定された軸上に設置され，モータから<span
+class="math inline">\(A\tau\)</span>のトルクを受けている状況と同じです．</p>
+<p>図<a href="#fig:simple_pendulum" data-reference-type="ref"
+data-reference="fig:simple_pendulum">[fig:simple_pendulum]</a>の振り子の振る舞いについて考えてみます．モータからのトルクが無い（＝制御しない）状態では，上の式(<a
+href="#eq:simple" data-reference-type="ref"
+data-reference="eq:simple">[eq:simple]</a>)は<span
+class="math inline">\(I \ddot{\theta} =
+m_pgl\theta\)</span>となります．これは，形式的にはバネの式と同じですので，図<a
+href="#fig:spring" data-reference-type="ref"
+data-reference="fig:spring">[fig:spring]</a>のバネ・質点系と比べてみましょう．図<a
+href="#fig:spring" data-reference-type="ref"
+data-reference="fig:spring">[fig:spring]</a>のバネ・質点系の運動方程式は<span
+class="math inline">\(m\ddot{x}=-kx\)</span>となりますが，この式と比較すると，<span
+style="color: warnRed"><strong>倒立振子はバネ係数が<span
+class="math inline">\(-m_pgl\)</span>のバネ・質点系と等価</strong></span>であることがわかります．ただし，バネ係数（<span
+class="math inline">\(-m_pgl\)</span>）が負であるため，バネとは真逆の不安定な動作をします（つりあい点から少しでも離れると，さらに離れるように力が働く）．</p>
+<p>このように，倒立振子は負のバネ係数を持つために不安定であると解釈できます．そこで，図<a
+href="#fig:stabilize" data-reference-type="ref"
+data-reference="fig:stabilize">2</a>のように鉛直軸との間にバネをつけてトータルの合成バネ係数（＝もともとの負のバネ係数＋新たにつけた正のバネ係数）を正にすることを考えてみます．合成バネ係数が正になれば，振り子は鉛直軸付近で単振動をするようになるはずです．さらに，ダンパ（＝ダッシュポッド：速度に比例する反力を生じる）もつければ，振動を減衰させて鉛直軸に沿って倒立振子を倒立させることができるはずです．とはいえ，本物のバネとダンパをつける訳には行かないので，バネおよびダンパと等価な働きをフィードバック制御により実現してみましょう．</p>
+<figure id="fig:stabilize" data-latex-placement="bhtp">
+<div class="minipage">
+<div class="center">
+<embed src="simple_pendulum.eps" />
+</div>
+</div>
+<div class="minipage">
+<div class="center">
+<embed src="spring.eps" />
+</div>
+</div>
+<div class="minipage">
+<div class="center">
+<embed src="stabilize.eps" />
+</div>
+</div>
+<figcaption>バネとダンパによる安定化</figcaption>
+</figure>
+<h2 id="pd制御">PD制御</h2>
+<p>フィードバック制御により，バネとダンパを仮想的に実現する方法を考えます．
+バネとダンパが生み出す合力は <span class="math inline">\(K_p \theta +
+K_d \dot{\theta}\)</span> と書けますので，振り子角度 <span
+class="math inline">\(\theta\)</span>（およびその微分 <span
+class="math inline">\(\dot{\theta}\)</span>）がわかれば，モータが次のようなトルクを発生するようにすればよいことになります．
+<span class="math display">\[\begin{equation}
+A\tau = K_p \theta + K_d \dot{\theta}
+\label{eq:pd}
+\end{equation}\]</span>
+これにより，モータがバネ＋ダンパの役割を果たします．</p>
+<p>このように，位置や角度（目標値からのずれ）に<em>比例</em>した量と，その微分に<em>比例</em>した量をフィードバックする制御法を，<strong>PD制御</strong>と呼びます．P
+は <em>Proportional</em>，D は <em>Derivative</em>
+の略です．どちらか一方だけを用いる場合には，それぞれ P
+制御（比例制御），D
+制御（微分制御）と呼びます．上の説明からわかるように，P 制御はバネに，D
+制御はダンパに相当する働きをします．また，それぞれの係数 <span
+class="math inline">\(K_p, K_d\)</span> は，P ゲイン（比例ゲイン），D
+ゲイン（微分ゲイン）と呼ばれます．</p>
+<p>PD 制御した振り子の運動方程式は，式(<a href="#eq:simple"
+data-reference-type="ref" data-reference="eq:simple">[eq:simple]</a>)
+と式(<a href="#eq:pd" data-reference-type="ref"
+data-reference="eq:pd">[eq:pd]</a>) より， <span
+class="math display">\[\begin{equation}
+I \ddot{\theta} =  - (K_p - m_pgl) \theta - K_d \dot{\theta} = -K \theta
+- K_d \dot{\theta}
+\label{eq:total}
+\end{equation}\]</span> と表せます．ここで，<span
+class="math inline">\(K = K_p - m_pgl\)</span>
+は，「重力による負のバネ」と「制御による正のバネ」を合成したときのバネ係数です．この式から，PD
+制御された倒立振子は，バネ係数 <span
+class="math inline">\(K\)</span>，減衰係数 <span
+class="math inline">\(K_d\)</span>
+のバネ・質点・ダンパ系と同じように運動することがわかります．すなわち，平衡点（<span
+class="math inline">\(\theta=0\)</span>）からずれた角度を初期値として与えると，減衰振動しながら平衡点
+<span class="math inline">\(\theta=0\)</span>
+へ収束します．通常のバネ・質点・ダンパ系と同様に，バネ係数（<span
+class="math inline">\(\approx\)</span>
+比例ゲイン）を大きくすると振動数が上がり，微分ゲインを大きくすると減衰が強くなって振動が速く収まります．</p>
+<h2 id="これだけで倒立できるか">これだけで倒立できるか？</h2>
+<p>運がよければ，式(<a href="#eq:pd" data-reference-type="ref"
+data-reference="eq:pd">[eq:pd]</a>)
+に基づいてモータトルクを制御するだけで倒立を保てるかもしれません．しかし実際には，これだけでは倒立しないことが多くあります（短時間は立っても持続しない）．
+その主な原因は，傾斜角 <span class="math inline">\(\theta\)</span>
+を測る傾斜センサのオフセット，および外乱（風や机の振動など，系の外から加わる力）です．</p>
+<p>例えば，傾斜センサにわずかなオフセット（出力値のずれ）があると，一見
+<span class="math inline">\(\theta=0\)</span>
+に見えていても，実際にはそのオフセット分だけ傾きが残っています．すると重力により倒立振子は倒れます．これを引き起こして立て直そうとして制御系はモータトルクを増やし，倒立振子は走り始めます．倒れないためには一定加速度で走り続ける必要がありますが，モータ速度には限界があります．モータが速度限界に達するとそれ以上加速できず，結局倒れてしまいます．</p>
+<p>これを防ぐには，角度だけを見て制御するのではなく，倒立振子の位置（<span
+class="math inline">\(\propto\)</span>
+タイヤの回転量）も検出し，その位置ずれに対する PD
+制御を加える必要があります．この点については後であらためて説明します．</p>
+<h2 id="モータのトルク">モータのトルク</h2>
+<p>式(<a href="#eq:pd" data-reference-type="ref"
+data-reference="eq:pd">[eq:pd]</a>)
+に基づく制御を行うためには，もうひとつ考えておくべきことがあります．それがモータのトルクです．モータを駆動するとき，我々はモータ端子間に電圧を加えます．この電圧を変えればモータの発生トルクも変わりますが，電圧と発生トルクはどのような関係になっているのでしょうか．</p>
+<div class="wrapfigure">
+<p><span>r</span><span>60mm</span></p>
+<div class="center">
+<p><embed src="motor_model.eps" /></p>
+</div>
+</div>
+<p>図<a href="#fig:motor" data-reference-type="ref"
+data-reference="fig:motor">[fig:motor]</a> は DC
+モータの等価回路モデルです．モータ内部には磁場を作るための巻線があり，そこには抵抗
+<span class="math inline">\(R\)</span> とインダクタンス <span
+class="math inline">\(L\)</span>
+があります．また，モータには発電機と同じ作用もあるため，回転すると回転速度に比例した電圧が発生し，これを<em>逆起電力</em>と呼びます．逆起電力は印加電圧とは逆向きに生じます．</p>
+<p>モータトルクは巻線が作る磁場の強さに比例し，磁場の強さは巻線に流れる電流に比例します．したがって，発生トルクは巻線電流に比例します（<span
+class="math inline">\(\tau=\kappa i\)</span>）．この比例係数 <span
+class="math inline">\(\kappa\)</span>
+をモータの「トルク定数」と呼びます．</p>
+<p>つまり，我々が決めてモータに与えるのは <strong>電圧</strong>
+ですが，トルクに比例するのは <strong>電流</strong>
+です．両者が単純に比例していれば話は簡単ですが，実際には逆起電力やコイルのインピーダンスの影響があるため，単純比例にはなりません．そこで両者の関係を求めてみましょう．</p>
+<p>図<a href="#fig:motor" data-reference-type="ref"
+data-reference="fig:motor">[fig:motor]</a>
+の等価回路から，電流（ラプラス変換して <span
+class="math inline">\(I(s)\)</span>）と印加電圧（同様に <span
+class="math inline">\(V(s)\)</span>）の関係式を導くと， <span
+class="math display">\[\begin{equation}
+I(s) = \frac{V(s) - \kappa \Omega_m(s)}{R+sL}
+\end{equation}\]</span> となります．ここで <span
+class="math inline">\(\kappa\)</span> はトルク定数（＝逆起電力定数）<a
+href="#fn2" class="footnote-ref" id="fnref2"
+role="doc-noteref"><sup>2</sup></a>，<span
+class="math inline">\(\Omega_m(s)\)</span> はモータ角速度 <span
+class="math inline">\(\omega_m\)</span> のラプラス変換，<span
+class="math inline">\(sL\)</span> はインダクタンス <span
+class="math inline">\(L\)</span> のインピーダンスです．</p>
+<p>上式で <span class="math inline">\(sL\)</span> が <span
+class="math inline">\(R\)</span>
+に比べて十分小さければ，インダクタンスは無視できます．実際，今回用いる
+DC モータでは <span class="math inline">\(L\)</span>
+は十分小さいとみなせるため，ここではインダクタンスを無視します．その場合，モータトルクは（過渡応答を考えないのでラプラス変換を外して）
+<span class="math display">\[\begin{equation}
+\tau = \kappa \frac{v- \kappa\omega_m}{R}
+\label{eq:motor_simple_equiv}
+\end{equation}\]</span>
+と簡単に書けます．この式からわかるように，トルクを正しく発生させるには，モータの角速度
+<span class="math inline">\(\omega_m\)</span> を求めて，逆起電力成分
+<span class="math inline">\(\kappa \omega_m\)</span>
+を印加電圧に加えてやる必要があります．そのためには回転速度を測るセンサが必要ですが，まだ実際には回転速度を測れないので，当面は逆起電力の存在を無視して進めます．逆起電力を無視すれば，印加電圧と電流，さらにモータトルクは比例関係になります．したがって，式(<a
+href="#eq:pd" data-reference-type="ref"
+data-reference="eq:pd">[eq:pd]</a>)
+に従ってモータトルクを計算し，それに比例した電圧をモータに与えれば，少なくとも短時間は倒立できるはずです．</p>
+<h1 id="week-1-組立と立ち上げ">Week 1: 組立と立ち上げ</h1>
+<h2 id="week-1-の概要と到達目標">Week 1 の概要と到達目標</h2>
+<p>Week 1
+では，倒立振子のハードウェア基盤を組み立て，立ち上げることに集中します．作業は大きく二つに分かれます．
+一つ目は，異なる学生が同時に進められる 3
+つの<strong>並列タスク</strong>，二つ目は，回路を段階的に組み立てて確認していく<strong>チームでの立ち上げ作業</strong>です．</p>
+<p><strong>到達目標：</strong></p>
+<ul>
+<li><p>機械系の組立（センサ，モータ，ブレッドボード，電池ボックス）を完了する</p></li>
+<li><p>マイコン開発環境を整え，ツールチェーンとシリアルデバッグを確認する</p></li>
+<li><p>実際のブレッドボード配線に着手する前に，Fritzing
+上で全配線を設計する</p></li>
+<li><p>回路を 3 段階（モータ <span
+class="math inline">\(\rightarrow\)</span> 角度センサ <span
+class="math inline">\(\rightarrow\)</span>
+全体統合）で組み立て，段階ごとに確認する</p></li>
+<li><p>写真，Fritzing
+ファイル，立ち上げ結果などの提出用記録を残す</p></li>
+</ul>
+<p><strong>並列タスクの推奨分担：</strong> 学生 A（機械），学生
+B（マイコン），学生
+C（Fritzing／配線設計）．役割は途中で入れ替えても構いませんが，段階ごとの立ち上げと確認には全員が参加してください．</p>
+<h2 id="電子部品の解説">電子部品の解説</h2>
+<p>次に電子回路を組み立てますが，その前に使用する部品について説明します．具体的な回路組立作業はこの
+Week 1
+の後半で説明しますので，まずはここを読んで部品の役割を把握しておいてください．</p>
+<div class="cautionbox">
+<ul>
+<li><p>半導体部品（マイコンなどの
+IC，LSI）は静電気で壊れやすいので，特に乾燥した時期は端子に素手で触れないよう注意してください．</p></li>
+<li><p><em>人の身体は帯電しています．</em>
+電子回路の組立前には，ドアや机の金属部分など，大きな導体に触れて身体の電気を逃がしてください．</p></li>
+<li><p>放電後も，作業中に再び帯電しないよう気をつけてください．椅子の上で体をずらしたり，セータを脱いだりするだけでも静電気が発生します．</p></li>
+<li><p>放電した後でも念のため，IC／LSI
+の端子には直接触れないでください．</p></li>
+</ul>
+</div>
+<h3 id="sec:passive_markings">抵抗とコンデンサの表記（値と極性）</h3>
+<h4 class="unnumbered"
+id="抵抗抵抗値の見分け方">抵抗：抵抗値の見分け方</h4>
+<p>抵抗値は，テスタ（<span class="math inline">\(\Omega\)</span>
+レンジ）で実測するか，カラーコードを読んで確認します．正確に測りたい場合は，並列経路の影響を避けるため，<em>回路から外した状態</em>（少なくとも片側の足を浮かせた状態）で測るのが望ましいです．<br />
+<strong>4本帯カラーコード（最も一般的）：</strong> 1 本目＝1 桁目，2
+本目＝2 桁目，3 本目＝乗数，4 本目＝許容差を表します．<br />
+<strong>数字に対応する色：</strong>
+黒=0，茶=1，赤=2，橙=3，黄=4，緑=5，青=6，紫=7，灰=8，白=9 です．</p>
+<ul>
+<li><p><strong>例（100<span class="math inline">\(\Omega\)</span>，4
+本帯）：</strong> <strong>茶–黒–茶</strong> に，許容差として
+<strong>金</strong>（<span class="math inline">\(\pm
+5\%\)</span>）または <strong>茶</strong>（<span
+class="math inline">\(\pm 1\%\)</span>）が付くのが一般的です．茶=1，黒=0
+なので最初の 2 本で “10”，3 本目の茶は乗数 <span
+class="math inline">\(\times 10^{1}\)</span> を表すので，<span
+class="math inline">\(10 \times 10 = 100\,\Omega\)</span>
+となります．</p></li>
+</ul>
+<p>精密抵抗では 5
+本帯の場合もありますが，考え方は同じです（有効数字が増え，最後に乗数と許容差が付く）．<br />
+<strong>数字表記（主にチップ抵抗）：</strong>
+抵抗には数字が印字されていることもあります．考え方はコンデンサの 3
+桁コードと似ていますが，<strong>単位は <span
+class="math inline">\(\Omega\)</span></strong> です．一般的な 3
+桁コードでは，最初の 2 桁が有効数字，3 桁目がゼロの個数（<span
+class="math inline">\(\times 10^n\)</span>）を表します．例えば
+<strong><code>101</code></strong> は <span class="math inline">\(10
+\times 10^{1}=100\,\Omega\)</span>，<strong><code>102</code></strong> は
+<span class="math inline">\(10 \times
+10^{2}=1\,\textrm{k}\Omega\)</span> を意味します．</p>
+<h4 class="unnumbered"
+id="コンデンサ容量表示と極性の見方">コンデンサ：容量表示と極性の見方</h4>
+<p>小型のバイパスコンデンサの多くは無極性（セラミック，フィルムなど）で，向きを気にせず挿せます．一方，電解コンデンサやタンタルコンデンサは有極性なので，向きを正しく入れる必要があります．</p>
+<ul>
+<li><p><strong>代表的な表示：</strong> <code>0.1u</code> や
+<code>100n</code>
+のように値が直接書かれているものもあれば，小型セラミックでは pF 単位の 3
+桁コードが用いられることも多いです（最初の 2 桁が有効数字，3
+桁目がゼロの個数）．例えば <strong><code>104</code></strong> は <span
+class="math inline">\(10 \times
+10^{4}\,\mathrm{pF}=100\,\mathrm{nF}=0.1\,\mu\mathrm{F}\)</span>
+を意味します．</p></li>
+<li><p><strong>有極性と無極性：</strong> セラミック／フィルム系は
+<strong>無極性</strong>，アルミ電解やタンタルは <strong>有極性</strong>
+です．一般的なアルミ電解では，本体の帯が <strong>負極</strong>
+を示し，長い足が <strong>正極</strong> であることが多いです．基板上では
+<code>+</code> 表示が付いていることもあります．</p></li>
+</ul>
+<h3 id="モータドライバdrv8832">モータドライバ（DRV8832）</h3>
+<p>先ほどの説明では，7 行目で p18
+に出力した電圧でモータを駆動することを想定していましたが，mbed
+の出力から取り出せる電流は小さいため，ピンに直接モータをつないでも駆動できません．そこで，大電流を流せるモータドライバ
+IC を介してモータを駆動します．</p>
+<p>今回用いるドライバは Texas Instruments 社の DRV8832
+です．チップ単体では小さく扱いにくいため，基板実装済みのもの（AE-DRV8832：秋葉原の秋月電子で販売）を使用します．
+この基板には 3 本の入力ピンがあり，うち 2 本（IN1,
+IN2）がモータの回転方向（電圧の符号）を決め，残り 1
+本（VSET）が印加電圧の大きさを決めます．回転方向を決める 2 本には mbed
+のデジタル出力を直接つなぎ，印加電圧を指示するピンには mbed
+のアナログ出力を接続します．また，電流制限用のピン（ISENSE, pin
+2）もありますが，今回は電流制限を使わないので
+GND（0V，この回路では電池のマイナス側）へ直結します．</p>
+<p>モータから出ている 2 本の線はドライバの 1 番ピンと 3
+番ピンにつなぎますが，今後の実験ではモータとドライバの接続を何度も抜き差しすることになります．ただし，モータ線は柔らかく，ブレッドボードへの抜き差しがしにくいので，モータ線をドライバに直接つなぐのではなく，別のジャンパ線を介して接続してください．抜き差ししにくいモータ線はブレッドボードに挿したままにし，ジャンパ線だけで着脱できるようにしておくと便利です．</p>
+<p>モータドライバの詳細については，回路例 <a href="#fn3"
+class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>
+およびデータシート <a href="#fn4" class="footnote-ref" id="fnref4"
+role="doc-noteref"><sup>4</sup></a> を参照してください．</p>
+<h3
+id="フォトインタラプタと傾斜センサ">フォトインタラプタと傾斜センサ</h3>
+<h4 class="unnumbered" id="フォトインタラプタ">フォトインタラプタ</h4>
+<p>本演習の倒立振子では，すべてのセンサ（傾斜センサ，および後で説明するロータリーエンコーダ）をフォトインタラプタで実現します．フォトインタラプタは非常に安価に入手でき，今回用いるものも秋葉原で
+1 個 40
+円程度で購入できます．演習の都合上，フォトインタラプタを使った傾斜センサはあらかじめ用意してありますが，後述のロータリーエンコーダは各自で製作してもらいます．</p>
+<p>フォトインタラプタは，LED
+とフォトトランジスタを組み合わせた光学素子です．多くの場合，赤外域の光を用いるため，発光は目には見えません．図<a
+href="#fig:interrupter" data-reference-type="ref"
+data-reference="fig:interrupter">[fig:interrupter]</a>
+に示すように，フォトインタラプタには反射型と透過型があり，それぞれ反射光または透過光の有無によって物体の有無を検出します．特に反射型では，反射光量が対象物表面の反射率（<span
+class="math inline">\(\approx\)</span>
+色）や対象物までの距離によって変化するため（データシート Fig.7
+参照），白黒を見分けるセンサとしてだけでなく，色センサや距離センサとしても利用できます．今回はこの距離センサとしての性質を利用して，傾斜センサを実現しています．（後で説明するロータリーエンコーダでは，スケール表面の白黒パターンを読み取ります．）</p>
+<p>フォトインタラプタの基本回路を図<a href="#fig:pi_circuit"
+data-reference-type="ref" data-reference="fig:pi_circuit">3</a>
+に示します．まず LED を点灯させる必要があります．データシート <a
+href="#fn5" class="footnote-ref" id="fnref5"
+role="doc-noteref"><sup>5</sup></a> を見ると，順方向電圧 <span
+class="math inline">\(V_F\)</span>（1.2V）と，点灯時の代表電流値（20mA）が示されています．
+順方向電圧とは，LED 動作時に LED
+両端へかかる電圧降下です．今回は後述の三端子レギュレータの 3.3V
+を電源電圧（VCC）として使うため，順方向電圧が 1.2V なら，残りの 2.1V
+を直列抵抗で落とす必要があります．20mA 流したときに 2.1V
+落とす抵抗値は，オームの法則より <span
+class="math inline">\(R=2.1\textrm{V}/20\textrm{mA}=105\Omega\)</span>
+ですが，<span class="math inline">\(105\Omega\)</span>
+は一般的でないので，近い値の <span
+class="math inline">\(100\Omega\)</span> を用います．
+抵抗値の読み方（カラーコードやテスタによる測定）については第<a
+href="#sec:passive_markings" data-reference-type="ref"
+data-reference="sec:passive_markings">3.2.1</a>節を参照してください．</p>
+<figure id="fig:pi_circuit" data-latex-placement="bht">
+<div class="minipage">
+<div class="center">
+<embed src="photo_interrupters.eps" />
+</div>
+</div>
+<div class="minipage">
+<div class="center">
+<embed src="pi_circuit.eps" />
+</div>
+</div>
+<figcaption>基本回路</figcaption>
+</figure>
+<p>絶対最大定格（今回は 50mA）を超える電流が流れると，LED
+は一瞬で壊れます．したがって，<u>抵抗を入れずに直接電源へ接続してはいけません</u>．（配布済みの傾斜センサには，これを防ぐために最初から配線先端へ
+<span class="math inline">\(100\Omega\)</span>
+の抵抗が半田付けしてあります．）</p>
+<p>受光側のフォトトランジスタでは，エミッタ側に抵抗をつないで電圧を読み取ります（コレクタ側に抵抗を付ける構成でも構いませんが，その場合は出力電圧の極性が逆になります）．光が入るとコレクタ・エミッタ間に電流が流れ，その電流が外付け抵抗を流れることで電圧に変換されます．得られる電圧は概ね入射光量に比例します．外付け抵抗の値は，データシートと実機の状況を見ながら決めます．同じ光量なら抵抗値が大きいほど大きな電圧が得られますが，出力は電源電圧を超えられないので，飽和しないよう適切な値を選んでください．</p>
+<p>フォトインタラプタの LED
+は赤外光で目に見えないため，本当に点灯しているのか不安になるかもしれません．そのようなときは，スマートフォンや
+PC のカメラで LED
+を見てみましょう．紫っぽく光って見えるはずです．ただし，機種によってはカメラ部に赤外カットフィルタが入っており，赤外
+LED
+が見えないことがあります．その場合は前面カメラも試してください．前面カメラは赤外をあまりカットしていないことが多いです．自分のスマートフォンに赤外カットフィルタがあるか調べたい場合は，テレビのリモコン送信部をカメラで見てみるとわかります．フィルタが無ければ，ボタンを押したときにかなり強く光って見えるはずです（今回のフォトインタラプタはそれよりかなり暗いです）．</p>
+<h4 class="unnumbered" id="傾斜センサ">傾斜センサ</h4>
+<p>倒立振子の傾斜角測定にはジャイロセンサがよく使われますが，ジャイロセンサが直接測っているのは角速度であり，角度を求めるには積分が必要です（その際，ドリフトの問題があります）．今回は，より直接的に角度を得るためにフォトインタラプタを用います．</p>
+<p>倒立振子の底面には，すでに傾斜センサが取り付けられているはずです．この傾斜センサは
+2
+個のフォトインタラプタから構成されており，機体前後のフォトインタラプタが床面までの距離（反射光量）をそれぞれ測り，その差分を角度として出力します．</p>
+<p>したがって，測っているのは鉛直面に対する角度ではなく，床面に対する角度です．そのため，床の傾きが変わると，鉛直基準で見たときのセンサ出力には誤差が生じます．</p>
+<p>また，床面の反射率が変わるとセンサ感度も変化します．反射率の高い（明るい）床面では，傾斜が大きめに出る傾向があります．ただし，ここでいう明るさは赤外域での明るさなので，可視光で見た明るさと一致するとは限りません．</p>
+<h3 id="三端子レギュレータ">三端子レギュレータ</h3>
+<p>今回は倒立振子全体の電源として電池を用いますが，電池から大電流を取り出すと，内部抵抗のために電圧が低下します．この回路ではモータ駆動に伴って大きな電流が流れるため，電池電圧はモータの動作に応じて大きく変動します．
+この変動した電圧でフォトインタラプタを駆動すると，センサ出力に大きなノイズが重畳してしまいます．そこで，フォトインタラプタ用の電圧は三端子レギュレータで安定化します．</p>
+<p>三端子レギュレータは，変動する電圧を入力し，それより低い一定電圧を出力する
+IC
+です．三端子レギュレータにはさまざまな型番がありますが，基本的には型番末尾の数字が出力電圧を表します．今回は
+LD33（正確には LD1117V33） <a href="#fn6" class="footnote-ref"
+id="fnref6" role="doc-noteref"><sup>6</sup></a> を使用します．出力電圧は
+3.3V
+です．フォトインタラプタ関連の電圧はすべてこの三端子レギュレータの出力を用いてください．一方で，モータ用電源とフォトインタラプタ用電源は分離したいので，<span
+style="color: warnRed"><em>モータドライバの電源は三端子レギュレータからではなく，<u>電池から直接</u>取ってください．</em></span></p>
+<p>実は mbed 基板上にも 3.3V の三端子レギュレータ（LD33
+と書かれたチップ）が載っており，右上の VOUT ピンから安定化された 3.3V
+が出ています（図<a href="#fig:mbed_pin" data-reference-type="ref"
+data-reference="fig:mbed_pin">9</a>
+参照）．この電圧を使ってもよいのですが，今回のブレッドボード配置ではこのピンにアクセスしづらいため，別途レギュレータを取り付けることにします．</p>
+<h2 id="並列で進める組立作業">並列で進める組立作業</h2>
+<p>以下の 3
+つの作業は並列に進めることができます．各作業の成果は，後半のチームによる回路組立と立ち上げで利用します．</p>
+<h3 id="sec:w1-mechanical-assembly">Task A：機械組立（学生A）</h3>
+<p>制御の概要がつかめたところで，倒立振子の組立を見ていきます．<strong>（実際の組立は演習当日に行いますが，あらかじめ一通り目を通しておいてください．）</strong><a
+href="#fn7" class="footnote-ref" id="fnref7"
+role="doc-noteref"><sup>7</sup></a> ここで用いる部品は以下の通りです<a
+href="#fn8" class="footnote-ref" id="fnref8"
+role="doc-noteref"><sup>8</sup></a>．（電気系部品はこの Week 1
+内で別途説明するため除いてあります．）</p>
+<ol>
+<li><p>ユニバーサルボード（加工済み）＋車輪</p></li>
+<li><p>ユニバーサルボード＋ブレッドボード＋mbed LPC1768</p></li>
+<li><p>DC モータ（Mabuchi Motor RE-280RA） <a href="#fn9"
+class="footnote-ref" id="fnref9"
+role="doc-noteref"><sup>9</sup></a>（先端にゴムローラ取り付け済み）</p></li>
+<li><p>モータブラケット</p></li>
+<li><p>電池ボックス（単 3 充電池 4 本）</p></li>
+<li><p>傾斜センサ（本演習用の専用部品）</p></li>
+<li><p>L 字金具</p></li>
+</ol>
+<p>車輪付きユニバーサルボード（No.1）が組立の中心になります．以下，このボードに各部品を取り付けていきます．</p>
+<h4 class="unnumbered"
+id="傾斜センサの取り付け">傾斜センサの取り付け</h4>
+<p>まず，傾斜センサ（No.6）を車輪付きユニバーサルボード（No.1）の下面に取り付けます．図<a
+href="#fig:angle_sensor" data-reference-type="ref"
+data-reference="fig:angle_sensor">[fig:angle_sensor]</a> のように，L
+字金具（No.7）を用いて固定してください．</p>
+<figure id="fig:machine" data-latex-placement="b">
+<div class="minipage">
+<div class="center">
+<img src="angle_sensor.png" style="width:45mm" />
+</div>
+</div>
+<div class="minipage">
+<div class="center">
+<img src="motor_tire.png" style="width:45mm" />
+</div>
+</div>
+<div class="minipage">
+<div class="center">
+<img src="assembled.png" style="width:60mm" />
+</div>
+</div>
+<figcaption>完成イメージ</figcaption>
+</figure>
+<h4 class="unnumbered" id="dc-モータの取り付け">DC モータの取り付け</h4>
+<p>次に DC
+モータ（No.3）を取り付けます．モータブラケット（No.4）を用いて，ユニバーサルボード（No.1）の車軸と同じ面に固定してください（図<a
+href="#fig:motor_setup" data-reference-type="ref"
+data-reference="fig:motor_setup">[fig:motor_setup]</a>
+参照）．ブラケット固定用のねじは少し小さい M2
+ねじです．頭が小さく，付属ドライバでは回しにくいことがありますが，緩まないようしっかり締めてください．</p>
+<p>DC
+モータを固定する際は，ゴムローラがタイヤへ「軽く触れる」ように調整してください．
+<span
+style="color: warnRed"><u><em>強く押し付けすぎると駆動できなくなるので，軽く接する程度が重要です．</em></u></span>
+ただし，タイヤは完全な真円ではないため，軽すぎると回転位置によってスリップすることがあります．タイヤを一周回し，どの位置でもローラが接触していることを確認してください．</p>
+<h4 class="unnumbered"
+id="ブレッドボードの取り付け">ブレッドボードの取り付け</h4>
+<p>ブレッドボードが載った No.2 のユニバーサルボードを，No.1
+のユニバーサルボードへねじ止めします．No.2
+側にはあらかじめボルトが立っているはずです．後で再装着しにくいので，ボルト自体は外さないでください（取付時にナットだけ着脱します）．No.1
+側にはモータ固定用のねじもあるため，それらと干渉しない位置を選んでください．無理に重なった状態で締めると基板が割れます．次に電池ボックスも載せるので，その位置も考慮して配置を決めてください．</p>
+<p>mbed はすでにブレッドボードへ挿してあるはずです．USB
+ポートが上側に来る向きで取り付けてください．<span
+style="color: warnRed"><em>mbed
+をブレッドボードから無理に抜くとピンが折れるので，外さないでください．</em></span></p>
+<h4 class="unnumbered"
+id="電池ボックスの取り付け">電池ボックスの取り付け</h4>
+<p>最後に，電池ボックス（No.5）を両面テープで No.1
+のユニバーサルボードへ固定します．
+電池ボックスは最も重い部品なので，取り付け位置によって倒立振子の特性が変わります．
+空いている場所ならどこに貼っても構いませんが，前後方向には注意してください．ふた側へテープを貼ると開閉できなくなります．また，背面スイッチに手が届く向きで貼るようにしてください．</p>
+<p>両面テープは思った以上に強力です．大量に貼ると剥がせなくなるため，上下に
+5cm 程度ずつ貼れば十分です．</p>
+<p>ここまでで基本的な機械構造は完成です．完成例を図<a
+href="#fig:machine" data-reference-type="ref"
+data-reference="fig:machine">4</a> に示します．</p>
+<h3 id="sec:w1-microcontroller-setup">Task
+B：マイコンのセットアップ（学生B）</h3>
+<p>今回使うマイコンは mbed<a href="#fn10" class="footnote-ref"
+id="fnref10" role="doc-noteref"><sup>10</sup></a> です． mbed
+の特徴は，C/C++
+による開発環境がクラウド上に用意されており，サインアップすればすぐに開発を始められることです．また，プログラム書き込みも
+USB 接続した mbed が USB
+ドライブとして見えるため，コンパイルしたファイルをコピーするだけで済みます．
+mbed シリーズには複数の基板がありますが，今回は標準的な LPC1768
+を用います．</p>
+<h4 class="unnumbered" id="keil-studio-cloud-の準備">Keil Studio Cloud
+の準備</h4>
+<p>まず，Keil Studio Cloud<a href="#fn11" class="footnote-ref"
+id="fnref11" role="doc-noteref"><sup>11</sup></a>
+へアクセスし，アカウントを作成してください． サインアップ後，付属 USB
+ケーブルでマイコンを PC に接続します．PC からは USB
+ドライブとして認識されます． コンパイラ画面左上の Build Target
+には，<strong>mbed LPC1768</strong>
+が選択されていることを確認してください．</p>
+<h4 class="unnumbered"
+id="サンプルプログラムのコンパイル">サンプルプログラムのコンパイル</h4>
+<p>コンパイラ画面のメニューから「File」<span
+class="math inline">\(\rightarrow\)</span>「New
+Project」を選び，mbed_blinky
+をひな形にした新しいプログラムを作成します（図<a
+href="#fig:keil_interface" data-reference-type="ref"
+data-reference="fig:keil_interface">8</a>）．具体的には Example Project
+の下部にある <strong>Mbed2-example-blink</strong> を選び，Project Name
+を適当に設定してください．LED
+を点滅させるコードが入った新規プログラムが作られるので，まずはそのままコンパイルします．コンパイルはハンマ形のアイコンから実行できます．完了すると実行ファイル（拡張子
+<code>.bin</code>）がダウンロードされるので，これを mbed の USB
+ドライブへドラッグ＆ドロップで書き込みます．</p>
+<figure id="fig:keil_interface" data-latex-placement="h">
+<figure id="fig:keil_new">
+<img src="fig2026/keil_new_project.png" />
+<figcaption>新規プロジェクト作成</figcaption>
+</figure>
+<figure id="fig:keil_template">
+<img src="fig2026/keil_editor.png" />
+<figcaption>サンプルテンプレート選択</figcaption>
+</figure>
+<figure id="fig:keil_compile">
+<img src="fig2026/keil_build.png" />
+<figcaption>コンパイルボタン</figcaption>
+</figure>
+<figcaption>Keil Studio Cloud
+によるプロジェクト作成とコンパイル</figcaption>
+</figure>
+<p>書き込み後，マイコン基板中央のボタン（リセットスイッチ）を押してください．USB
+ドライブ中で最後に書き込まれたファイルが実行されます．</p>
+<p>サンプルプログラムでは，mbed 基板下部に並んだ 4 個の LED
+のうち左端が点滅すれば成功です．うまくいったら，点滅周期を変えるなど
+<code>main.cpp</code> を少し書き換え，Compile <span
+class="math inline">\(\rightarrow\)</span> Run
+の流れに慣れてください．</p>
+<p>Mac では上記手順がうまく動かないことがあります．その場合は「Write
+Error and Countermeasures on macOS」を参照してください．</p>
+<h4 class="unnumbered" id="ピン機能の見方">ピン機能の見方</h4>
+<p>今回用いるマイコン基板には，さまざまな入出力機能があります．例えば，デジタル信号
+I/O が 26 チャンネル，内蔵 DA コンバータによるアナログ出力が 1
+チャンネル，AD コンバータによる電圧入力が 6 チャンネルあります．さらに
+PWM（Pulse Width
+Modulation）出力などもありますが，これらをすべて別々のピンに割り当てると，基板が巨大になってしまいます．</p>
+<p>一般にはこれらの機能を同時に全部使うわけではないので，この基板（および一般的なマイコン）では
+1
+本のピンに複数機能が割り当てられており，必要に応じてプログラムから切り替えて使います．この対応関係を示したのが図<a
+href="#fig:mbed_pin" data-reference-type="ref"
+data-reference="fig:mbed_pin">9</a> です．</p>
+<figure id="fig:mbed_pin" data-latex-placement="h">
+<div class="center">
+<img src="pinout.png" />
+</div>
+<figcaption>mbed LPC1768
+のピン配置（https://os.mbed.com/platforms/mbed-LPC1768/）</figcaption>
+</figure>
+<p>ユーザが信号 I/O に使えるのは，左右最外列に並ぶ “pXX”（XX
+は数字）と書かれた 26
+本のピンです．これらはすべてデジタル信号の入出力に使え，さらにプログラムで指定することでピン名の横に書かれた機能を利用できます．
+例えば左下の p18 を見ると，AnalogIn と AnalogOut
+の機能が割り当てられています．つまり，このピンにはデジタル入力，デジタル出力，アナログ入力，アナログ出力の
+4
+機能が割り当てられていることになります．このうちアナログ出力を使いたい場合には，プログラム中で</p>
+<pre><code>AnalogOut aaa(p18);</code></pre>
+<p>のように宣言します．これにより p18 の機能として AnalogOut
+が選択されます．宣言したオブジェクト（上の例では
+<code>aaa</code>）は変数のように書き込みできます（AnalogIn
+の場合は読み取りもできます）．例えば，</p>
+<pre><code>aaa = 0.5;</code></pre>
+<p>とすると，フルスケール（3.3V）の 0.5 倍，すなわち 1.65V
+のアナログ電圧が p18 から出力されます．
+逆に，このピンをアナログ入力として使う場合は，</p>
+<pre><code>AnalogIn aaa(p18);
+... (omitted)
+b = aaa;</code></pre>
+<p>のようにして，宣言したオブジェクト <code>aaa</code> を通して p18
+に入力された電圧値（フルスケール 3.3V
+に対する比）を読み取れます（この例では変数 <code>b</code> に入る）．</p>
+<p>詳細は次のリファレンスマニュアルを参照してください．</p>
+<pre><code>https://os.mbed.com/handbook/Homepage</code></pre>
+<h4 class="unnumbered"
+id="制御プログラムの基本">制御プログラムの基本</h4>
+<p>フィードバック制御プログラムでは，次の処理を繰り返します．</p>
+<ul>
+<li><p>センサ信号の読み取り</p></li>
+<li><p>制御計算</p></li>
+<li><p>計算結果の出力</p></li>
+</ul>
+<p>‘for‘ ループや ‘while‘
+ループでも繰り返しは書けますが，その場合，繰り返し時間が正確にはわからず，さらに
+‘if‘
+などの条件分岐があると処理内容によって周期が変わってしまいます．</p>
+<p>フィードバック制御やディジタル信号処理では，繰り返し時間（サンプリング時間）が既知で一定であることが重要です．そのため，一般にはタイマを使って時間管理を行います．タイマを使う方法には，タイマ割り込みを使う方法やスレッドを使う方法がありますが，今回はタイマ割り込みを使います．
+簡単なプログラム例を以下に示します（左の数字は説明用の行番号です）．</p>
+<pre><code>------------------------------------------------------------------------
+ 1:   AnalogIn ad(p20);
+ 2:   AnalogOut da(p18);
+ 3:  
+ 4:   void int0() {
+ 5:        theta = ad;                     // Reading sensor signal
+ 6:        command = theta * Kp;           // Control calculation
+ 7:        da = command;                   // Output
+ 8:   }
+ 9:   
+10:   int main() {
+11:        t_int.attach(&amp;int0, 0.001);     // Start timer interrupt
+12:        while(1);                       // Infinite loop as nothing else to do
+13:   }
+------------------------------------------------------------------------</code></pre>
+<p>ここでは P 制御を例に，プログラム主要部を示しています．C
+言語のプログラムは 10 行目の <code>main</code>
+関数から実行されますが，11 行目でタイマ割り込みを設定すると（ここでは
+0.001 秒ごとに <code>int0()</code> を呼ぶ設定），その後は
+<code>main</code> が終わらないよう 12 行目で無限ループに入ります．</p>
+<p>一方，4 行目から始まる <code>int0()</code>
+関数が，タイマ割り込みで周期実行される制御本体です．この例では，5
+行目で外部からのセンサ信号を読み，6 行目で P 制御を計算し，7
+行目で外部へ電圧を出力しています．
+タイマからの割り込み信号が来るたびにこの関数が実行され，結果として（この例では）1ms
+周期の繰り返し処理が実現されます．</p>
+<p>割り込み処理関数は，必ず割り込み周期内（この例では
+1ms）に終わらなければなりません．周期内に終わらないと次の割り込みが入って処理が破綻します．そのため，割り込み処理内では時間のかかる処理を避けるのが鉄則です．特に注意すべきなのが関数呼び出しです．</p>
+<p>関数呼び出しはプログラム上では 1
+行で書けるため，つい短時間で終わるように見えますが，中には実行時間が意外に長いものがあります．そうした関数を割り込み処理内で安易に呼ぶと，処理が間に合わなくなります．具体的には，‘sprintf()‘
+のような文字列処理，‘malloc()‘ のようなメモリ処理，‘sin()‘
+のような数学関数は比較的重く，トラブルの原因になりやすいです．</p>
+<p>また，<span
+style="color: warnRed"><em>関数呼び出し自体にも処理オーバーヘッドがあるため，自前の関数を過剰に定義・呼び出しするのは避けた方が安全です．</em></span>プログラムの見通しを良くするために複数の処理をひとつの関数にまとめるアイデアもありますが，そのような場合は可能ならインライン関数やマクロ定義を使う方が望ましいです（呼び出し時のオーバーヘッドがありません）．</p>
+<h4 class="unnumbered"
+id="シリアル通信とデバッグ">シリアル通信とデバッグ</h4>
+<p>シリアル通信（UART）は，マイコンプログラムの開発において最も重要なデバッグ手段のひとつです．mbed
+LPC1768 は USB-to-Serial
+機能を内蔵しており，プログラムからデバッグメッセージを PC
+へ送信できます．制御プログラムのデバッグ時には，制御ループを止めることなくリアルタイムで変数値やプログラムの動作を監視できるため，特に便利です．</p>
+<p><strong>UART 通信の原理：</strong> UART（Universal Asynchronous
+Receiver-Transmitter）は，1 本のワイヤでデータを 1
+ビットずつ送受信するハードウェア通信プロトコルです．共有クロックを必要とする同期プロトコルとは異なり，UART
+は非同期方式であり，送信側と受信側の両方があらかじめ通信速度（ボーレート）に合意しておく必要があります．各バイトのデータは，(1)
+スタートビット（ロー），(2) 8 ビットデータ（LSB ファースト），(3)
+オプションのパリティビット，(4) 1
+本以上のストップビット（ハイ），から成るフレームとして送信されます．mbed
+LPC1768 は内蔵の USB-to-Serial コンバータチップを備えており，UART
+インタフェース（USBTX/USBRX ピン）を USB
+に橋渡しするため，外部ハードウェアなしに PC と通信できます．</p>
+<p>プログラムでシリアル通信を使うには，USB インタフェースに接続された
+USBTX ピンと USBRX ピンで Serial
+オブジェクトを作成します．簡単な例を示します．</p>
+<pre><code>Serial pc(USBTX, USBRX);
+
+int main() {
+    pc.baud(9600);  // Set baud rate to 9600 bps
+    pc.printf(&quot;Hello, World!\n&quot;);
+    
+    while(1) {
+        pc.printf(&quot;Counter: %d\n&quot;, counter);
+        wait(1.0);
+    }
+}</code></pre>
+<p>ボーレートは通信速度を表し，ターミナルソフト側の設定と一致していなければなりません．よく使う値は
+9600 bps（安定していて初心者向き）や 115200
+bps（高速でデバッグによく使う）です．ほかにも 4800，19200，38400，57600
+bps などの標準値があります．</p>
+<p>mbed を USB 接続すると，PC
+上でシリアルポートとして認識されます（Windows では COM3 など，macOS では
+/dev/tty.usbmodem*，Linux では /dev/ttyACM*
+などが典型的です）．シリアルメッセージを表示する方法はいくつかあります．最も手軽なのは
+Keil Studio Cloud
+の内蔵シリアルモニタを使う方法で，追加ソフトなしにブラウザ上で出力を確認できます．あるいは，Windows
+では Tera Term や PuTTY，macOS/Linux では screen コマンドや CoolTerm
+などの従来のターミナルソフトも使えます．Arduino IDE
+のシリアルモニタも全プラットフォームで動作します．</p>
+<p><strong>専用デバッグツール：</strong> ディレクトリ<a href="#fn12"
+class="footnote-ref" id="fnref12"
+role="doc-noteref"><sup>12</sup></a>には 3
+つの専用デバッグツールが用意されており，各ツールは 3
+種類のファイルで構成されています．</p>
+<ul>
+<li><p><strong>.cpp ファイル</strong>: mbed マイコン用プログラム（C++
+ソースコード）．コードを読んで動作を理解したり，必要に応じて変更したりできます．</p></li>
+<li><p><strong>.bin ファイル</strong>: mbed LPC1768
+へ直接書き込める事前コンパイル済みバイナリ．mbed の USB
+ドライブへドラッグ＆ドロップするだけでプログラムできます（コンパイル不要）．</p></li>
+<li><p><strong>.pde ファイル</strong>: PC 上で動作する Processing<a
+href="#fn13" class="footnote-ref" id="fnref13"
+role="doc-noteref"><sup>13</sup></a> 可視化プログラム．mbed
+からシリアル通信で受信したデータをリアルタイムに表示するグラフィカルなインタフェースを提供します．</p></li>
+</ul>
+<p>各ツールの使い方：(1) <code>.bin</code> ファイルを mbed の USB
+ドライブへコピーして書き込む，(2) mbed のリセットボタンを押す，(3)
+対応する <code>.pde</code> ファイルを Processing で実行する．mbed
+のプログラムを変更したい場合は，Keil Studio Cloud で <code>.cpp</code>
+ファイルを編集し，コンパイルして新しい <code>.bin</code>
+ファイルを生成し，mbed
+に書き込みます．各ツールはフレームベースのシリアルプロトコル（ヘッダバイト
+0xAA 0x55）を使用して複数の値を確実に送信し，mbed と PC
+表示側の同期を保っています．各ツールの詳細な説明，ピン配置，通信プロトコル，トラブルシューティングについては，
+ディレクトリ内の <code>README.md</code> を参照してください．</p>
+<p>シリアル通信は制御プログラムのデバッグに非常に役立ちます．計算を検証するために変数値を出力したり，タイムスタンプを出力して制御ループのタイミングを監視したり，センサ生データを表示して読み取りを確認したり，重要な実行ポイントにメッセージを追加してプログラムフローを確認したりできます．例えば，</p>
+<pre><code>pc.printf(&quot;Angle: %f, Motor: %f\n&quot;, theta, motor_output);</code></pre>
+<p>ただし，割り込み処理関数内で printf
+を使う場合は注意が必要です．処理時間が長くなってタイミングの厳しい制御ループを乱す可能性があります．タイミング精度が重要なデバッグには，デジタル出力ピンをトグルしてオシロスコープで観測する方法を検討してください．シリアル通信の詳細は，mbed
+Serial API のドキュメントを参照してください．</p>
+<h3 id="sec:w1-breadboard-wiring-design">Task
+C：ブレッドボード配線設計（学生C）</h3>
+<h4 class="unnumbered"
+id="ブレッドボードの使い方">ブレッドボードの使い方</h4>
+<p>ブレッドボードは電子回路の試作によく使われる基板で，半田付け不要で簡単に回路を組めます．図<a
+href="#fig:breadboard" data-reference-type="ref"
+data-reference="fig:breadboard">[fig:breadboard]</a>
+にブレッドボードの概略を示します．ブレッドボードでは横一列に並んだ 5
+個のホールが電気的につながっており，これを利用して配線します．左右の 5
+個ずつのホールは互いに独立しています．</p>
+<figure id="fig:breadboard_sample" data-latex-placement="hbt">
+<div class="minipage">
+<div class="center">
+<embed src="breadboard.eps" />
+</div>
+</div>
+<div class="minipage">
+<div class="center">
+<img src="breadboard_sample.png" style="width:75mm" />
+</div>
+</div>
+<figcaption>配線例</figcaption>
+</figure>
+<p>例えば，mbed はすでにブレッドボードに挿してあるはずです．mbed
+のピンに何かをつなぐには，そのピンのすぐ隣のホールにリード線や抵抗の足を挿すだけです（図<a
+href="#fig:breadboard_sample" data-reference-type="ref"
+data-reference="fig:breadboard_sample">10</a> 参照）．</p>
+<p>また，ブレッドボードには電源電圧用のラインが用意されています．ボード両端の縦一列に並んだホールは，それぞれ縦方向に電気的につながっています．左右に
+1 列ずつあるので，それぞれ GND と 3.3V
+として使ってください．そのため，三端子レギュレータの出力ピン（3.3V）を右の列の任意のホールにリード線でつないでください．同様に，左の列を
+GND（電池から来る黒線）につないでください．</p>
+<h4 class="unnumbered" id="fritzing-による回路設計">Fritzing
+による回路設計</h4>
+<p>ブレッドボードの配線は視覚的に複雑になりやすくミスも生じやすいため，実際のブレッドボードに着手する前に，Fritzing<a
+href="#fn14" class="footnote-ref" id="fnref14"
+role="doc-noteref"><sup>14</sup></a>
+で回路を設計することをお勧めします．Fritzing
+はブレッドボードを使ったプロトタイピング向けに設計された無料のオープンソース電子設計自動化（EDA）ツールで，<strong>Breadboard</strong>（ブレッドボード），<strong>Schematic</strong>（回路図），<strong>PCB</strong>
+の各ビューを連動して提供します．</p>
+<p>本演習では，<em>マイコン</em>，<em>モータドライバ</em>，<em>フォトリフレクタ</em>
+の各モジュール用の専用 Fritzing
+パーツを用意しています．これらのパーツは，<strong>まず Fritzing
+にインポートしてから</strong> パーツライブラリに配置してください．</p>
+<p>図 <a href="#fig:fritzing_setup_and_examples"
+data-reference-type="ref"
+data-reference="fig:fritzing_setup_and_examples">13</a>
+に本演習の回路設計例を示します．パーツ配置と配線を始める前に，Fritzing
+の <em>View</em> メニューから <em>Align to Grid</em>
+のチェックを外してください；グリッドへのスナップは本設定での配置・配線には不便です．また，<strong>モータドライバ部分をあらかじめ配線した</strong>
+設計例も用意しています（図 <a
+href="#fig:fritzing_motor_driver_schematic" data-reference-type="ref"
+data-reference="fig:fritzing_motor_driver_schematic">11</a> および図 <a
+href="#fig:fritzing_motor_driver_breadboard" data-reference-type="ref"
+data-reference="fig:fritzing_motor_driver_breadboard">12</a>）．これを参考にし，詳細な部品一覧と手順は
+Week 1 の回路組立節を参照してください．Fritzing
+を使うかどうかに関わらず参照できる完全な回路例も付録<a href="#fn15"
+class="footnote-ref" id="fnref15"
+role="doc-noteref"><sup>15</sup></a>に掲載しています．</p>
+<figure id="fig:fritzing_setup_and_examples"
+data-latex-placement="htbp">
+<figure id="fig:fritzing_motor_driver_schematic">
+<img src="fig2026/fz2.png" style="height:75mm" />
+<figcaption><em>Schematic View</em>（回路図）での例．</figcaption>
+</figure>
+<figure id="fig:fritzing_motor_driver_breadboard">
+<img src="fig2026/fz3.png" style="height:75mm" />
+<figcaption>対応する <em>Breadboard
+View</em>（ブレッドボード）での配線例．</figcaption>
+</figure>
+<figcaption>本演習の Fritzing 回路設計例．</figcaption>
+</figure>
+<p>Fritzing
+を使う際は，まず用意されたすべての専用パーツをインポートし，新しいスケッチを作成して
+<strong>パネルへ搭載するすべてのモジュール</strong>（マイコン，モータドライバ，フォトリフレクタ，レギュレータ，電池コネクタなど）を配置してください．</p>
+<p>次に Schematic View
+を使って，<strong>どのピン同士を接続すべきか</strong>
+を確認し，接続漏れがないかを洗い出します．そのうえで，同じ電気的接続を
+Breadboard View
+に反映してください．物理的な配置は多少違っても構いませんが，電気的接続は一致している必要があります．配線時は見やすさを優先し，できるだけ短く，不要な交差を避け，機能ごと（電源，モータ，センサ，エンコーダ）にまとめてください．そうすると実機の配線が速くなり，デバッグ時間も減ります．</p>
+<p>実際のブレッドボードへ移る前に，Fritzing 上で
+<strong>電源（3.3V/GND）</strong>，<strong>モータドライバの入出力</strong>，<strong>センサ信号線</strong>
+に関係するすべてのネットを最終確認し，各信号が想定したマイコンピンへつながっていることを確認してください．特に，<strong>ブレッドボードへ着手する前に
+Fritzing 上で回路全体を完成させる</strong> ことを徹底してください．</p>
+<h3 class="unnumbered" id="合流ポイント全員">合流ポイント（全員）</h3>
+<p>チームで回路組立を始める前に，以下を確認してください．</p>
+<ul>
+<li><p>機械系の組立が完了し，モータローラの接触も適切に調整されている</p></li>
+<li><p>マイコンへプログラムを書き込め，シリアル通信も確認できている</p></li>
+<li><p>Fritzing 設計に <strong>必要な全モジュール</strong>
+が含まれ，必要な配線がすべて確認済みである</p></li>
+</ul>
+<h2 id="sec:w1-circuit-assembly">回路組立（チーム作業）</h2>
+<p>この部分はチーム全員で行います．ミスのリスクを下げ，デバッグしやすくするために，回路は
+3 段階で組み立て・確認します．</p>
+<h3 id="安全上の注意">安全上の注意</h3>
+<div class="cautionbox">
+<ul>
+<li><p>電源スイッチを入れる前に，せめて電源回りの配線に間違いがないかよく確認してください！</p></li>
+<li><p>電源回りの配線に間違いがあった場合（プラスとマイナスを逆につなぐ，ショートさせるなど），<span
+style="color: warnRed"><em>スイッチを入れた瞬間に回路が壊れます</em></span>．</p></li>
+<li><p>スイッチを入れて様子を見るのは危険なので，当たって砕けろではなくしっかり確認してから試してください．特に，<span
+style="color: warnRed"><em>マイコン・モータドライバへの電源接続</em></span>と<span
+style="color: warnRed"><em>電解コンデンサの極性</em></span>に注意してください．</p></li>
+<li><p>配線を変更する際は必ず電源を切ってください．通電中のブレッドボードでリード線を動かすのは禁止です．</p></li>
+<li><p>モータ用電源（電池）とセンサ用電源（3.3V
+レギュレータ）は指示通りに分離してください．</p></li>
+</ul>
+</div>
+<p><strong>半田付けと導通確認．</strong>
+回路組立の際，半田ごてを使って抵抗やデュポンケーブル（またはリード線）を半田付けし，確実な接続を作ります．通電する前に，テスタの導通モード（ブザーモード）で確認することができます．</p>
+<div class="cautionbox">
+<ul>
+<li><p>使用後は半田ごてのプラグを抜き，片付けたり作業台を離れたりする前に冷えるのを待ってください．</p></li>
+<li><p>通電したままの半田ごてをその場に放置しないでください．</p></li>
+</ul>
+</div>
+<h3 id="組立方針3段階">組立方針（3段階）</h3>
+<p>ミスのリスクを下げ，デバッグしやすくするために，3
+段階に分けて回路を組み立て・確認することをお勧めします<a href="#fn16"
+class="footnote-ref" id="fnref16"
+role="doc-noteref"><sup>16</sup></a>．</p>
+<ol>
+<li><p><strong>モータドライバとモータの確認</strong> —
+モータ制御（正転・逆転と速度制御）を検証する</p></li>
+<li><p><strong>傾斜センサの確認</strong> —
+センサ信号の取得と処理を検証する</p></li>
+<li><p><strong>全体回路の統合</strong> —
+すべての部品を統合して最終的な制御系を完成させる</p></li>
+</ol>
+<p>このように段階を分けることで，回路が複雑になりすぎる前に問題を見つけて修正できます．各段階には，動作確認のためのサンプルプログラムとデバッグツールが用意されています．</p>
+<h3 id="stage-1モータドライバとモータの確認">Stage
+1：モータドライバとモータの確認</h3>
+<h4 class="unnumbered" id="目標">目標</h4>
+<p>最初の段階では，電源回路，モータドライバ（DRV8832），モータを組みます．mbed
+の PWM
+信号で，モータの回転方向（正転・逆転）と速度を制御できることを確認するのが目標です．</p>
+<h4 class="unnumbered" id="stage-1-で使用する部品">Stage 1
+で使用する部品</h4>
+<ul>
+<li><p>mbed LPC1768 マイコン</p></li>
+<li><p>電池ボックス（単 3 電池 4 本，6V）</p></li>
+<li><p>三端子レギュレータ（LD1117V33）3.3V 用</p></li>
+<li><p>モータドライバ IC（DRV8832）</p></li>
+<li><p>DC モータ（RE-280RA）</p></li>
+<li><p>バイパスコンデンサ（電源安定化用セラミックコンデンサ）</p></li>
+<li><p>レギュレータ用電解コンデンサ</p></li>
+<li><p>ジャンパ線</p></li>
+</ul>
+<p><em>注：部品番号，仕様，個数の詳細は Appendix <a
+href="#app:partslist" data-reference-type="ref"
+data-reference="app:partslist">[app:partslist]</a>
+を参照してください．</em></p>
+<h4 class="unnumbered" id="配線手順">配線手順</h4>
+<p>サンプル回路図<a href="#fn17" class="footnote-ref" id="fnref17"
+role="doc-noteref"><sup>17</sup></a>のモータドライバ部分に従って回路を配線してください．重要なポイントは次の通りです．</p>
+<ul>
+<li><p>サンプル回路図では，mbed とモータドライバの電源ピン—GND
+間にコンデンサが入っています．これをバイパスコンデンサ（デカップリングコンデンサ）と呼び，抵抗成分のある配線での電圧降下による電源変動を吸収して
+IC の動作を安定させる役割があります．<span
+style="color: warnRed"><em>バイパスコンデンサは電源ピンのすぐ隣（隣接ホール）に取り付けるのが鉄則です</em></span>．回路図上では同じでも，離れた位置に付けるとバイパスコンデンサの効果がなくなります．</p></li>
+<li><p>同様に，<span
+style="color: warnRed"><em>三端子レギュレータにつなぐコンデンサも直近のホールへ取り付けてください</em></span>．</p></li>
+<li><p>三端子レギュレータの出力（3.3V）をブレッドボードの縦方向電源ラインの一方へつないでください</p></li>
+<li><p>GND（電池の黒線）をもう一方の縦方向電源ラインへつないでください</p></li>
+<li><p><span
+style="color: warnRed"><em>電解コンデンサの極性</em></span>（帯が負極側）に十分注意してください</p></li>
+<li><p>コンデンサの表記（<code>0.1u</code>/<code>104</code>
+など）と有極性・無極性の見分け方については第<a
+href="#sec:passive_markings" data-reference-type="ref"
+data-reference="sec:passive_markings">3.2.1</a>節を参照してください．</p></li>
+<li><p>電源スイッチを入れる前に，すべての電源回りの接続を再確認してください</p></li>
+</ul>
+<h4 class="unnumbered"
+id="サンプルプログラムとデバッグツール">サンプルプログラムとデバッグツール</h4>
+<p>モータ制御確認用のサンプルプログラム（）を用意しています．このプログラムでは次の項目を試せます．</p>
+<ul>
+<li><p>各速度でのモータ正転</p></li>
+<li><p>各速度でのモータ逆転</p></li>
+<li><p>モータの停止とブレーキ</p></li>
+</ul>
+<p>制御信号を可視化して動作を確認するために，<strong>デバッグツール
+1：Motor Controller</strong>（
+に収録）を用意しています．このツールの構成は次の通りです．</p>
+<ul>
+<li><p><strong>1_motor_controller.cpp</strong>: シリアル経由（115200
+baud）でテキストコマンドを受信する mbed
+プログラム．コマンド：<code>F xx</code>（xx%
+デューティで正転），<code>B xx</code>（xx%
+で逆転），<code>S</code>（停止）．使用ピン：p13（正転），p14（逆転），p18（PWM
+電圧）．</p></li>
+<li><p><strong>1_motor_controller.bin</strong>:
+事前コンパイル済みバイナリ―mbed の USB
+ドライブへドラッグ＆ドロップするだけで書き込めます．</p></li>
+<li><p><strong>1_motor_controller.pde</strong>: スライダとボタンを備えた
+Processing GUI
+で，コードを変更せずにモータの速度と方向をインタラクティブに制御できます．</p></li>
+</ul>
+<p>Processing GUI では，PWM
+duty，比較方向（正転／逆転），必要に応じてモータ電流などをリアルタイムで確認できます．制御アルゴリズムへ統合する前に，モータドライバ回路を十分に確認してください．</p>
+<h4 class="unnumbered" id="確認チェックリスト">確認チェックリスト</h4>
+<p>Stage 2 へ進む前に，次を確認してください．</p>
+<ul>
+<li><p>指令通りにモータが正転する</p></li>
+<li><p>指令通りにモータが逆転する</p></li>
+<li><p>PWM
+デューティサイクルに応じてモータ速度がスムーズに変化する</p></li>
+<li><p>指令通りにモータが完全に停止する</p></li>
+<li><p>モータドライバ IC の異常な発熱がない</p></li>
+<li><p>電源電圧が安定している（テスタで測定）</p></li>
+</ul>
+<h3 id="stage-2傾斜センサの確認">Stage 2：傾斜センサの確認</h3>
+<h4 class="unnumbered" id="目標-1">目標</h4>
+<p>この段階では，角度センサ（フォトインタラプタ，必要に応じてロータリーエンコーダ）を回路へ追加し，振り子角度を正しく読み取れることを確認します．これは倒立振子制御において最も重要なセンサです．</p>
+<h4 class="unnumbered" id="stage-2-で追加する部品">Stage 2
+で追加する部品</h4>
+<ul>
+<li><p>フォトインタラプタセンサ（TPR-105F）<span
+class="math inline">\(\times\)</span> 2</p></li>
+<li><p>センサ出力用プルアップ抵抗</p></li>
+<li><p>センサ接続用の追加ジャンパ線</p></li>
+</ul>
+<h4 class="unnumbered" id="配線手順-1">配線手順</h4>
+<p>サンプル回路図<a href="#fn18" class="footnote-ref" id="fnref18"
+role="doc-noteref"><sup>18</sup></a>のセンサ部分に従って，既存のモータドライバ回路へセンサ回路を追加してください．重要なポイントは次の通りです．</p>
+<ul>
+<li><p>センサの電源は 3.3V ラインへつなぐ（5V 不可：mbed の入力は 3.3V
+ロジック）</p></li>
+<li><p>センサ出力ラインに適切なプルアップ抵抗を取り付ける</p></li>
+<li><p>ノイズを最小限にするため，センサ信号線をモータ電源線から離してまとめる</p></li>
+<li><p>センサをエンコーダディスクやスリットパターンと機械的に正しく位置合わせする</p></li>
+</ul>
+<h4 class="unnumbered"
+id="サンプルプログラムとデバッグツール-1">サンプルプログラムとデバッグツール</h4>
+<p>センサ信号の読み取りと処理を確認するサンプルプログラム（）を用意しています．このプログラムで確認できるのは次の項目です．</p>
+<ul>
+<li><p>デジタルセンサ出力の読み取り</p></li>
+<li><p>センサ読み取り値からの角度計算</p></li>
+<li><p>微分による角速度の計算</p></li>
+<li><p>ノイズ低減のためのフィルタリング</p></li>
+</ul>
+<p><strong>デバッグツール 2：Analog Input Visualizer</strong>（
+に収録）は，4 チャンネルのアナログ入力をリアルタイム表示します．</p>
+<ul>
+<li><p><strong>2_analog_input_visualizer.cpp</strong>: 約 200 Hz で 4
+チャンネルのアナログ入力を読み取り，フレームベースプロトコル（ヘッダ：0xAA
+0x55，続いて 4 データバイト）でシリアル（115200 baud）送信する mbed
+プログラム．ピン：p16（CH1），p17（CH2），p19（CH3，通常フォトインタラプタ
+1），p20（CH4，通常フォトインタラプタ 2）．4
+チャンネルは，傾斜センサ，エンコーダ信号，ポテンショメータなど，任意のアナログセンサに使用できます．</p></li>
+<li><p><strong>2_analog_input_visualizer.bin</strong>: mbed
+に書き込める事前コンパイル済みバイナリ．</p></li>
+<li><p><strong>2_analog_input_visualizer.pde</strong>: 4
+チャンネルのリアルタイム波形を表示する Processing
+プログラム．フォトインタラプタ使用時は振り子角度と角速度の計算，ロータリーエンコーダ使用時は
+CH1/CH2 でエンコーダ信号の表示ができます．</p></li>
+</ul>
+<p>このツールは，センサの動作確認，機械的な不具合の検出，信号品質の確認に有用です．角度センサなら振り子を手で動かしながら出力を見られますし，エンコーダなら車輪を回して
+2 相波形を確認できます．ヘッダ付きフレーム形式にしているため，mbed と PC
+表示側の同期も安定します．</p>
+<figure id="fig:debugtools12" data-latex-placement="htbp">
+<figure id="fig:debuger1">
+<img src="fig2026/debug_motor_controller.png" />
+<figcaption>デバッグツール 1: Motor Controller GUI</figcaption>
+</figure>
+<figure id="fig:debuger2">
+<img src="fig2026/debug_analog_visualizer.png" />
+<figcaption>デバッグツール 2: Analog Input Visualizer</figcaption>
+</figure>
+<figcaption>デバッグツール 1 と 2 の Processing GUI 画面</figcaption>
+</figure>
+<h4 class="unnumbered" id="確認チェックリスト-1">確認チェックリスト</h4>
+<p>Stage 3 へ進む前に，次を確認してください．</p>
+<ul>
+<li><p>振り子を動かすとセンサ出力が正しく変化する</p></li>
+<li><p>角度計算が実際の振り子位置と対応している</p></li>
+<li><p>角速度が適切な値を示している（過剰なノイズがない）</p></li>
+<li><p>センサが振り子の動作範囲全体を検出できる</p></li>
+<li><p>モータ動作によるセンサ信号への干渉がない</p></li>
+</ul>
+<h3 id="stage-3全体回路の統合">Stage 3：全体回路の統合</h3>
+<h4 class="unnumbered" id="目標-2">目標</h4>
+<p>最後の段階では，モータ制御系とセンサ系を統合し，倒立振子を立たせるための完全なフィードバック制御系にします．</p>
+<h4 class="unnumbered" id="最終組立">最終組立</h4>
+<p>完全なサンプル回路図<a href="#fn19" class="footnote-ref" id="fnref19"
+role="doc-noteref"><sup>19</sup></a>に従って，すべての部品を実装してください．回路全体を見直し，次の点を確認してください．</p>
+<ul>
+<li><p>すべての電源接続が正しく，しっかり固定されている</p></li>
+<li><p>すべてのバイパスコンデンサが IC
+電源ピンの直近に取り付けられている</p></li>
+<li><p>配線が整頓されている（図<a href="#fig:circuit_sample"
+data-reference-type="ref" data-reference="fig:circuit_sample">17</a>
+参照）</p></li>
+<li><p>ショートの恐れのある配線がない</p></li>
+<li><p>すべての部品の向きが正しい（IC，電解コンデンサ）</p></li>
+</ul>
+<h4 class="unnumbered"
+id="回路組立の一般的な注意事項">回路組立の一般的な注意事項</h4>
+<ul>
+<li><p><span
+style="color: warnRed"><em>見た目がシンプルな回路ほどよく動きます</em></span>．電子回路，特にアナログ回路は，わずかな配線方法の違いで特性が変わります．きれいな回路＝シンプルな回路は特性が良くなる傾向があります．</p></li>
+<li><p><span
+style="color: warnRed"><em>ブレッドボードは接触抵抗が大きいので，配線が少ないほど安定して動作します</em></span>．1
+本の配線で済むところを，複数のジャンパ線をデイジーチェーンしないようにしてください．</p></li>
+<li><p>再度：IC／LSI
+のピンには触れないようにしてください（抵抗，コンデンサ，LED，三端子レギュレータは触っても構いません）．</p></li>
+<li><p>サンプル回路図はあくまで一例ですので，mbed
+の入出力ピンには別のピンを使うこともできます（ただし，AnalogOut は p18
+のみなので変更不可．また，mbed
+の右側ピンはスペースの都合上使用できません）．使用ピンに合わせてプログラムも変更してください．</p></li>
+<li><p>ショートを防ぐため，抵抗の足は適切な長さに切ってください（ただし，切れた足が飛んでいかないよう注意）．</p></li>
+<li><p>色分けのルール：電源のプラス側には赤，GND（0V）には黒を使ってください．</p></li>
+</ul>
+<p>完成した回路の実装例を図<a href="#fig:circuit_sample"
+data-reference-type="ref" data-reference="fig:circuit_sample">17</a>
+に示します．</p>
+<figure id="fig:circuit_sample" data-latex-placement="hbt">
+<div class="center">
+<img src="circuit_sample.png" style="width:100mm" />
+</div>
+<figcaption>完成回路の実装例</figcaption>
+</figure>
+<h4 class="unnumbered" id="統合テスト">統合テスト</h4>
+<p>全体回路が完成したら，統合された制御系を試験できます．最終制御プログラムでは，モータ制御とセンサ読み取りを組み合わせてフィードバック制御を実装します．この段階では
+<strong>Debugging Tool 3: Six-Channel Oscilloscope</strong>（，通称
+plotter6ch）を使って，各種変数を同時に観測します．</p>
+<ul>
+<li><p><strong>3_six_channel_oscilloscope.cpp</strong>:
+サンプリング周波数 2000 Hz で PD 制御を実装した mbed
+制御プログラム（完全版）．2 つのフォトインタラプタ（p19,
+p20）を読み取り，角度と角速度を計算し，モータ（p13, p14,
+p18）を制御します．また，フレームプロトコル（ヘッダ: 0xAA 0x55，続いて 6
+バイトのデータ）によりシリアル通信（230400 baud）で 6
+チャンネルのデータを送信します．制御パラメータ（KP, KD,
+VLIMIT）はファイル先頭の <code>#define</code>
+値を編集することで調整できます．</p></li>
+<li><p><strong>3_six_channel_oscilloscope.bin</strong>: mbed
+へ書き込む用のコンパイル済みバイナリ．</p></li>
+<li><p><strong>3_six_channel_oscilloscope.pde</strong>: 6
+チャンネルを上段（CH1-赤，CH2-緑，CH3-青）と下段（CH4-赤，CH5-緑，CH6-青）の
+2 つの 3 チャンネルプロットで表示する Processing プログラム．6
+チャンネルの内容は通常，(1) フォトインタラプタ1出力，(2)
+フォトインタラプタ2出力，(3) 角度（センサの差分），(4) 角速度，(5)
+フィルタ後の角速度，(6) 基準線，です．</p></li>
+</ul>
+<p>これは，完成した倒立振子システムのデバッグとゲイン調整のための主力ツールです．詳しい使い方，通信プロトコル，プログラム変更方法は
+を参照してください．</p>
+<h4 class="unnumbered"
+id="sec:w1-standup-pre-encoder">チーム最終課題：倒立実験（エンコーダ追加前）</h4>
+<p>Week 1
+の終わり（車輪エンコーダ追加前）の目標は，<strong>角度のみのフィードバック</strong>
+により機体を <strong>倒立</strong> させることです（Week 1 では P
+制御だけでも構いません）．plotter6ch（<strong>Debugging Tool
+3</strong>）を用いてゲインを調整し，激しい振動なしに立つ状態を目指してください．</p>
+<p><strong>Week 1 での目安：</strong>
+原則として，軽く支えた状態でのわずかなゲイン調整だけで基本的な倒立を達成できるはずです．まだ十分な結果が出ていなくても心配しないでください――Week 2
+では，より詳しいゲイン調整手順（角速度，フィルタリング，D
+ゲインの追加を含む）を確認できます: <a href="#sec:w2-task-b"><span
+style="color: brandD">第<span data-reference-type="ref"
+data-reference="sec:w2-task-b">4.4</span>節参照</span></a>.
+<strong>作業の流れ：</strong></p>
+<ol>
+<li><p>を mbed へ書き込む（または <code>#define</code>
+のゲインを変更してから をコンパイルする）．</p></li>
+<li><p>Processing で を開き，オシロスコープ GUI を起動する．</p></li>
+<li><p>GUI 起動後に mbed
+を一度リセットする（チャンネルの順番がおかしい場合にフレームの同期を再調整するため）．</p></li>
+</ol>
+<div class="cautionbox">
+<ul>
+<li><p>電池ボックスが ON
+の間，モータが回り続けることがあります．倒立実験中以外は OFF
+にしてください．</p></li>
+<li><p>USB が給電するのは <em>mbed
+のみ</em>です．モータが動かない，センサ出力がおかしい場合は，まず電池ボックスのスイッチを確認してください．</p></li>
+<li><p>高周波のビビリ振動が発生した場合は，発熱や破損を防ぐため <span
+style="color: warnRed"><em>直ちに電池ボックスの電源を切ってください</em></span>．</p></li>
+</ul>
+</div>
+<p><strong>原点合わせ（モータを接続する前に推奨）：</strong></p>
+<ul>
+<li><p>モータとモータドライバの接続を外す．</p></li>
+<li><p>mbed をリセットする．1 秒の待機時間中に電池ボックスをON
+にする．</p></li>
+<li><p>機体を手で支えて垂直に立て，角度のトレース（通常は青線）が画面中央付近にあることを確認する．</p></li>
+<li><p>中央にない場合は，センサブラケットの曲げ角度を機械的に微調整して，垂直状態がゼロ角度に対応するようにする．</p></li>
+</ul>
+<p><strong>最初の倒立試験（P 制御のみ）：</strong></p>
+<ul>
+<li><p>モータとモータドライバを再接続する．USB
+は接続したままでも構わない．</p></li>
+<li><p>まず <code>KD=0</code> にして <code>KP</code>
+だけを調整する．</p></li>
+<li><p>モータの配線方向を確認する：機体が <em>倒れている方向へ動く</em>
+なら正しい．逆方向へ動く（自ら倒れようとする）なら，電源を切ってモータ線（またはmbed
+とモータドライバ間の 2 本の線）を入れ替える．</p></li>
+<li><p>試験中は，転倒しないように <span
+style="color: warnRed">やさしく支えながら</span>，機体の動きを妨げないようにする（機体上部または
+USB ケーブルを軽く持つ）．</p></li>
+</ul>
+<p><strong>KP ゲイン調整の指針：</strong></p>
+<ol>
+<li><p><code>KP</code> が低い場合，ゆったりした（約 1～2 Hz
+の）振動が見られる．</p></li>
+<li><p><code>KP</code>
+を増やすと振動周波数が上がり，振動振幅が小さくなる．</p></li>
+<li><p>ある程度上げると，振動がほぼない状態で立つようになる（わずかな振動は残ってもよい）．</p></li>
+<li><p><code>KP</code>
+が高すぎると，高周波のビビリ振動が現れる．</p></li>
+<li><p>さらに増やすと，激しい振動になる．</p></li>
+</ol>
+<p><span
+style="color: warnRed"><em>高周波のビビリ振動は避けてください．</em></span>
+電子部品やモータの発熱・焼損につながり，ねじが緩む恐れもあります．ビビリ振動が発生したら，<span
+style="color: warnRed"><em>直ちに電池ボックスの電源を切ってください</em></span>．</p>
+<h2 id="week-1-提出物">Week 1 提出物</h2>
+<div class="submissionbox">
+<p>Week 1 の終わりまでに，機体が <strong>倒立</strong>
+できる状態に到達していることを目標とします．おめでとうございます，この節目に到達できました！</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>提出物</strong></th>
+<th style="text-align: center;"><strong>満点</strong></th>
+<th style="text-align: left;"><strong>採点基準</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">倒立デモ</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: left;"><strong>20 pts:</strong> 15
+秒以上の倒立，かつ全体が画角内．<br />
+<strong>12 pts:</strong> 倒立は達成したが 15
+秒未満，または安定性が不十分．<br />
+<strong>0 pts:</strong> 倒立未達．</td>
+</tr>
+<tr>
+<td style="text-align: left;">安全性・組立の視認性</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: left;"><strong>5 pts:</strong>
+機械構造，ブレッドボード，配線がすべて明確に確認できる．<br />
+<strong>0 pts:</strong> 動画で組立が確認できない．</td>
+</tr>
+<tr>
+<td style="text-align: left;">動画の明瞭さ</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: left;"><strong>5 pts:</strong>
+撮影中を通じて重要部分が常に見えている．<br />
+<strong>3 pts:</strong> 一部遮蔽はあるが重要な挙動は判別できる．<br />
+<strong>0 pts:</strong>
+映像が判読不能（主要部分が遮蔽または画角外）．</td>
+</tr>
+</tbody>
+</table>
+<p><em>任意の添付資料</em>: Fritzing
+ファイル（<code>.fzz</code>/画像），写真，デバッグツールのスクリーンショット/ログなど．</p>
+</div>
+<h1 id="sec:week2">Week 2: エンコーダと位置制御</h1>
+<h2 id="week-2-の概要と到達目標">Week 2 の概要と到達目標</h2>
+<p>Week 2 では，ロータリーエンコーダで機体の運動を計測し，その情報を
+<strong>シミュレーション</strong> と <strong>実機制御</strong>
+の両方へ活用することに焦点を当てます．具体的には，(1)
+自作エンコーダの製作・取付，(2)
+制御コードへのエンコーダフィードバック統合，(3) MATLAB/Simulink
+シミュレーションへの <strong>位置</strong> と <strong>速度</strong>
+フィードバック追加，を行います．<br />
+</p>
+<p><strong>到達目標：</strong></p>
+<ul>
+<li><p>ロータリーエンコーダを製作・取付し，A/B
+相波形と回転方向が正しいことを確認する</p></li>
+<li><p>エンコーダに基づく位置／速度フィードバックを制御プログラムへ追加し，波形ツールでデバッグする</p></li>
+<li><p>シミュレーションへ <span class="math inline">\(x\)</span> と
+<span class="math inline">\(\dot{x}\)</span>
+のフィードバックを追加し，実機と比較する</p></li>
+<li><p>倒立を保ちながら，安定した位置制御（少なくとも発散しない状態）を実現する</p></li>
+</ul>
+<h2 id="並列作業">並列作業</h2>
+<p>推奨する役割分担は，学生 A（エンコーダ製作・取付），学生
+B（コードへのエンコーダフィードバック追加とデバッグ），学生
+C（MATLAB/Simulink
+シミュレーション拡張）です．役割は入れ替えて構いませんが，全員が一連の流れを理解してください．</p>
+<ul>
+<li><p><strong>学生 A:</strong> Task A（エンコーダ製作・取付） — <a
+href="#sec:w2-task-a"><span style="color: brandD">第<span
+data-reference-type="ref"
+data-reference="sec:w2-task-a">4.3</span>節参照</span></a></p></li>
+<li><p><strong>学生 B:</strong> Task
+B（コードへのエンコーダフィードバック追加・デバッグ・位置制御） — <a
+href="#sec:w2-task-b"><span style="color: brandD">第<span
+data-reference-type="ref"
+data-reference="sec:w2-task-b">4.4</span>節参照</span></a></p></li>
+<li><p><strong>学生 C:</strong> Task C（MATLAB/Simulink
+シミュレーション拡張と比較） — <a href="#sec:w2-task-c"><span
+style="color: brandD">第<span data-reference-type="ref"
+data-reference="sec:w2-task-c">4.5</span>節参照</span></a></p></li>
+</ul>
+<h2 id="sec:w2-task-a">Task A：エンコーダの製作と取り付け（学生A）</h2>
+<p>この作業では，機体位置を計測するためのロータリーエンコーダを製作し，機体へ取り付けます．</p>
+<h3 id="ロータリーエンコーダ">ロータリーエンコーダ</h3>
+<p>倒立振子は，倒立角度だけでなく，位置（または速度）も検出してフィードバックしなければ安定しません．
+そこで，位置（または速度）の検出方法について考えてみましょう．</p>
+<p>最も基本的な方法は，タイヤやモータへロータリーエンコーダを取り付け，回転数を測ることです．
+以下ではロータリーエンコーダの仕組みを説明します．</p>
+<p>ロータリーエンコーダは，ディスクに描いた白黒パターンをフォトインタラプタで読み取ることで実現できます<a
+href="#fn20" class="footnote-ref" id="fnref20"
+role="doc-noteref"><sup>20</sup></a>． 図<a href="#fig:encoder"
+data-reference-type="ref" data-reference="fig:encoder">18</a>
+のように，白黒パターンから数 mm
+離した位置へフォトインタラプタを置いてスリットを回転させると，白黒の変化に応じた正弦波状の出力が得られます（距離が近いと矩形波に近づきます）．これを適当な閾値で二値化し，パルスのエッジを数えれば回転角を測れます．これがロータリーエンコーダの基本原理です．</p>
+<p>回転方向が一方向だけならこれで十分ですが，双方向に回る場合は回転方向に関係なくカウントが増えてしまうため使えません．そこで，双方向回転を扱う場合はフォトインタラプタを
+2 個使います．</p>
+<p>図<a href="#fig:encoderAB" data-reference-type="ref"
+data-reference="fig:encoderAB">19</a> のように，2
+個のフォトインタラプタをスリットパターンの 1/4 周期（または整数 <span
+class="math inline">\(n\)</span> に対して <span
+class="math inline">\((n+1/4)\)</span>
+周期）ずらした位置へ置きます．この 2 つの出力を A 相，B 相と呼びます．A
+相と B 相は sin と cos のように 90
+度位相がずれていますが，その前後関係は回転方向で変化します．例えば正回転（CW）で
+B 相が 90 度進むなら，逆回転（CCW）では B 相が 90 度遅れます．</p>
+<p>したがって，適切に二値化した A 相・B 相に対して図<a
+href="#fig:counting" data-reference-type="ref"
+data-reference="fig:counting">20</a>
+のような処理を行えば，回転方向も含めて正しく回転角を測れます．図<a
+href="#fig:counting" data-reference-type="ref"
+data-reference="fig:counting">20</a> では A
+相のエッジだけを数えており，これは 2
+逓倍カウントと呼ばれます（立ち上がりに加えて立ち下がりも数える）．さらに
+B 相でも同様に数えると分解能は 2 倍になり，これを 4
+逓倍カウントと呼びます． エンコーダ分解能をできるだけ高くしたいので，4
+逓倍カウントになるようにプログラムしてください．</p>
+<figure id="fig:encoder" data-latex-placement="bht">
+<div class="center">
+<embed src="encoder_principle.eps" />
+</div>
+<figcaption>ロータリーエンコーダの基本概念</figcaption>
+</figure>
+<figure id="fig:encoderAB" data-latex-placement="bht">
+<div class="center">
+<embed src="encoder2phase.eps" />
+</div>
+<figcaption>2 相化による CW/CCW 回転の計測</figcaption>
+</figure>
+<figure id="fig:counting" data-latex-placement="bht">
+<div class="center">
+<embed src="counting.eps" />
+</div>
+<figcaption>A/B 相パルスのカウント（2 逓倍カウントの例）</figcaption>
+</figure>
+<h3 id="ロータリーエンコーダの製作">ロータリーエンコーダの製作</h3>
+<h3 class="unnumbered" id="スケールの設置">スケールの設置</h3>
+<p>エンコーダを製作する場合，まずスケールの設置場所と分解能を決めます．設置場所として一般的なのは「モータ軸に取り付ける」か「タイヤ（ホイール）に取り付ける」かです．タイヤへ取り付ける場合は，一度タイヤを軸から外し（中央のナット
+1
+個だけ外す．他のねじは外さないこと），スケールを印刷した紙をホイール内側へ両面テープで貼り付けます．ただし，紙が柔らかいとスケールとフォトインタラプタの距離が変動するため，用意されたプラスチック板（緑色の円板）へスケールを貼ってから，その板ごとホイールへ貼る方がよいでしょう．</p>
+<p><span
+style="color: warnRed"><em>タイヤは次の班が再利用するので，原状復帰できる範囲で工作してください．</em></span></p>
+<p>モータ軸に取り付ける場合は，モータ背面からわずかに突き出た軸にスケールを印刷した紙を貼り付けます．両面テープや糊テープをうまく使って貼ってください．しっかり固定するのが難しいですが，ほとんど力がかからないので軽く接着する程度で十分です（その代わりスケールをできるだけ軽くしてください）．モータ側に取り付けると，タイヤに取り付ける場合と比べて，減速比（＝タイヤ半径とモータ先端チューブ半径の比）だけ分解能が上がります．そのため，分割数が粗いスケール（例：90
+度ごとに 4 分割）でも十分な性能が得られます．</p>
+<p>スケールの分割を細かくするほど分解能は上がりますが，細かいスケールほど高い取付精度が必要です．これは，スケールが細かいほどフォトインタラプタ出力の変化幅が小さくなるためです．取付精度が低いと，回転に伴ってスケール板との距離が変動し，出力のベースラインも揺れてしまいます．すると二値化がうまくできず，エンコーダが動作しなくなります（図<a
+href="#fig:baseline" data-reference-type="ref"
+data-reference="fig:baseline">21</a> 参照）．</p>
+<figure id="fig:baseline" data-latex-placement="bht">
+<div class="center">
+<embed src="baseline.eps" />
+</div>
+<figcaption>ベースライン変動の例</figcaption>
+</figure>
+<p>スケールを粗くすると，フォトインタラプタをスケール板から少し離れた位置（5mm
+程度？）に置いても十分な信号振幅が得られます．距離が遠いと，多少の距離変動は問題になりません．
+したがって，スケールを粗くすると作りやすくなりますが，粗いスケールでは制御が粗くなります．バランスをうまくとってください．
+いずれにしても，スケールの取付精度が重要です．スケール板をホイールにしっかり固定してください（図<a
+href="#fig:encoder_disc" data-reference-type="ref"
+data-reference="fig:encoder_disc">22</a> 参照）．</p>
+<p>また，スケールの分解能を決める際は，フォトインタラプタの配置間隔を念頭に置いてください．配布キットではすでに
+2
+個のフォトインタラプタが基板に半田付けされています．この配置を考慮してスケールを設計してください．設計は
+PC で行います．Draw 系ソフトウェアで設計してもよいですし，Excel
+等で円グラフを描いてスケールとして使うことも可能です．設計後はプリンタで印刷（プリンタがなければコンビニで印刷可）して切り出します．
+どうしても印刷できない場合は手描きでも構いません．黒い部分はマジックペンなどで塗りつぶしますが，ペンの種類によっては，見た目には黒くても赤外光を反射しやすいものがあります（＝フォトインタラプタには黒と認識されない）ので注意してください．</p>
+<figure id="fig:encoder_disc" data-latex-placement="bth">
+<div class="center">
+<img src="encoder_disc.png" style="width:100mm" />
+</div>
+<figcaption>エンコーダパターンの例．左は 1/4
+周期分ずらした位置に配置した 2
+個のフォトインタラプタで共通のスケールを読む設計，右は 2
+個のフォトインタラプタを同じ角度（ただし中心からの距離が異なる）に配置し，互いに
+1/4 周期ずれた 2 本のスリットをそれぞれ読む設計の例．</figcaption>
+</figure>
+<h3 id="フォトインタラプタの半田付け">フォトインタラプタの半田付け</h3>
+<p>スケールの読み取りはフォトインタラプタで行います．傾斜センサを参考に，フォトインタラプタをユニバーサル基板の切れ端へ半田付けし，L
+字金具などでユニバーサルボードへ取り付けます（図<a
+href="#fig:encoder_setup" data-reference-type="ref"
+data-reference="fig:encoder_setup">23</a>）．基板は支給しますので申し出てください．
+半田付けの要点は演習中に説明します．特に半田付けに慣れていない人は，説明をよく聞いてから作業してください．</p>
+<figure id="fig:encoder_setup" data-latex-placement="bth">
+<div class="center">
+<img src="encoder_setup.png" style="width:55mm" />
+</div>
+<figcaption>フォトインタラプタの取り付け</figcaption>
+</figure>
+<h3
+id="フォトインタラプタの調整と読み取り">フォトインタラプタの調整と読み取り</h3>
+<p>機体へ取り付けたら，フォトインタラプタの配線と抵抗をブレッドボードへ接続します．配布回路図には描かれていませんが，傾斜センサと同様の考え方で接続してください．
+ただし，フォトトランジスタへつなぐ抵抗値は各自の設計に応じて選んでください（参考までに，機体下部の傾斜センサでは
+12k<span class="math inline">\(\Omega\)</span>
+を使っています）．多くの場合，ターゲットまでの距離は傾斜センサより近くなるため反射光量が増えます．その場合，抵抗値を下げないと出力が飽和します（波形の上側が切れて平らになる）．目安としては
+1k<span class="math inline">\(\Omega\)</span> から 5k<span
+class="math inline">\(\Omega\)</span> 程度がよいでしょう．</p>
+<p>取り付けと配線が終わったら，簡易オシロスコープでフォトインタラプタ出力を見ながら二値化の閾値を決めます．二値化した
+2 つの信号が概ね 90 度位相差になっていることを確認したら，図<a
+href="#fig:counting" data-reference-type="ref"
+data-reference="fig:counting">20</a>
+を参考にカウントプログラムを書いてください． 位相差は厳密に 90
+度である必要はありませんが，エッジの前後関係が入れ替わると回転方向を誤って読んでしまうので注意が必要です（位相差は
+0 度より大きく 180
+度未満であればよい）．思った位相差が得られない場合は取付位置などを調整してください．必ずタイヤを一周回し，どの位置でも正しく読めることを確認しましょう．</p>
+<h2 id="sec:w2-task-b">Task
+B：コードへのエンコーダフィードバック追加とデバッグ（学生B）</h2>
+<p><span id="sec:inverted-experiment"
+data-label="sec:inverted-experiment"></span></p>
+<h4 class="unnumbered"
+id="週間スケジュールとの関係">週間スケジュールとの関係</h4>
+<p><strong>Week 1:</strong> <strong>角度の P 制御のみ</strong>
+で基本的な倒立を達成することが目標でした（<a
+href="#sec:w1-standup-pre-encoder"><span style="color: brandD">第<span
+data-reference-type="ref"
+data-reference="sec:w1-standup-pre-encoder">[sec:w1-standup-pre-encoder]</span>節参照</span></a>
+参照）．<strong>Week 2 以降:</strong> 角速度，フィルタ，D
+ゲイン追加を含めて，さらに調整と改良を進めます．この節ではその詳細手順と安全上の注意をまとめます．</p>
+<h3 id="完成版制御プログラムの利用">完成版制御プログラムの利用</h3>
+<p>倒立振子の完成版制御プログラムは <a href="#fn21" class="footnote-ref"
+id="fnref21" role="doc-noteref"><sup>21</sup></a>
+に置いてあります．これは単なるデバッグツールではなく，PD
+制御，センサ読み取り，モータ制御，リアルタイム可視化まで含んだ
+<strong>倒立振子制御の完成例</strong> です．</p>
+<p><strong>クイックスタート（事前コンパイル済みバイナリを使う場合）：</strong></p>
+<ol>
+<li><p>を mbed にドラッグ＆ドロップで書き込む</p></li>
+<li><p>mbed のリセットボタンを押す</p></li>
+<li><p>1 秒の待機後にプログラムが起動する</p></li>
+</ol>
+<p><strong>プログラムの理解と変更：</strong></p>
+<p>制御の仕組みを理解したい場合やパラメータを調整したい場合は，Keil
+Studio Cloud で を開いてください．プログラム構成は概ね次の通りです．</p>
+<ul>
+<li><p><strong>3–11 行目</strong>:
+制御パラメータ（<code>SAMP_FREQ</code>, <code>VLIMIT</code>,
+<code>VOFFSET</code>, <code>KP</code>, <code>KD</code>）</p></li>
+<li><p><strong>17–30 行目</strong>:
+ピン定義（LED，モータ，センサ）</p></li>
+<li><p><strong>70–132 行目</strong>: <code>int0()</code>
+割り込み関数（メイン制御ループ）</p></li>
+<li><p><strong>134–161 行目</strong>: <code>main()</code>
+関数（初期化と起動）</p></li>
+</ul>
+<p>制御パラメータを変えたい場合は，ファイル冒頭の <code>#define</code>
+を書き換え，再コンパイルして mbed
+に書き込みます．初期状態では比例制御のみ（<code>KP = 1.0</code>,
+<code>KD = 0.0</code>）です．微分制御はこの節の後半で追加します．</p>
+<p>プログラムを変更したら「Save」と「Compile」を押してください．エラーがなければ実行ファイル（<code>.bin</code>）がダウンロードされ，それを
+mbed に書き込めます．初期確認だけなら，事前コンパイル済みの
+をそのまま使って構いません．</p>
+<h3 id="通信の準備">通信の準備</h3>
+<p>今回は，mbed の状態をリアルタイムに監視するために 6
+チャンネルオシロスコープを用意しています．まず Appendix の説明<a
+href="#fn22" class="footnote-ref" id="fnref22"
+role="doc-noteref"><sup>22</sup></a> に従って Processing
+をインストールしてください．オシロスコープ本体は にあります．</p>
+<p><strong>オシロスコープの仕組み：</strong> mbed プログラム（）は 2000
+Hz
+で制御ループを実行します．各繰り返しで，センサ読み取り，制御出力計算，モータ制御，そして
+230400 baud の USB シリアルで 6 チャンネルのデータを PC
+へ送信します．データはフレームベースのプロトコルで送信され，各フレームは
+2 バイトのヘッダ（0xAA 0x55）に続いて 6 バイトのデータ（各
+0〜255）で構成されます．Processing
+プログラム（）はシリアルポートを継続的に読み込み，ヘッダパターンを探してデータストリームと同期し，6
+バイトのデータを取り出してリアルタイムでプロットします．このプロトコルにより，一部のバイトが壊れたり失われたりしても確実にデータを伝送できます．</p>
+<p><strong>オシロスコープの使い方：</strong> を mbed
+に書き込みます（制御パラメータを変更したい場合は .cpp
+ファイルを自分でコンパイルしても構いません）．書き込みが終わったら，Processing
+で
+を開き，三角形の実行ボタンを押してオシロスコープ画面を開きます．画面は上下に分かれており，上段に
+3 チャンネル，下段に 3 チャンネルの計 6 チャンネルが表示されます．mbed
+プログラムで繰り返し周期ごとに 6
+つのデータを送ると，送信順に表示されます（上段 R：赤，G：緑，B：青，下段
+R：赤，G：緑，B：青の順）．ただし，オシロスコープ画面を起動した直後は正しい順番になっていないことがあります．画面起動後に
+mbed
+を一度リセットすると，表示もリセットされて正しい順番になります（フレームの同期が再調整されます）．</p>
+<figure id="fig:debuger3" data-latex-placement="htbp">
+<img src="fig2026/debug_oscilloscope.png" style="width:90.0%" />
+<figcaption>デバッグツール
+3：6チャンネルオシロスコープのリアルタイム制御データ表示（CH1〜CH3：センサ/角度；CH4〜CH6：角速度，フィルタ後角速度，基準線）</figcaption>
+</figure>
+<p>は通常，(CH1) フォトインタラプタ 1 出力（上段赤），(CH2)
+フォトインタラプタ 2 出力（上段緑），(CH3)
+両者の差分＝傾斜角相当（上段青），(CH4) 角速度（下段赤），(CH5)
+フィルタ後角速度（下段緑），(CH6) 128
+の基準線（下段青）を表示するよう設計されています．</p>
+<h3 id="初期設定">初期設定</h3>
+<h3 class="unnumbered"
+id="いよいよ実験でもその前に">いよいよ実験．でもその前に</h3>
+<p>いよいよ実験ですが，その前にこの基板の電源の仕組みを理解しておきましょう．</p>
+<p>電池ボックスは基板全体（mbed + モータ +
+フォトインタラプタ）へ電源を供給します．電池ボックスを ON
+にすると倒立振子全体が起動し，基板上の LED も点灯します．<span
+style="color: warnRed"><em>電池ボックスが ON
+の間はモータが回り続けることがあるので，倒立実験中以外は <u>こまめに
+OFF</u> にしてください．</em></span></p>
+<p>一方で，電池ボックスが OFF でも，USB ケーブルで PC に接続すると <span
+style="color: warnRed">mbed 本体だけは USB
+から給電されます</span>（モータやフォトインタラプタには USB
+からは給電されません）．このとき基板上の赤 LED
+は消えているはずですが，mbed 側の青 LED
+は明るく点くので，電池ボックスのスイッチが OFF
+のまま気づかず実験してしまうことがあります．フォトインタラプタ出力がおかしい，あるいはモータが動かないときは，まず電池ボックスのスイッチを確認してください．</p>
+<h3 class="unnumbered"
+id="傾斜センサの原点合わせ">傾斜センサの原点合わせ</h3>
+<p>この作業中にモータが動くと困るので，<span
+style="color: warnRed"><em>モータとモータドライバの接続を外して</em></span>おいてください．mbed
+に USB
+ケーブルを接続した状態で，以下の手順でセンサの原点合わせをします．</p>
+<ul>
+<li><p>mbed
+中央のリセットスイッチでリセットする（＝プログラム開始）．</p></li>
+<li><p>プログラムは起動後 1
+秒間アイドル状態になるように設定されているので，その間に電池ボックスのスイッチを
+ON にする．</p></li>
+<li><p>機体を手で支えながら垂直に立てる．</p></li>
+<li><p>オシロスコープ上段画面に表示される傾斜角（青線）が，垂直状態のときにおよそ
+0（＝画面中央）になっていることを確認する（プログラムから 128
+を足して送信しているため，センサ出力が 0
+のときオシロスコープの線が画面中央に来る）．中央にない場合は，センサを取り付けている
+L
+字金具の曲げ角度を微調整する（ユニバーサルボードは割れやすいので，基板に力をかけず，金具の両端を持って調整すること）．</p></li>
+</ul>
+<h3 id="倒立を試す比例制御">倒立を試す（比例制御）</h3>
+<p>センサ調整が終わったら，いよいよ倒立を試します<a href="#fn23"
+class="footnote-ref" id="fnref23"
+role="doc-noteref"><sup>23</sup></a>．初期プログラムでは P
+ゲインのみが設定されており（<code>KP = 1.0</code>,
+<code>KD = 0.0</code>），比例制御だけが働きます．</p>
+<ul>
+<li><p>電池ボックスの電源を切り，モータとモータドライバを再接続する．USB
+ケーブルは接続したままでよい．</p></li>
+<li><p>モータ接続後，mbed をリセットし，1
+秒以内に電池ボックスのスイッチを ON
+にして，機体を垂直に立てる．制御はリセットの 1
+秒後に開始される．</p></li>
+<li><p>軽く機体を手で支えながら機体の反応を観察する．転倒しないようやさしく支えつつ，倒立振子がどちらへ動こうとするかを確認する．倒れた方向へ動けば正しい．傾きとは逆方向へ動く（自ら倒れようとする）なら，モータの接続が逆なので，電源を切ってモータとドライバを結ぶ
+2 本の線（または mbed とモータドライバを結ぶ 2
+本の線）を入れ替える．</p></li>
+</ul>
+<p>運が良ければこれだけで完璧に倒立できることもあります．そうでなければ，単振動のような動きになるでしょう．比例制御はバネと等価なので，摩擦などの損失がなければ単振動になります．</p>
+<h3 class="unnumbered" id="ゲインの調整">ゲインの調整</h3>
+<p>次に P
+ゲインを変えて機体応答を見てみましょう．この時点ですでに倒立できている人は，いったん
+P ゲインを半分以下くらいまで下げてください．<span
+style="color: warnRed">機体の動きを妨げないように，かつ転倒しないように，上部や
+USB ケーブルをやさしく支えながら</span> 動作を確認します．</p>
+<ol>
+<li><p>P ゲインが低い場合，ゆったりした（約 1〜2 Hz
+の）単振動が見られる．</p></li>
+<li><p>P
+ゲインを上げる（＝バネを硬くする）と，振動周波数が上がり振動振幅が小さくなる．</p></li>
+<li><p>ある程度上げると，振動がほぼない状態で安定する（少しビリビリする振動は残ってもよい）．</p></li>
+<li><p>ゲインを上げすぎると，ガタガタするような高周波振動（この機体では
+5 Hz 程度以上のイメージ）が現れる．</p></li>
+<li><p>さらに上げると，激しい振動になる．</p></li>
+</ol>
+<p>上記 3.
+の状態が理想ですので，小さい値から大きい値まで一通り試したうえで，3.
+に近くなるようにゲインを調整してください．摩擦が少ない機体では，P
+制御だけでは振動が完全には消えないこともあります．その場合は，振動が最も小さくなる点に合わせてください．</p>
+<p>1 や 2
+に見られるようなゆったりした振動は，安定性が低いだけで大きな害はありません．しかし
+4 や 5 の高周波振動は，過大電流によって <span
+style="color: warnRed"><em>電子部品やモータの発熱・焼損</em></span>
+につながる恐れがあります．また，振動でねじが緩んで機体が壊れる危険もあるため，この状態はできるだけ避けてください．</p>
+<p><span
+style="color: warnRed"><em>ガタガタ振動が起きたら，すぐにスイッチを切ってください．</em></span></p>
+<h3 id="角速度の計算">角速度の計算</h3>
+<p>次に，微分制御を追加します．微分制御は傾斜角の微分＝傾斜角速度をフィードバックするので，まず角速度を計算します．数学的に厳密な微分は行えないため，前回の角度と今回の角度の差を微分の近似値として使います．すなわち，
+<span class="math display">\[\begin{equation}
+\dot{\theta} \simeq \frac{\theta - \theta_1}{T_s}
+\end{equation}\]</span> ここで <span
+class="math inline">\(\theta_1\)</span> は前回処理時の傾斜角，<span
+class="math inline">\(T_s\)</span>
+は繰り返し時間（サンプリング周期）です．この処理は プログラムの
+<code>int0()</code> 関数 79〜80 行目にすでに実装されています．</p>
+<p>差分（微分）は高周波信号を増幅する効果があるため，上記で求めた角速度には高周波ノイズが多く含まれています．そのままフィードバックに使うと，ノイズによる微細な振動（「シュー」という音）が発生します．この状態ではモータに大電流が流れて回路に良くないため，プログラム内でローパスフィルタ（LPF）を適用して高周波ノイズを除去します．</p>
+<p>プログラムで実現できるディジタルフィルタには IIR（Infinite Impulse
+Response，無限インパルス応答）と FIR（Finite Impulse
+Response，有限インパルス応答）の 2
+種類がありますが，フィードバック制御では位相遅れが問題になるため，なるべく位相遅れの少ないフィルタが望ましいです．FIR
+は高周波域で余分な位相遅れを生じやすいため，今回は位相遅れを把握しやすい
+IIR でフィルタを作ります．</p>
+<p>フィルタの次数を上げるほどカットオフ性能は良くなりますが，次数が上がると位相遅れも増えます．そこで，最もシンプルで位相遅れが最小の「1
+次ローパスフィルタ（1 次遅れフィルタ）」を使います．双一次変換で求めた 1
+次ローパスフィルタのパルス伝達関数は， <span
+class="math display">\[\begin{equation}
+F(z) = \frac{1+z^{-1}}{(1+\frac{2T}{T_s})+(1-\frac{2T}{T_s})z^{-1}}
+\label{eq:firstorder}
+\end{equation}\]</span> ここで <span class="math inline">\(T\)</span> は
+1 次遅れの時定数，<span class="math inline">\(T_s\)</span>
+はサンプリング周期です．時定数 <span class="math inline">\(T\)</span>
+の逆数がカットオフ角周波数（rad/s）になります．適切なカットオフ周波数を決めてフィルタ係数を計算してください（「Hz」と「rad/s」の関係に注意）．</p>
+<p>フィルタ係数の計算には Matlab が使えます．Matlab で</p>
+<pre><code>[b,a] = butter(1,0.01);</code></pre>
+<p>と入力すると 1 次ローパスフィルタの係数が求まります．ここで
+butter（Butterworth フィルタを求める関数）の第 1
+引数は「フィルタ次数」，第 2
+引数は「ナイキスト周波数で正規化したカットオフ周波数」（＝ナイキスト周波数に対する比，ナイキスト周波数はサンプリング周波数の半分）です．式(<a
+href="#eq:firstorder" data-reference-type="ref"
+data-reference="eq:firstorder">[eq:firstorder]</a>)は周波数プリワーピングを行わないため，この式で手計算すると双一次変換の周波数歪みによりカットオフ周波数がわずかにずれますが，Matlab
+の butter
+関数は周波数プリワーピングを行うため，指定したカットオフ周波数が正確に得られます．</p>
+<p>1 次遅れフィルタでは，カットオフ周波数の 1/10〜1/5
+の周波数から位相遅れが始まることに注意してください<a href="#fn24"
+class="footnote-ref" id="fnref24"
+role="doc-noteref"><sup>24</sup></a>．微分の処理は正弦波の位相を 90
+度進める働きがあります（sin を微分すると cos になり，位相が 90
+度進む）が，位相遅れがあると正しい微分にならなくなります．前節の比例制御での機体振動周波数（微分制御で抑えるべき振動）を考慮して，その周波数で正しい微分が得られるよう，フィルタのカットオフ周波数を振動周波数の
+10 倍以上（最低でも 5 倍以上）に設定してください．</p>
+<p>例えば，約 2 Hz で振動している場合，カットオフ周波数を例えば 20
+Hz（＝ 40<span class="math inline">\(\pi\)</span>
+rad/s）以上に設定します．その後，実際の倒立実験で応答状態を見ながら適宜調整してください．</p>
+<p>求めたパルス伝達関数をプログラムにするには，次の手順で進めます．まず，伝達関数を
+<span class="math inline">\(z^{-1}\)</span>
+に関する有理多項式（多項式の分数）にし，分母の定数項が 1
+になるよう分母・分子を割ります．こうして得られた多項式の係数を，分子は
+<span class="math inline">\(b_0, b_1, b_2, \ldots\)</span>，分母は <span
+class="math inline">\(a_0=1, a_1, a_2, \ldots\)</span> とします．今回は
+1 次フィルタなので，分子は <span class="math inline">\(b_0,
+b_1\)</span>，分母は <span class="math inline">\(a_0=1, a_1\)</span>
+だけです．Matlab
+で計算するとこれらの係数が直接得られます．このとき伝達関数は， <span
+class="math display">\[\begin{equation}
+F(z) = \frac{b_0 + b_1 z^{-1}}{1 + a_1 z^{-1}} = \frac{Y(z)}{X(z)}
+\end{equation}\]</span> ここで <span class="math inline">\(X(z)\)</span>
+はフィルタへの入力信号（Z 変換），<span
+class="math inline">\(Y(z)\)</span> はフィルタ出力（Z
+変換）です．伝達関数は入力と出力の比（Z
+変換）であることを思い出してください．</p>
+<p>これを整理して逆 Z 変換し，プログラムにします． <span
+class="math display">\[\begin{eqnarray}
+(1+a_1 z^{-1})Y(z) = (b_0 + b_1 z^{-1})X(z) \\
+Y(z) + a_1 z^{-1} Y(z) = b_0 X(z) + b_1 z^{-1}X(z)
+\end{eqnarray}\]</span> 逆 Z 変換すると， <span
+class="math display">\[\begin{eqnarray}
+y[n] + a_1 y[n-1] = b_0 x[n] + b_1 x[n-1] \\
+y[n] =  b_0 x[n] + b_1 x[n-1] - a_1 y[n-1]
+\end{eqnarray}\]</span>
+これをそのままプログラムに書くだけです．主要部のみ示します（変数宣言省略，左の数字は説明用の行番号）．</p>
+<pre><code>1:    y = b0 * x + b1 * x1 - a1 * y1;
+2:    x1 = x;
+3:    y1 = y;</code></pre>
+<p>これで完成です．1 行目がフィルタ計算，2 行目と 3
+行目は今回の入出力（<span class="math inline">\(x[n],
+y[n]\)</span>）を保存して，次回の周期で前回値（<span
+class="math inline">\(x[n-1]\)</span>, <span
+class="math inline">\(y[n-1]\)</span>）として参照できるようにします．</p>
+<p>プログラムができたら，フィルタ前後の角速度信号がオシロスコープ画面でどう変化するかを確認しましょう．フィルタ前後の値をオシロスコープへ出力するようプログラムを変更してください．フィルタが正しく動作していれば，ノイズが低減されていることを確認できるはずです．フィルタ結果に若干のノイズが残っていても構いません．ノイズが完全に見えなくなるほど強くフィルタをかけると，過フィルタになっています．その場合，信号に大きな遅れが生じているはずです．フィルタをかけると必ず時間遅れが生じますが，視覚的に明らかに遅れているようなら過フィルタです．カットオフ周波数を<u>上げて</u>フィルタ効果を弱めてください．</p>
+<h3 id="微分制御も加えて倒立">微分制御も加えて倒立</h3>
+<p>角速度が計算できたら，D ゲインを加えて PD
+制御を行いましょう．フィルタを通した角速度に D ゲインを掛けて，式(<a
+href="#eq:pd" data-reference-type="ref"
+data-reference="eq:pd">[eq:pd]</a>) に合わせてください． P
+制御だけですでに安定している機体では，D
+ゲインを加えても安定性が増したように見えないかもしれませんが，外乱に対する応答に
+D ゲインの効果が現れるはずです．
+外乱を加えるには，倒立した機体を指で軽く突いてください．D
+ゲインなしでは，倒立状態に戻る際にフラフラと振動しますが，適切な D
+ゲインがあれば振動が素早く収束します（機体によっては効果が見えにくいこともあります）．</p>
+<p>実際に D ゲインの大きさを変えて応答を見てみましょう．D
+ゲインの大きさ（ここでは）は P ゲインの数分の一から 1/20
+程度が目安です． <span style="color: warnRed">理論的には D
+ゲインが大きいほど振動が収まるはずですが，実際には D
+ゲインが大きすぎると逆に振動が増えるので注意してください</span><a
+href="#fn25" class="footnote-ref" id="fnref25"
+role="doc-noteref"><sup>25</sup></a>． 機体がビリビリしている場合，D
+ゲインが大きすぎる可能性があるので，D
+ゲインを下げてみてください（機体によっては D ゲイン 0
+が最適なこともあります）．</p>
+<h3 id="ここまでのまとめ">ここまでのまとめ</h3>
+<p>激しい振動なしに倒立し，外乱への応答がなめらかになれば，ひとまず完成です．位置フィードバックをかけていないため，倒立振子が徐々に逃げてしまう（そして転倒する）のは避けられません．</p>
+<p>ここまでは説明通りに作れば問題なく到達できるはずですが，実習の本番はここからです．ここからは，自分で考えながら製作を進めてください．</p>
+<h3 id="位置制御">位置制御</h3>
+<p>位置が読めるようになったら，傾斜角制御と同様に，まず位置に対して比例ゲイン（<span
+class="math inline">\(K_x\)</span>）だけを加えて（傾斜角制御の操作量に足して）制御してみましょう．具体的にはモータ電圧は
+<span class="math display">\[\begin{equation}
+v_m = K_p \theta + K_d \dot{\theta} + K_x x + K_v \dot{x}
+\end{equation}\]</span> となります（この時点では位置微分ゲイン <span
+class="math inline">\(K_v\)</span> はゼロ）．</p>
+<p>ゲイン <span class="math inline">\(K_x\)</span>
+の正しい符号は正か負かわかりません（各自のロータリーエンコーダの設定に依存します）．とりあえず試してみて，機体が前後に振動するなら符号は正しいです．振動せずに一方向に走り去る場合は位置ゲインの符号が逆（または，エンコーダ出力が逆）ですので，符号を変えて再試行してください（エンコーダプログラムを修正しても構いません）．</p>
+<p>正しい符号がわかったら，比例ゲインの大きさを変えながら応答の変化を見てみましょう．機体をやさしく手で支えながら，倒立振子の動きを読む意識で操作してみてください．ゲインが小さいとゆっくり大きく振動し，大きいと速く細かく振動します．先の傾斜角制御では比例ゲインだけで静止できたこともあったかもしれませんが，ここでの位置制御では，比例ゲインだけでは振動応答しか得られません（さらに，信号遅れや逆起電力の影響で振動振幅が徐々に増大します）．</p>
+<p>傾斜角制御実験と同様，ゲインを大きくしすぎると激しい振動になります．激しい振動は部品の破損につながるため，<span
+style="color: warnRed"><em>激しい振動が起きたら直ちに電源スイッチを切ってください</em></span>．</p>
+<p>多くの場合，ゆっくり振動している付近（約 0.5
+Hz？）が適切な比例ゲインですので，そこを目標に調整してください．この振動は次に設定する微分制御で抑制されますが，その振動周波数が微分制御の効く範囲（ローパスフィルタのカットオフ周波数の
+1/10
+以下程度）に入っていることが重要です．分解能の高いエンコーダがある人は速度フィルタのカットオフ周波数を高く設定でき，より高い周波数まで減衰させられるので，速めの振動に調整しても構いません（その方が位置の応答が素早くなります）．自分のエンコーダ性能と速度ローパスフィルタの特性を念頭に置いて調整してください．</p>
+<p>一般に，倒立振子の位置制御は次のような興味深い動作をします．機体を右へ移動させたい場合，位置制御系（<span
+class="math inline">\(K_x\)</span> と <span
+class="math inline">\(K_v\)</span>
+による制御）は逆に左方向へタイヤを回そうとします．タイヤが左へ動くと，慣性により機体は右へ倒れます．すると傾斜角制御系（<span
+class="math inline">\(K_p\)</span> と <span
+class="math inline">\(K_d\)</span>）がこの傾きを補正するためにタイヤを右へ回し，結果として機体は右へ進みます．つまり位置制御系は，直感とは逆に，目標位置から離れる方向へ動けと指令を出しています．しかし，傾斜角制御系が支配的なので，結果的に位置制御系が指令した方向と逆へ動くというわけです．自分が作った倒立振子がどのような動作をするか確認してみましょう．</p>
+<h3 id="速度の計算と微分ゲインの追加">速度の計算と微分ゲインの追加</h3>
+<p>最後に速度を計算して微分制御を加えます．速度の計算はエンコーダ出力を微分（差分）して求めますが，今回作ったエンコーダの出力はごくたまにしか変化しません（タイヤが少なくとも目盛り1つ分回転しないとカウントされない）．そのため，単純に前の値との差分を取ると，エンコーダ出力が変化したときだけインパルスが出る奇妙な速度信号になります．これを滑らかにするためにローパスフィルタをかけます．角度の微分と違い，かなり強いフィルタをかける必要があるため，2次のローパスフィルタを使いカットオフ周波数を低く設定してください（MATLABの
+<code>butter</code>
+関数で設計します）．ただし，カットオフを低く設定すると制御できる運動周波数も低くなります．機体位置の振動周波数が制御可能な周波数範囲内に収まるように位置ゲインを低く設定する必要があります（その結果，位置制御のばね定数が小さくなり，機体が完全には止まらずにふらふらすることは避けられません）．</p>
+<p>この場合，微分ゲイン（速度ゲイン <span
+class="math inline">\(K_v\)</span>）の大きさは比例ゲインと同程度かその数分の一になります．<a
+href="#fn26" class="footnote-ref" id="fnref26"
+role="doc-noteref"><sup>26</sup></a></p>
+<p>今回は位置センサ（エンコーダ）の分解能が低いため，速度にエンコーダの差分値を使っている限り振動を完全に抑えることは難しいです．振動が発散しない程度に調整できれば十分です（一定振幅で揺れる状態）．</p>
+<p>さらに性能を上げたい場合は，エンコーダの差分を使わず別の方法で機体速度を推定してみてください．具体的にはモータへの印加電圧を使います．定常状態，すなわち速度が一定の状態では，摩擦を無視するとモータトルクはゼロになります．式（<a
+href="#eq:motor_simple_equiv" data-reference-type="ref"
+data-reference="eq:motor_simple_equiv">[eq:motor_simple_equiv]</a>）を見ると，モータトルクがゼロのとき印加電圧と逆起電力（速度に比例）が一致します．したがって，印加電圧からモータ回転速度（＝機体速度）を推定できるはずです．
+ただしこれは定常状態の話なので，速度が変動しているときには成り立ちません．しかし，そのあたりをうまく考えて使えば，エンコーダだけに頼るよりも良い制御ができるはずです．
+なお，このようにして速度を推定する場合，位置制御系ではなく速度制御系を構築した方が良いです（つまり，機体位置に対する
+PD 制御ではなく，逆起電力の平均値に対する P
+制御を行います）．その場合は次節の説明を読み飛ばしてください．</p>
+<h3 id="走らせよう">走らせよう</h3>
+<p>ほぼ一定の位置で倒立できるようになったら，走らせます．走らせる際は，制御の目標位置を少しずつ変化させます．
+具体的には，モータ電圧の指令値は次の通りです． <span
+class="math display">\[\begin{equation}
+v_m = K_p \theta + K_d \dot{\theta} + K_x (x - x_{ref}) + K_v \dot{x}
+\end{equation}\]</span> 式中の <span
+class="math inline">\(x_{ref}\)</span>
+は制御の目標位置です．位置に対して PD
+制御がかかっているため，機体は目標位置とばねとダンパでつながれているのと等価な状態にあります．したがって，プログラム中でこの目標位置
+<span class="math inline">\(x_{ref}\)</span>
+を少しずつ変化させると，倒立振子は目標位置に引っ張られるように移動するはずです（犬を散歩させる感覚です．ただしばねで引っ張るイメージなので，ばねによる振動が生じます．大きく動いて少し止まる，という動きになりがちです）．たとえば制御ループのたびに目標位置を
+<span class="math inline">\(0.001\)</span> ずつ増やすと，制御周波数が
+2000 Hz の場合，1 秒あたりエンコーダ 2 パルス分進むはずです．</p>
+<p>なお，倒立制御を開始した直後は機体の姿勢制御がまだ十分安定していないため，倒立制御開始から約
+1
+秒待ってから目標値の変更を開始するようにプログラムしておくとよいでしょう．</p>
+<h3 id="後は工夫次第">後は工夫次第</h3>
+<p>あとは自分でさまざまに調整しながら高性能な倒立振子を目指してください．エンコーダの改善，制御ゲインの調整（フィルタ調整も含む），またエンコーダによってモータ回転速度がわかるので，これまで無視してきたモータ逆起電力についても考えてみるとよいでしょう．</p>
+<p>調整のポイントをいくつか挙げます．</p>
+<ul>
+<li><p>制御ゲインの組み合わせ，フィルタ設定，目標速度が重要です．さまざまな組み合わせを試すうちに，安定して走る設定が見つかるでしょう．部品や組み立ての個体差があるため，最適な設定は機体ごとに異なります．</p></li>
+<li><p>実はこのモータ（これに限らず，同タイプのモデルモータの多く）は回転方向が決まっており，正転と逆転でわずかに特性（トルク）が異なります．トルクが弱い方向に回転するとき，少し（多くても
+10%
+程度？）余分に電圧を加えると特性の差を小さくできるかもしれません．</p></li>
+<li><p>モータ自体やモータとタイヤの動力伝達部に摩擦があるため，0 V
+近傍の小さな電圧ではモータが摩擦に負けて回転しません．摩擦を補償するために指令電圧にわずかなオフセットを加えるとよいかもしれません．ただし，オフセットが大きすぎると機体の応答が振動的になるので注意してください．
+の先頭で <code>#define</code> されている <code>VOFFSET</code>
+に値を設定するとオフセットが加わります（値は最大でも 0.01
+程度が安全です）．</p></li>
+<li><p>傾斜角は床面からの反射光量で測定しているため，床面の赤外線反射率によって傾斜センサのゲインが変わります．異なる床面で走行する場合は，必要に応じて制御ゲインを微調整してください．</p></li>
+</ul>
+<h2 id="sec:w2-task-c">Task C：エンコーダフィードバックを含む MATLAB
+シミュレーション（学生C）</h2>
+<h3 id="シミュレーションの役割">シミュレーションの役割</h3>
+<p>計算機シミュレーションは，制御アルゴリズムを設計し検証するための強力な道具です．シミュレーション環境なら，たとえ設定を誤ってもハードウェアは壊れず，不安定なコントローラでも物理的な危険はありません．不適切な制御で転倒したり激しく走ったりする倒立振子にとって，シミュレーションはモータ，電子回路，機械構造を守る安全な試験場になります．</p>
+<p>MATLAB と Simulink
+を使うと，コントローラ設計を高速に反復できます．毎回マイコンへ書き込み直したり，実機を組み直したりせずに，パラメータを変えて応答を観察し，複数の戦略を比較できます．また，シミュレーションは系の理論的な振る舞いを見通しやすくし，制御パラメータが安定性や性能へどう影響するかの直感も与えてくれます．シミュレーションで妥当性を確認したパラメータは，より高い確信を持って実機へ移せます．</p>
+<p>さらに，シミュレーションは現代の制御技術者にとって重要な基礎技能です．MATLAB/Simulink
+のような実務的ツールを用いて，制御対象をモデル化し，解析し，設計する力は，産業界でも研究でも広く使われています．</p>
+<h3 id="sec:matlab-setup">MATLAB 環境の準備</h3>
+<h3 class="unnumbered" id="東京大学での-matlab-利用">東京大学での MATLAB
+利用</h3>
+<p>東京大学では包括ライセンス契約により，構成員が MATLAB
+ライセンスを利用できます．MATLAB Online を使っても，自分の PC
+へインストールしても構いません．利用開始手順は次の通りです．</p>
+<ul>
+<li><p>UTokyo の MATLAB 案内ページ <a
+href="https://utelecon.adm.u-tokyo.ac.jp/matlab/"
+class="uri">https://utelecon.adm.u-tokyo.ac.jp/matlab/</a>
+を開く</p></li>
+<li><p>「MATLAB の利用を開始する」の案内に従う</p></li>
+<li><p>UTokyo メールアドレスで MathWorks Account を作成する</p></li>
+<li><p>UTokyo ポータル経由でサインインし，MathWorks
+アカウントを大学ライセンスへ紐付ける</p></li>
+</ul>
+<p>ライセンス有効化で問題が起きた場合は，utelecon の案内ページまたは
+MathWorks
+サポート（<code>service@mathworks.co.jp</code>）を参照してください．</p>
+<h3 class="unnumbered"
+id="必要なツールボックス">必要なツールボックス</h3>
+<p>本演習では，少なくとも以下の MATLAB 製品が必要です．</p>
+<ul>
+<li><p><strong>MATLAB</strong>（基本環境）</p></li>
+<li><p><strong>Simulink</strong> -
+ブロック線図の構築とシミュレーション</p></li>
+<li><p><strong>Simscape</strong> - 物理系モデリング</p></li>
+<li><p><strong>Simscape Multibody</strong> -
+多体系の機械ダイナミクス（倒立振子，ジョイントなど）</p></li>
+<li><p><strong>Simulink Control Design</strong> - Simulink/Simscape
+モデルを線形化して PID Tuner や Model Linearizer
+を使う場合に必要</p></li>
+<li><p><strong>Control System Toolbox</strong> - LTI
+モデルを用いた解析・設計（LQR，周波数応答など）や，LTI プラントに対する
+PID Tuner で有用</p></li>
+</ul>
+<p>インストール時にこれらを選択してください．すでに MATLAB
+を入れていて不足がある場合も，Add-On Explorer（Home タブ <span
+class="math inline">\(\rightarrow\)</span> Add-Ons <span
+class="math inline">\(\rightarrow\)</span> Get
+Add-Ons）から追加できます．配布モデルは，Control System Toolbox
+だけや手書きの状態空間ブロックではなく，Simscape / Simscape Multibody
+によって倒立振子の物理ダイナミクス（3D
+部品を含む）を表現しています．</p>
+<h3 id="simulink-モデルの構築">Simulink モデルの構築</h3>
+<p>本演習では，参考用の Simulink/Simscape
+モデルをマイルストーン例として配布しています．この例の狙いは過度に野心的なものではなく，Simscape
+Multibody
+で物理的に意味のあるプラントモデルを作る方法と，<em>傾斜角</em>
+に対するフィードバックループを閉じて PID
+で倒立振子を安定化する流れを示すことにあります．配布モデルでは，角度安定化までは調整済みですが，位置・速度の制御は学生向け拡張課題として残してあります．</p>
+<p>図<a href="#fig:simulink_overview" data-reference-type="ref"
+data-reference="fig:simulink_overview">25</a> に，このモデル全体の
+Simscape Multibody
+構成を示します．最上位でも実機構成を反映するよう整理されており，カート側は車輪関連部品，“body”
+側は振り子本体と付属部品をまとめた剛体アセンブリになっています．これにより，どのパラメータがカート側（車輪半径，車輪慣性，カート質量）に属し，どれが振り子本体側（質量分布，長さ，重心）に属するのかを見分けやすくなっています．</p>
+<figure id="fig:simulink_overview" data-latex-placement="h">
+<div class="center">
+<img src="fig2026/Sim1.png" style="width:95.0%" />
+</div>
+<figcaption>配布マイルストーン例の Simscape Multibody
+全体図．モデルはカート（車輪関連アセンブリ）と
+body（振り子関連アセンブリ）に分けられ，ジョイントとフレーム変換で結ばれている．</figcaption>
+</figure>
+<h3 id="プラントモデルの考え方">プラントモデルの考え方</h3>
+<p>プラントは，3D 剛体，ジョイント，固定フレーム変換を組み合わせて
+Simscape Multibody
+上に構築します．線形化済みの状態空間行列を直接打ち込む代わりに，形状，質量，慣性といった物理パラメータを与えると，Simscape
+Multibody
+が多体系の運動方程式を自動的に導きます．この方法は実機構造との対応が取りやすく，電池やブレッドボード，ブラケットなどの質量分布を変えたときにダイナミクスがどう変わるかを直感的に確認できるので，本演習に適しています．</p>
+<p>配布モデルでは，カート側と body 側を主に <strong>Brick
+Solid</strong>（直方体）と <strong>Cylindrical
+Solid</strong>（円柱）で構成しています．車輪，軸，スペーサは円柱で自然に表せますし，本体板，ブラケット，電子モジュールは直方体で十分近似できます．目標は写真のような形を再現することではなく，支配的な質量と慣性を捉え，シミュレーション上の設計判断が実機でも意味を持つようにすることです．</p>
+<p>図<a href="#fig:simscape_body_build" data-reference-type="ref"
+data-reference="fig:simscape_body_build">26</a> は <em>body</em>
+サブアセンブリ，図<a href="#fig:simscape_wheel_build"
+data-reference-type="ref"
+data-reference="fig:simscape_wheel_build">27</a>
+はカート／車輪側サブアセンブリを示しています．</p>
+<figure id="fig:simscape_subassemblies" data-latex-placement="h">
+<div class="center">
+<figure id="fig:simscape_body_build">
+<img src="fig2026/Sim2.png" />
+<figcaption>Simscape Multibody における body モデル．</figcaption>
+</figure>
+<figure id="fig:simscape_wheel_build">
+<img src="fig2026/Sim3.png" />
+<figcaption>Simscape Multibody における wheel モデル．</figcaption>
+</figure>
+</div>
+<figcaption>倒立振子モデルで用いている Simscape Multibody
+サブアセンブリ．</figcaption>
+</figure>
+<p>これらの剛体を一体のアセンブリとしてつなぐために，モデルでは
+<strong>Rigid Transform</strong> ブロックを用います．Rigid Transform は
+2
+つの座標系の間の固定平行移動と固定回転を定義するブロックであり，カート座標系に対する車輪配置，振り子本体とその基準座標系のオフセット，ブレッドボードや電池など補助質量の配置に広く使われます．実際に重要なのは，車輪や
+body の <em>質量</em> と
+<em>サイズ</em>，そしてブレッドボード回路や電池モジュールに割り当てた質量・寸法です．これらが慣性を決め，ひいては安定化コントローラをどれだけ
+“攻めた” 設定にできるかへ強く影響します．</p>
+<p>多体系モデルの利点の一つは，シミュレーション中に 3D
+動作を可視化でき，ジョイント角度や位置などの信号をそのままコントローラへ結びつけられることです．もし純粋に解析的なプラントを使いたいなら，先に導いた線形化
+<span class="math inline">\(A,B,C,D\)</span> 行列を Simulink の
+State-Space
+ブロックへ入力して表現しても構いません．どちらも有効ですが，ここでは配布された多体系モデリングの流れを理解することを主眼とします．</p>
+<h3 id="コントローラ内部の構成">コントローラ内部の構成</h3>
+<p>物理モデルの中では，剛体同士の相対運動を定義するジョイントが重要な役割を果たします．配布例では，body
+はカートに対してヒンジ状の回転ジョイントで接続され，カートは床面方向へ並進できるようになっています．Simscape
+Multibody では，この回転ジョイントが <strong>Revolute
+Joint</strong>，並進ジョイントが <strong>Prismatic Joint</strong>
+に対応します．これらは単なる拘束条件ではなく，シミュレーション中に制御へ戻すフィードバック信号の主要な取り出し口でもあります．</p>
+<p>実機では，傾斜角は床面反射光を見ている 2
+個のフォトリフレクタ（フォトインタラプタ型センサ）から推定しています．また，車輪と床面の相互作用も「床面摩擦そのものを直接測る」わけではなく，モータ駆動と床反力の結果として現れます．マイルストーンモデルでは，まず制御の本質へ集中するため，これらを抽象化しています．すなわち，傾斜角は
+Revolute Joint の角度から直接取り出し，カートと床面の相互作用は
+Prismatic Joint
+の座標で表します．このようにすることで，機械的拘束を保ったまま素直にフィードバックループを閉じられます．</p>
+<p>図<a href="#fig:simscape_joints_actuation" data-reference-type="ref"
+data-reference="fig:simscape_joints_actuation">29</a>
+は，配布モデルで角度ジョイントと並進ジョイントがどのように設定されているかを示しています．Revolute
+Joint からは body 角度（必要なら角速度も）を取り出せます．Prismatic
+Joint からはカート位置と速度が得られます．さらに，マイルストーン例では
+Prismatic Joint を駆動点としても使っており，その運動／力を駆動することで
+body
+を安定化するカート運動を実現しています．位置制御を入れるなら当然ここからカート位置を読みますし，速度制御を入れるなら速度を直接使うか，後述する課題のようにエンコーダ相当の量子化を通して推定しても構いません．</p>
+<figure id="fig:simscape_joints_actuation" data-latex-placement="h">
+<div class="center">
+<img src="fig2026/Sim5.png" style="width:95.0%" />
+</div>
+<figcaption>配布多体系モデルにおけるジョイント構成．body 角度は
+<strong>Revolute
+Joint</strong>（ヒンジ）から取得し，床面方向のカート移動は
+<strong>Prismatic Joint</strong> で表す．Prismatic Joint
+は駆動点としても，外側ループ用の位置／速度信号源としても利用できる．</figcaption>
+</figure>
+<p>これらの信号が取り出せるようになると，コントローラブロックで安定化ループを閉じられます．マイルストーン例では，主フィードバック信号として振り子の傾斜角だけを使っており，いわば
+<em>角度のみの安定化器</em>
+です．位置ループや速度ループは，学生が体系的に拡張できるよう，あえて初期状態では入れていません．</p>
+<figure id="fig:simulink_highlevel" data-latex-placement="h">
+<div class="center">
+<img src="fig2026/Sim4.png" style="width:95.0%" />
+</div>
+<figcaption>マイルストーン例で用いる PID
+コントローラサブシステム．配布コントローラは傾斜角を制御して倒立を安定化する．PID
+パラメータは手動でも PID Tuner でも調整できる．</figcaption>
+</figure>
+<h3 id="シミュレーションの実行">シミュレーションの実行</h3>
+<p>course materials フォルダ内の <code>.slx</code> モデルを開き，MATLAB
+上で実行してください．実行前には，現実的なディジタル制御ループに合わせて設定を整えます．<strong>Simulation</strong>
+<span class="math inline">\(\rightarrow\)</span> <strong>Model
+Configuration Parameters</strong>（Ctrl+E）で
+<strong>fixed-step</strong>
+ソルバを選び，実機の制御周波数に対応した時間刻みを設定してください（例えば
+1 kHz なら 1 ms
+など）．サンプリング時間を合わせることは，安定余裕に影響し，後で実機へパラメータを移したときの予測精度にも関わります．</p>
+<p>安定化を観察するには，Revolute Joint に小さな初期傾斜角（例えば <span
+class="math inline">\(\theta(0)=0.1\)</span> rad <span
+class="math inline">\(\approx
+5.7^\circ\)</span>）を与えて，コントローラが打ち消すべき外乱を作っておきます．そのうえでシミュレーションを走らせ，角度スコープを開いて，角度が直立平衡点へ戻るかを確認してください．外乱入力が用意されているなら，短いインパルスやステップ外乱を与えて，どれくらいの速さで回復するかを見ても構いません．</p>
+<h3 id="pd-コントローラ設計とパラメータ調整">PD
+コントローラ設計とパラメータ調整</h3>
+<p>マイルストーンコントローラは倒立維持に焦点を当てているため，フィードバックとして振り子角度のみを用います．最も単純な形では，角度
+<span class="math inline">\(\theta\)</span> と角速度 <span
+class="math inline">\(\dot{\theta}\)</span> に基づく次の PD
+則になります．</p>
+<p><span class="math display">\[\begin{equation}
+u = K_p \theta + K_d \dot{\theta}
+\end{equation}\]</span></p>
+<p>ここで <span class="math inline">\(u\)</span>
+は，モデル内でカートを動かすための駆動信号です．比例項は直立姿勢へ戻ろうとする復元力を与え，微分項は振動を抑える減衰を与えます．実際には角速度フィードバックはノイズに敏感なので，フィルタを通して使うことが多く，Simulink
+の PID ブロックにはそのための微分フィルタ係数が用意されています．</p>
+<h3 class="unnumbered" id="pid-パラメータの確認と調整">PID
+パラメータの確認と調整</h3>
+<p>ゲインを変更するには，コントローラサブシステム（図<a
+href="#fig:simulink_highlevel" data-reference-type="ref"
+data-reference="fig:simulink_highlevel">30</a>）を開き，角度制御に対応する
+PID ブロックをダブルクリックします．ブロック設定画面から <span
+class="math inline">\(K_p\)</span>，<span
+class="math inline">\(K_d\)</span>，微分フィルタ係数 <span
+class="math inline">\(N\)</span>
+を変更できます．配布モデルには一応動く初期パラメータが入っていますが，この課題で重要なのは，質量や慣性といった物理パラメータが，制御をどれだけ強くできるかにどう効くかを理解することです．したがって，自分で意図的にゲインを変え，時間応答がどう変わるかを見てください．</p>
+<p>より系統的に調整したい場合は <strong>PID Tuner</strong>
+を使って構いません．PID ブロックの設定画面から PID Tuner
+を開き，<strong>Tune</strong>
+を押すと，動作点でプラントを線形化して設計方針に応じたゲイン候補を提示してくれます．この演習では，目標応答速度を実機のサンプリング時間から想定される制御帯域に合わせるのがよいでしょう．調整後は，得られたゲインを
+PID ブロックへ戻してシミュレーションに反映してください．</p>
+<h3 id="シミュレーション結果の解析">シミュレーション結果の解析</h3>
+<p>シミュレーション実行後は，角度スコープを見て本当に安定化できているかを評価します．良い結果では，角度が適度なオーバーシュートの範囲内で
+0（直立）へ戻り，平衡点へ近づくにつれて制御入力も小さくなります．もし制御入力スコープがあるなら，駆動信号が長時間飽和していないかも確認してください．飽和が続く場合は，ゲインが攻めすぎているか，あるいは質量・慣性パラメータを見直す必要がある可能性があります．</p>
+<figure id="fig:simulation_result" data-latex-placement="h">
+<div class="center">
+<img src="fig2026/Sim6.png" style="width:130mm" />
+</div>
+<figcaption>倒立振子シミュレーション結果の例（Sim6）．</figcaption>
+</figure>
+<h3 class="unnumbered" id="何を見るべきか">何を見るべきか</h3>
+<p>健全な結果では，角度応答は振動しながらも減衰しつつ 0
+へ戻り，時間とともに離れていくようなドリフトは生じません．発散するなら安定化ゲインが弱すぎるか符号が誤っています．ほぼ一定振幅で振動し続けるなら減衰が不足しており，微分ゲインやフィルタを見直す必要があります．極端に遅い応答ならゲインが保守的すぎます．制御入力が長時間飽和する場合は，より穏やかな設定にするか，電池やブレッドボードへ過大な質量を与えていないかなど，プラントパラメータを見直してください．</p>
+<h3 id="発展課題">発展課題</h3>
+<p>マイルストーンモデルで角度安定化ができたら，拡張の方向は多数あります．自然な次の一歩は，Prismatic
+Joint
+から得られる信号を使ってカート位置・速度の外側ループを追加することです．また，手動での
+PID 調整と，全状態フィードバックや LQR
+のようなより系統的な方法とを，同じ試験条件で比較して性能差を明確にするのも有益です．</p>
+<h3 id="シミュレーションから実機へ">シミュレーションから実機へ</h3>
+<p>シミュレーション上の振る舞いに納得できたら，そのコントローラ概念を実機へ移せます．ただし，シミュレーションが
+<em>何を省略しているか</em>
+は常に意識してください．実機では，角度センサは 2
+個のフォトリフレクタから構成されるため，ノイズ，床面反射率依存性，非線形性を含みます．同様に，実機のカート運動は理想的に駆動される
+Prismatic Joint
+ではなく，モータトルクと車輪・床面相互作用の結果として生じます．だからこそ，サンプリング時間を一致させ，制御入力を現実的な範囲へ抑えることが，シミュレーション結果を実機へ役立てるうえで重要になります．</p>
+<h3 class="unnumbered" id="離散化">離散化</h3>
+<p>マイコン実装は離散時間系（サンプリング系）です．Simulink で連続時間
+PID ブロックを使っていても，実機では有効サンプル時間 <span
+class="math inline">\(T_s\)</span>
+を持つ離散制御として動作します．倒立振子では 1–10 ms
+程度が一般的です．<span class="math inline">\(T_s\)</span>
+を小さくすると一般に位相余裕や安定性は改善しますが，計算負荷は増え，量子化されたエンコーダ信号を差分して速度を求める場合はノイズも増えやすくなります．</p>
+<p>配布 mbed コード（Section <a href="#sec:inverted-experiment"
+data-reference-type="ref"
+data-reference="sec:inverted-experiment">[sec:inverted-experiment]</a>
+参照）では，通常タイマ割り込みは 1 ms（0.001 秒）に設定してあり，これは
+1000 Hz サンプリングに相当します．予測精度を上げるため，Simulink
+側も同じ刻みの fixed-step 設定にしてください．</p>
+<h3 class="unnumbered"
+id="パラメータの移し替え">パラメータの移し替え</h3>
+<p>Simulink 上で得た最終的な <span class="math inline">\(K_p\)</span> と
+<span class="math inline">\(K_d\)</span> を記録し，mbed
+プログラムへ直接移します．例えばシミュレーションで <span
+class="math inline">\(K_p = 50\)</span>，<span class="math inline">\(K_d
+= 5\)</span> を使ったなら，mbed コードでは</p>
+<pre><code>float Kp = 50.0;
+float Kd = 5.0;</code></pre>
+<p>のように書きます．単位の整合には注意してください．シミュレーションでは角度が
+rad で表現されていても，実機ではエンコーダカウントなどから rad
+へ換算する必要がある場合があります．</p>
+<h3 class="unnumbered"
+id="シミュレーションと実機の差">シミュレーションと実機の差</h3>
+<p>完全なシミュレーションは存在しないので，実機との差は必ず生じます．質量・慣性パラメータ，モデル化していない摩擦やバックラッシュ，アクチュエータの飽和やデッドゾーンなど，効いてくる要因は多くあります．センサ側でも，実信号はノイズと量子化を含みます．フォトリフレクタによる角度推定は床面反射率でずれますし，エンコーダ差分で求める速度は簡単にノイジーになります．さらに計算遅れや離散化も安定余裕を削ります．したがって，シミュレーションはまず安全にアイデアを検証し，妥当な初期ゲインを得る場と考え，最終調整は実機で保守的に進めるのがよいでしょう．</p>
+<h3
+id="課題エンコーダ相当の信号を用いた位置速度ループの追加">課題：エンコーダ相当の信号を用いた位置・速度ループの追加</h3>
+<p>マイルストーンモデルは傾斜角の安定化までしか行っていません．この課題では，カート運動に対する外側ループを追加し，さらにエンコーダ相当のフィードバックをモデル化することで，より現実に近い制御系へ拡張してください．典型的には，位置ループが速度指令を作り，速度ループがプラントを駆動する指令を作り，その内側で角度安定化器が働く構成になります．ただし構成は一つに限定しません．自分で選んだループ構造を明確に書き，シミュレーション結果に基づいて妥当性を説明してください．</p>
+<p>エンコーダらしさを出すには，理想的な連続位置・速度信号をそのまま使わず，まず位置を離散カウントへ量子化し，そこから差分（必要ならフィルタ付き）で速度を再構成します．こうすると，実機で直面するジッタや遅れを自然に導入できます．このエンコーダ相当の信号経路で位置・速度ループを閉じ，倒立挙動の頑健性がどれだけ保たれるかを確かめてください．</p>
+<p>最後に，意味のある指令と外乱の下で拡張コントローラを評価してください．最低限，ステップ，ランプ状の移動，2
+つの位置を往復する指令（正弦波や区分一定信号など）を含む位置目標を試してください．さらに，カートや
+body
+に短いインパルス／力外乱を与え，どれくらいの速さでバランスを回復するかを記録します．レポートには，角度，カート位置，制御入力の時間応答とともに，調整方針や観察された限界（飽和，振動，量子化ノイズへの感度など）を簡潔にまとめてください．</p>
+<h2
+id="補足トラブルシューティングと高速化">補足：トラブルシューティングと高速化</h2>
+<h3 class="unnumbered"
+id="補足1あれっ-モータが弱くなったな-と思ったら">補足1：あれっ？
+モータが弱くなったな？ と思ったら</h3>
+<p>ブレッドボードは比較的接触抵抗が大きく，特に大電流が流れるモータドライバ周辺では，その接触抵抗に起因するトラブルが起こりがちです．モータの力が弱くなったと感じたら，モータドライバや周辺のジャンパ線を数回抜き差ししてみてください．</p>
+<p>今回のドライバは最大 1A 程度をモータへ流します（そのときの電圧は 1V
+程度）．一方，ジャンパ線はブレッドボード内部の 2
+枚の金属板に挟まれているだけなので，接触部分にはある程度の抵抗があります．例えば接触抵抗が
+0.5<span class="math inline">\(\Omega\)</span> あると，1A 流したときに
+0.5V もの電圧降下になり，モータ駆動電圧に対して無視できません．</p>
+<p>実際の接触抵抗はそこまで大きくないことが多いものの，端子表面の酸化によって時間とともに増えていくケースがあります．特に大電流が流れる接触部は発熱しやすく，その熱が酸化を進めてさらに接触抵抗が増えるという悪循環が起きます．ブレッドボード上では，モータとドライバにとってあまり都合のよくない状況が存在しているわけです．
+したがって，「プログラムは変えていないのに性能が落ちた」と感じたら，接触抵抗の増大を疑ってください．ドライバチップやジャンパ線を数回抜き差しすると，表面の酸化膜が削れて接触が回復することがあります．</p>
+<p>特に重点的に確認すべきなのは，ドライバ周辺で大電流が流れる経路です．モータ電流の経路を追うと，「電池の＋極」<span
+class="math inline">\(\rightarrow\)</span>「（ドライバの）VCC
+端子」<span class="math inline">\(\rightarrow\)</span>「OUT1（または
+2）」<span class="math inline">\(\rightarrow\)</span>「モータ」<span
+class="math inline">\(\rightarrow\)</span>「OUT2（または 1）」<span
+class="math inline">\(\rightarrow\)</span>「ISEN 端子」<span
+class="math inline">\(\rightarrow\)</span>「GND」<span
+class="math inline">\(\rightarrow\)</span>「電池の－極」となります．この経路を重点的に見直してください．</p>
+<h3 class="unnumbered"
+id="補足2高速化のために">補足2：高速化のために</h3>
+<p>データシート（配布した簡易版ではなく，TI
+が発行している正式なデータシート<a href="#fn27" class="footnote-ref"
+id="fnref27"
+role="doc-noteref"><sup>27</sup></a>）によると，今回使用するモータドライバには電流が
+1.3A を超えるとトリップする（回路を遮断し電流を 0A
+にする）保護回路が内蔵されています．実際にモータを接続して測定したところ，モータ電流が脈動しているためか，平均電流約
+1.1A
+でトリップすることが確認されました．トリップするとモータが停止してしまうため，制御プログラムではドライバがトリップしないようにモータ電圧の上限を設定しています（
+の <code>VLIMIT</code>
+定義を参照）．この上限値について考えてみましょう．</p>
+<p>モータのインダクタンスを無視すると，モータドライバがモータへ印加する電圧
+<span class="math inline">\(V\)</span> と実際に流れる電流 <span
+class="math inline">\(I\)</span> の関係は次のように表されます． <span
+class="math display">\[\begin{equation}
+V = (R_m + R_c) I + \kappa\omega_m
+\end{equation}\]</span> ここで <span class="math inline">\(R_m\)</span>
+はモータの巻線抵抗，<span class="math inline">\(R_c\)</span>
+はモータ駆動回路の抵抗，<span class="math inline">\(\kappa\)</span>
+は逆起電力定数（<span class="math inline">\(\approx\)</span>
+トルク定数），<span class="math inline">\(\omega_m\)</span>
+はモータ回転速度（rad/s）です．このモータでは，巻線抵抗 <span
+class="math inline">\(R_m\)</span>（モータ内部のブラシの当たり方＝モータ軸の角度によって変動）は平均約
+0.7 <span class="math inline">\(\Omega\)</span>，逆起電力定数 <span
+class="math inline">\(\kappa\)</span> は約 2.7 mV s/rad
+と推定されます．回路抵抗 <span class="math inline">\(R_c\)</span> は約
+0.5 <span class="math inline">\(\Omega\)</span>（ドライバの ON 抵抗
+0.45 <span class="math inline">\(\Omega\)</span> + ブレッドボードの抵抗
+0.05 <span class="math inline">\(\Omega\)</span>
+と仮定）です．逆起電力がなくなるモータ回転速度がゼロのとき最も電流が流れますが，このときモータ電流
+<span class="math inline">\(I\)</span> を 1.1 A
+以下に保つには，ドライバ出力電圧 <span class="math inline">\(V\)</span>
+を 1.32 V 以下に制限する必要があることがわかります．</p>
+<p>モータドライバは VSET ピンへ印加された電圧の 4
+倍をモータへ出力するように設計されています．したがって VSET
+への印加電圧の上限は <span class="math inline">\(1.32/4=0.33\)</span> V
+です．VSET ピンは mbed の p18（AnalogOut）に接続されていますが，p18
+の電圧を 0.33 V 以下に抑えるには，プログラムで p18 へ書き込む値の上限を
+<span class="math inline">\(0.33/3.3=0.1\)</span> にします（1.0 は DA
+コンバータの最大値 = 3.3 V
+に対応）．このため，制御プログラムはデフォルトで
+<code>VLIMIT = 0.1</code> に設定しています．
+（なお，ドライバやモータには個体差があるため，すぐにトリップしてしまう人はこの上限値を少し下げてみてください．）</p>
+<p>さてこれはモータが静止しているときの話ですが，モータが回転し始めると逆起電力によって電圧が下がるため，この上限では十分な電流が流れなくなります．たとえばモータが毎秒
+20 回転（このとき タイヤは毎秒約 2 回転）すると，約 0.34 V
+の逆起電力が発生します．すると p18 に上限 0.1 を書き込んでドライバが
+1.32 V を出力しても，モータには約 0.8 A
+しか流れません．モータトルクは流れる電流に比例するため，このままでは十分なトルクを発生できません．</p>
+<p>したがって，倒立振子の走行速度を上げたい場合は，上記の逆起電力を考慮して速度に応じた出力上限値を増やす必要があります．うまく増やせば高速でも安定した倒立を維持できます（上限を適切に設定しないとドライバがトリップして倒立振子が転倒しやすくなるので注意してください）．</p>
+<h3 class="unnumbered"
+id="補足3ジャンパ線の不良">補足3：ジャンパ線の不良</h3>
+<p>本実習では，ブレッドボード用ジャンパ線（ブレッドボードに差し込みやすいよう両端にピンが取り付けられた線）を使用します．このジャンパ線のピン部分が断線することはまれです．ジャンパ線の断線による動作不良は非常に見つけにくいですが，「回路は正しく組んでいるはずなのに全く動かない！」というときはジャンパ線の不良を疑ってください．実際にジャンパ線の不良を見つけるには，怪しい箇所のジャンパ線を抜いてテスタで導通を確認してください．</p>
+<p>このような不良は，ジャンパ線の扱いが雑な場合に起こりやすいです．ジャンパ線の（先端部分を）無理に曲げたり引っ張ったりしないよう注意してください．自分が被害を受けなくても，次のグループの人が被害を受けるかもしれません．</p>
+<h2 id="week-2-提出物">Week 2 提出物</h2>
+<div class="submissionbox">
+<p>エンコーダによる位置／速度計測ができ，位置制御によって安定性が改善していることを示してください．<strong>グループで
+1 本のレポート</strong> を提出します．</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>提出物</strong></th>
+<th style="text-align: center;"><strong>満点</strong></th>
+<th style="text-align: left;"><strong>評価基準</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">位置制御デモ動画</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: left;"><strong>8 pts:</strong> 倒立を 10
+秒以上維持し，目標位置から <span class="math inline">\(\pm\)</span>0.5 m
+以内に収まっている．<br />
+<strong>5 pts:</strong> 倒立は維持できたが，位置ずれが大きい．<br />
+<strong>0 pts:</strong> 5 秒以内に倒立を失う．</td>
+</tr>
+<tr>
+<td style="text-align: left;">エンコーダ A/B 波形</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: left;"><strong>7 pts:</strong> A/B
+波形に明確なラベルがあり，回転方向反転（CW と CCW
+の位相差）も確認できている．<br />
+<strong>5 pts:</strong>
+波形は示されているが，回転方向確認が不十分．<br />
+<strong>2 pts:</strong> パルス数のみで，位相解析が無い．<br />
+<strong>0 pts:</strong> 未提出．</td>
+</tr>
+<tr>
+<td style="text-align: left;">シミュレーションと実機の比較</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: left;"><strong>5 pts:</strong>
+シミュレーションと実機の両方について <span
+class="math inline">\(x(t)\)</span> と <span
+class="math inline">\(\dot{x}(t)\)</span>
+を示し，差の理由も説明している．<br />
+<strong>3 pts:</strong> グラフはあるが，差異の説明が無い．<br />
+<strong>1 pt:</strong> 定性的記述のみ（グラフなし）．</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="sec:week3">Week 3: 高度なモデル化と負荷試験</h1>
+<h2 id="week-3-の概要と到達目標">Week 3 の概要と到達目標</h2>
+<p>Week 3
+では，理想化したシミュレーションと実機とのギャップを埋めることを目標に，(1)
+シミュレーションモデルの改良（車輪ダイナミクス＋床面摩擦），(2)
+実機での計画的な<strong>負荷試験</strong>，(3)
+コントローラの系統的な調整と比較（PID と，少なくとも 1
+つの高度な手法，例如 LQR や MPC）を行います．<br />
+</p>
+<p><strong>到達目標：</strong></p>
+<ul>
+<li><p>車輪ダイナミクスと摩擦モデルをシミュレーションへ追加し，仮定を明確に記録する</p></li>
+<li><p>負荷を付加した状態でも安定に倒立できることを示し，再現可能な試験記録を残す</p></li>
+<li><p>MATLAB 上で負荷時の PID ゲインを調整し，少なくとも 1
+つの代替制御法と比較する</p></li>
+<li><p>シミュレーションと実機の性能を，共通の指標とグラフで比較する</p></li>
+</ul>
+<div class="cautionbox">
+<ul>
+<li><p><strong>負荷は確実に固定すること．</strong>
+落下すると機体破損やけがにつながります．</p></li>
+<li><p><strong>高周波のガタつきを長時間出さないこと．</strong>
+激しい振動や異音が出たら，<u>ただちに電池を切ってください</u>（発熱やねじの緩みの危険があります）．</p></li>
+<li><p><strong>ゲインは保守的な値から始めること．</strong>
+負荷を増やすと必要トルクが増え，飽和やトリップが起こりやすくなります．</p></li>
+<li><p><strong>床面を整理し，回転中の車輪へ手を近づけないこと．</strong>
+転倒時に強く打ちつけないよう，受け止める姿勢を準備してください．</p></li>
+</ul>
+</div>
+<h2 id="並列作業-1">並列作業</h2>
+<p>推奨する役割分担は，学生 A（負荷取付と実機試験），学生
+B（シミュレーションモデル改良），学生 C（MATLAB
+調整とコントローラ比較）です．役割は入れ替えて構いませんが，試験ログは命名規則と指標を統一した
+1 つの共有記録として残してください．<br />
+</p>
+<ul>
+<li><p><strong>学生 A:</strong> Task A（負荷の取り付けと実機試験） — <a
+href="#sec:w3-task-a"><span style="color: brandD">第<span
+data-reference-type="ref"
+data-reference="sec:w3-task-a">5.3</span>節参照</span></a></p></li>
+<li><p><strong>学生 B:</strong> Task
+B（シミュレーション拡張：車輪ダイナミクス＋摩擦） — <a
+href="#sec:w3-task-b"><span style="color: brandD">第<span
+data-reference-type="ref"
+data-reference="sec:w3-task-b">5.4</span>節参照</span></a></p></li>
+<li><p><strong>学生 C:</strong> Task C（PID 調整＋高度制御法との比較） —
+<a href="#sec:w3-task-c"><span style="color: brandD">第<span
+data-reference-type="ref"
+data-reference="sec:w3-task-c">5.5</span>節参照</span></a></p></li>
+</ul>
+<h2 id="sec:w3-task-a">Task A：負荷の取り付けと実機試験（学生A）</h2>
+<p>この作業では，機体へ管理された負荷を追加し，実機上で安定性と性能を評価します．</p>
+<h3 id="a1.-負荷の選定と取り付け">A1. 負荷の選定と取り付け</h3>
+<ul>
+<li><p><strong>負荷候補：</strong>
+硬貨，金属ワッシャ，小型の重り，あるいは質量が既知の小物．</p></li>
+<li><p><strong>推奨範囲：</strong> まずは小さく（例えば合計
+50–100 g）始め，安定してから徐々に増やす．</p></li>
+<li><p><strong>取り付け位置：</strong>
+高さと前後方向のオフセットを記録する．高い位置や前後に偏った位置の負荷はダイナミクスへ強く影響する．</p></li>
+<li><p><strong>固定方法：</strong>
+振動中にずれたり脱落したりしないよう，テープ，結束バンド，輪ゴムなどで確実に固定する．</p></li>
+</ul>
+<h3 id="a2.-実機試験手順ベースライン-rightarrow-負荷あり">A2.
+実機試験手順（ベースライン <span
+class="math inline">\(\rightarrow\)</span> 負荷あり）</h3>
+<ol>
+<li><p><strong>ベースライン試験（無負荷）：</strong> Week 2
+で最も良かった設定で試験し，短い動画を記録する．</p></li>
+<li><p><strong>負荷あり試験：</strong>
+負荷を取り付け，同じ床面・近い初期角度・同じゲイン条件で再試験する．</p></li>
+<li><p><strong>制御法の比較：</strong> 各負荷条件について，少なくとも
+(i) 調整済み PID（または PD），(ii) Task C
+で用意した別方式の制御，を試す．</p></li>
+<li><p><strong>停止条件：</strong>
+モータドライバが繰り返しトリップする，激しい振動が出る，温度上昇が明らかな場合は直ちに停止し，設定を保守的に戻す．</p></li>
+</ol>
+<h3 id="a3.-最低限記録すべきこと">A3. 最低限記録すべきこと</h3>
+<ul>
+<li><p>負荷を載せた状態で倒立していることが分かる明瞭な動画（制御 ON/OFF
+前後を数秒含める）</p></li>
+<li><p>負荷質量，取付位置，ゲイン／コントローラ種別，サンプリング周波数（変更した場合），成功／失敗メモをまとめた簡単な試験表</p></li>
+<li><p>可能なら，少なくとも 1 つの無負荷試験と 1
+つの負荷試験について，角度，制御入力，エンコーダ由来の運動量などのスクリーンショット／グラフ</p></li>
+</ul>
+<h2 id="sec:w3-task-b">Task B：シミュレーション拡張（車輪ダイナミクス +
+床面摩擦）（学生B）</h2>
+<p>この作業では，Week 2
+のシミュレーションと実機との差を説明できるよう，シミュレーションモデルを改良します．</p>
+<h3 id="b1.-車輪ダイナミクスの追加">B1. 車輪ダイナミクスの追加</h3>
+<ul>
+<li><p>車輪慣性とモータから車輪へのダイナミクスを整合的にモデルへ加える（最低限，追加の回転慣性項と
+<span class="math inline">\(x\)</span> との結合を入れる）</p></li>
+<li><p>比較に必要な出力信号（例：<span
+class="math inline">\(\theta\)</span>，<span
+class="math inline">\(x\)</span>，制御入力，推定速度など）を取り出せるようにする</p></li>
+</ul>
+<h3 id="b2.-摩擦モデルの追加">B2. 摩擦モデルの追加</h3>
+<ul>
+<li><p>少なくとも 1 種類の摩擦を導入する：<br />
+<strong>粘性摩擦</strong> (<span
+class="math inline">\(F=-b\dot{x}\)</span>) および／または
+<strong>クーロン摩擦</strong> (<span
+class="math inline">\(F=-F_c\,\mathrm{sgn}(\dot{x})\)</span>)，またはそれに相当する
+Simulink ブロック</p></li>
+<li><p>どの摩擦項を入れたか，パラメータ値，その選定／推定方法を明記する</p></li>
+</ul>
+<h3 id="b3.-拡張シミュレーションの実行と整理">B3.
+拡張シミュレーションの実行と整理</h3>
+<ul>
+<li><p>同じコントローラ設定で，Week 2 の簡略モデルと Week 3
+の改良モデルを比較する</p></li>
+<li><p>少なくとも <span class="math inline">\(\theta\)</span> と <span
+class="math inline">\(x\)</span>（またはその代替量）の時間応答，および制御入力（飽和も確認）を示す</p></li>
+<li><p>Week 3
+のグループレポートへ載せられるよう，グラフを統一した形式で保存する</p></li>
+</ul>
+<h2 id="sec:w3-task-c">Task C：PID 調整とコントローラ比較（学生C）</h2>
+<p>この作業では，MATLAB 上で負荷時の PID ゲインを調整し，少なくとも 1
+つの別系統の制御法と比較します．</p>
+<h3 id="c1.-matlab-上で負荷時の-pidまたは-pdを調整する">C1. MATLAB
+上で負荷時の PID（または PD）を調整する</h3>
+<ul>
+<li><p>調整には Week 3 の改良モデル（負荷を含む）を使う．PID Tuner
+を使った場合は，得られたゲインと調整設定を保存する．Simulink/Simscape
+モデルを直接線形化して調整するなら通常 <strong>Simulink Control
+Design</strong> が必要であり，LTI モデルで調整するなら <strong>Control
+System Toolbox</strong> で足りることが多い．</p></li>
+<li><p>最終ゲインと，期待されるステップ／外乱応答（立上り時間，オーバーシュート，整定時間）を記録する</p></li>
+<li><p>制御入力が現実的な範囲に収まることを確認する（シミュレーションで持続的に飽和させない）</p></li>
+</ul>
+<h3 id="c2.-少なくとも1つの高度な制御法を試す推奨lqr">C2.
+少なくとも1つの高度な制御法を試す（推奨：LQR）</h3>
+<ul>
+<li><p><strong>LQR（推奨）：</strong> モデルを線形化し，<span
+class="math inline">\(Q,R\)</span>
+を選んでゲインを計算し，無負荷と負荷ありの両方でシミュレーションする．Simulink/Simscape
+モデルから線形化する場合は通常 <strong>Simulink Control Design</strong>
+が必要であり，Section 2 で導いた線形化 <span
+class="math inline">\(A,B\)</span> 行列を使うなら <strong>Control System
+Toolbox</strong> の <code>lqr</code> でよい．</p></li>
+<li><p><strong>MPC（任意）：</strong>
+試す場合は制約条件，予測ホライズン，サンプリング時間を明記する</p></li>
+<li><p>同じ試験シナリオ・同じ指標で PID と比較する</p></li>
+</ul>
+<h3 id="c3.-シミュレーションと実機の比較">C3.
+シミュレーションと実機の比較</h3>
+<ul>
+<li><p>共通指標を少なくとも 3 つ選ぶ：倒立維持時間，最大角度，RMS
+角度，位置ずれ，制御入力（RMS または最大値），飽和時間比など</p></li>
+<li><p>無負荷／負荷あり，PID／別方式，シミュレーション／実機の比較を小さな表にまとめる</p></li>
+<li><p>差が出た理由を簡潔に説明する（摩擦モデル不一致，飽和，センサノイズ，離散化，遅れなど）</p></li>
+</ul>
+<h2 id="week-3-提出物">Week 3 提出物</h2>
+<div class="submissionbox">
+<p>この週の成果では，<strong>モデル改良</strong> <span
+class="math inline">\(\rightarrow\)</span> <strong>制御調整</strong>
+<span class="math inline">\(\rightarrow\)</span>
+<strong>負荷付き実機検証</strong>
+の流れが明確に示されていることが重要です．<strong>グループで 1
+本のレポート</strong> を提出してください．</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>提出物</strong></th>
+<th style="text-align: center;"><strong>満点</strong></th>
+<th style="text-align: left;"><strong>評価基準</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">改良シミュレーション結果</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: left;"><strong>6 pts:</strong>
+車輪慣性，床面摩擦，数値パラメータがすべてモデルへ反映され，記録されている．<br />
+<strong>4 pts:</strong> 3 要素のうち 2 つが含まれる．<br />
+<strong>2 pts:</strong> 3 要素のうち 1 つのみ含まれる．<br />
+<strong>0 pts:</strong> Week 2 モデルから実質的な拡張がない．</td>
+</tr>
+<tr>
+<td style="text-align: left;">負荷試験動画</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: left;"><strong>7 pts:</strong> 負荷を載せた状態で
+5 秒以上安定倒立し，負荷質量と取付位置も明示されている．<br />
+<strong>5 pts:</strong>
+負荷付き倒立は達成したが，負荷条件の定量化が不十分．<br />
+<strong>2 pts:</strong>
+負荷試験を実施し記録はあるが，安定倒立には至っていない．<br />
+<strong>0 pts:</strong> 未提出．</td>
+</tr>
+<tr>
+<td style="text-align: left;">コントローラ比較</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: left;"><strong>7 pts:</strong> PID
+の指標（立上り時間，オーバーシュート，整定時間など）を示し，かつ構造の異なる制御法（LQR／状態フィードバック／フィードフォワード等）と同じ指標で比較している．<br />
+<strong>4 pts:</strong> PID のみ，または同系統の変種のみの比較．<br />
+<strong>2 pts:</strong> 定性的議論のみで，定量評価が無い．</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="sec:week4">Week 4: 最終発表</h1>
+<h2 id="week-4-の概要と到達目標">Week 4 の概要と到達目標</h2>
+<p>Week 4
+は最終まとめです．各自の設計と結果を発表し，実際に動くシステムを示し，技術的な質疑へ答えます．重要なのは，<br />
+<strong>モデル化の仮定</strong> <span
+class="math inline">\(\rightarrow\)</span>
+<strong>コントローラ設計</strong> <span
+class="math inline">\(\rightarrow\)</span> <strong>実装</strong> <span
+class="math inline">\(\rightarrow\)</span>
+<strong>検証（シミュレーションと実機）</strong> <span
+class="math inline">\(\rightarrow\)</span>
+<strong>得られた知見</strong><br />
+という証拠の流れを一貫して示すことです．</p>
+<p><strong>到達目標：</strong></p>
+<ul>
+<li><p>理論，設計判断，結果を 10
+分で説明できる明確なスライドを準備する</p></li>
+<li><p>実機上で安定した倒立振子制御を実演する</p></li>
+<li><p>グラフ，ログ，考察，限界を根拠として質疑に答える</p></li>
+</ul>
+<h2 id="week-4-で求めること">Week 4 で求めること</h2>
+<ul>
+<li><p><strong>発表：</strong> 10 分，8–12
+枚程度のスライドで，モデル化の仮定から制御設計，実装，検証（シミュレーション＋実機）までを一貫した物語として示すこと．</p></li>
+<li><p><strong>ライブデモ：</strong>
+安全で再現可能な条件で，実機の倒立制御を安定に実演すること（保守的な予備設定を用意しておくこと）．</p></li>
+<li><p><strong>Q&amp;A 用エビデンス：</strong>
+プロット，ログ，指標に基づいて設計判断を説明できること．シミュレーションと実機の差，限界，負荷や外乱に対する頑健性も説明できること．</p></li>
+</ul>
+<h2 id="week-4-提出物">Week 4 提出物</h2>
+<div class="submissionbox">
+<p>以下を提出し，あわせてライブ発表を行ってください．</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>提出物</strong></th>
+<th style="text-align: center;"><strong>満点</strong></th>
+<th style="text-align: left;"><strong>評価基準</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">スライド（PDF）</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: left;"><strong>10 pts:</strong> (1) 理論，(2)
+設計，(3) 検証（シミュレーション＋実機），(4) 得られた知見，の 4
+要素が根拠データ付きでそろっている．<br />
+<strong>7 pts:</strong> 4 要素のうち 3 要素を含む．<br />
+<strong>3 pts:</strong> 2
+要素以下，またはデータの無い文章中心のスライド．</td>
+</tr>
+<tr>
+<td style="text-align: left;">最終デモ動画</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: left;"><strong>10 pts:</strong> 10
+秒以上の安定走行／倒立があり，制御 ON/OFF
+の流れも明確に示されている（前後数秒を含む）．<br />
+<strong>6 pts:</strong> 安定動作はあるが，ON/OFF
+の流れが不明瞭または欠けている．<br />
+<strong>2 pts:</strong>
+デモ自体は失敗したが，失敗内容を正直に記録している．<br />
+<strong>0 pts:</strong> 未提出．</td>
+</tr>
+<tr>
+<td style="text-align: left;">発表と質疑応答</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: left;"><strong>5 pts:</strong> Q&amp;A で 2
+問以上の技術的質問へ正しく回答できる．<br />
+<strong>5 pts:</strong>
+回答内容が提出物（スライド，動画，レポート）と整合している．<br />
+<span>各小項目内で部分点を与えることがあります．</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Course materials repository: <a
+href="https://github.com/UTokyo2026/UTokyo-Control-Practice-2026"
+class="uri">https://github.com/UTokyo2026/UTokyo-Control-Practice-2026</a><a
+href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li
+id="fn2"><p>逆起電力と速度の比例係数は通常「逆起電力定数」と呼ばれますが，SI
+単位系で揃えると逆起電力定数とトルク定数は同じ値になります．これはエネルギー保存を考えて計算すると確認できます．<a
+href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Appendix <a href="#app:circuit"
+data-reference-type="ref"
+data-reference="app:circuit">[app:circuit]</a>: 回路例．<a
+href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Appendix <a href="#app:drv8832"
+data-reference-type="ref"
+data-reference="app:drv8832">[app:drv8832]</a>: DRV8832
+データシート（Texas Instruments）．<a href="#fnref4"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Appendix <a href="#app:tpr105f"
+data-reference-type="ref"
+data-reference="app:tpr105f">[app:tpr105f]</a>: TPR-105F
+データシート．<a href="#fnref5" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Appendix <a href="#app:ld1117v33"
+data-reference-type="ref"
+data-reference="app:ld1117v33">[app:ld1117v33]</a>: LD1117V33
+データシート．<a href="#fnref6" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>機械組立の動画例は course materials repository 内の
+にあります．<a href="#fnref7" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>型番，仕様，個数を含む完全な部品表は Appendix <a
+href="#app:partslist" data-reference-type="ref"
+data-reference="app:partslist">[app:partslist]</a>
+を参照してください．<a href="#fnref8" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>Appendix <a href="#app:re280ra"
+data-reference-type="ref"
+data-reference="app:re280ra">[app:re280ra]</a>: RE-280RA
+データシート（Mabuchi Motor）．<a href="#fnref9" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>ほかにも Arduino，Raspberry PI，PIC
+などさまざまな系列があります．<a href="#fnref10" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>Keil Studio Cloud: <a
+href="https://studio.keil.arm.com/"
+class="uri">https://studio.keil.arm.com/</a><a href="#fnref11"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>Course materials repository: <a
+href="https://github.com/UTokyo2026/UTokyo-Control-Practice-2026"
+class="uri">https://github.com/UTokyo2026/UTokyo-Control-Practice-2026</a><a
+href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p>Processing
+は視覚的プログラミング用の無料オープンソースソフトウェアです．<a
+href="https://processing.org/" class="uri">https://processing.org/</a>
+からダウンロードできます．2026 年時点で最新の主要リリースは Processing 4
+です．詳細は Appendix <a href="#app:processing"
+data-reference-type="ref"
+data-reference="app:processing">[app:processing]</a>
+を参照してください．<a href="#fnref13" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn14"><p>Fritzing インストーラ（共有 Google Drive）: <a
+href="https://drive.google.com/drive/folders/1CwJ8srD090W6hOeP39BXLUZOVy883Kn2?usp=sharing"
+class="uri">https://drive.google.com/drive/folders/1CwJ8srD090W6hOeP39BXLUZOVy883Kn2?usp=sharing</a><a
+href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn15"><p>Appendix <a href="#app:circuit"
+data-reference-type="ref"
+data-reference="app:circuit">[app:circuit]</a>: 回路例．<a
+href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn16"><p>回路組立の動画例は course materials repository 内の
+にあります．<a href="#fnref16" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn17"><p>Appendix <a href="#app:circuit"
+data-reference-type="ref"
+data-reference="app:circuit">[app:circuit]</a>: 回路例．<a
+href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn18"><p>Appendix <a href="#app:circuit"
+data-reference-type="ref"
+data-reference="app:circuit">[app:circuit]</a>: 回路例．<a
+href="#fnref18" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn19"><p>Appendix <a href="#app:circuit"
+data-reference-type="ref"
+data-reference="app:circuit">[app:circuit]</a>: 回路例．<a
+href="#fnref19" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li
+id="fn20"><p>今回は反射型フォトインタラプタを使うので白黒パターンですが，一般的には透過型フォトインタラプタとスリットディスクを用いることも多いです<a
+href="#fnref20" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn21"><p>course materials repository: <a
+href="https://github.com/UTokyo2026/UTokyo-Control-Practice-2026"
+class="uri">https://github.com/UTokyo2026/UTokyo-Control-Practice-2026</a><a
+href="#fnref21" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn22"><p>Appendix <a href="#app:processing"
+data-reference-type="ref"
+data-reference="app:processing">[app:processing]</a>: Processing
+オシロスコープマニュアル．<a href="#fnref22" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn23"><p>デバッグと調整の動画例は course materials repository
+内の にあります．<a href="#fnref23" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn24"><p>Matlab を使う場合，freqz(b,a) または
+bode(tf(b,a,サンプリング時間)) でフィルタの周波数特性を確認できます．<a
+href="#fnref24" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn25"><p>1 次 LPF では高周波帯域で位相が 90
+度遅れます．傾斜角が正弦波状に変化する場合を考えると，その微分（＝角速度）は傾斜角より
+90 度位相が進んでいる必要がありますが，高周波ではフィルタで 90
+度遅れるため，微分結果をフィルタに通すと元の傾斜角と同じ位相になります．これはもはや微分ではありません．したがって，高周波域では微分制御のつもりでも実際には比例制御と同じことになり，高周波帯域で実質的な比例ゲインが大きくなって振動しやすく不安定になります．<br />
+なお，2 次フィルタでは位相が最大 180 度遅れますが，180
+度遅れは信号を反転させるのと同じです．よって，180
+度遅れた信号に微分ゲインを掛けると，本来の D
+制御（＝ダンパ）とは正反対の動作（速度を増やす方向）になります．<a
+href="#fnref25" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn26"><p>P ゲインと D
+ゲインの比率は，2次遅れの標準形と比較すると理解しやすいです．ばね定数と減衰係数をそれぞれ
+<span class="math inline">\(K_p\)</span>，<span
+class="math inline">\(K_d\)</span> とすると，外力から位置への伝達関数は
+<span class="math display">\[\begin{equation}
+\frac{X(s)}{F(s)}=\frac{1}{ms^2+K_d
+s+K_p}=\frac{1/m}{s^2+(K_d/m)s+K_p/m} \nonumber
+\end{equation}\]</span> 一方，標準形は <span
+class="math display">\[\begin{equation}
+G(s)=\frac{\omega_n^2}{s^2+2\zeta \omega_n s+\omega_n^2} \nonumber
+\end{equation}\]</span> 両者を比較すると，<span
+class="math inline">\(K_d/K_p = 2\zeta/\omega_n\)</span>
+であることがわかります．たとえば減衰比 <span
+class="math inline">\(\zeta=0.5\)</span>（少しオーバーシュートする程度）の場合，D
+ゲインと P ゲインの比率は固有角振動数 <span
+class="math inline">\(\omega_n\)</span>
+になります．最初の振り子角度制御では固有振動が数 Hz
+だったので角振動数は約 20 rad/s だったはずですが，位置制御では固有振動が
+0.1 Hz 程度なので角振動数は約 1 rad/s です．したがって P ゲインと D
+ゲインは同程度のオーダーになります．<a href="#fnref26"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn27"><p><a
+href="https://www.tij.co.jp/product/jp/DRV8832#tech-docs"
+class="uri">https://www.tij.co.jp/product/jp/DRV8832#tech-docs</a><a
+href="#fnref27" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body>
+</html>

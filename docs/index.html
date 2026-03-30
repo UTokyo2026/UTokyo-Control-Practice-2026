@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wheeled Inverted Pendulum — UTokyo 2026</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brand: #2F54EB;
+      --brandL: #5B8CFF;
+      --accent: #FF8F1F;
+      --nav-bg: #1a2540;
+    }
+
+    body {
+      font-family: "Helvetica Neue", "Yu Gothic", Arial, sans-serif;
+      background: #f4f6fb;
+      color: #1a1a1a;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    header {
+      background: linear-gradient(135deg, #1a2540 0%, #2F54EB 100%);
+      color: #fff;
+      padding: 56px 24px 48px;
+      text-align: center;
+    }
+
+    header .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 4px 16px;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      font-size: clamp(1.6rem, 4vw, 2.6rem);
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+
+    header h1 .jp {
+      display: block;
+      font-size: 0.7em;
+      font-weight: 400;
+      opacity: 0.85;
+      margin-top: 4px;
+    }
+
+    header p.subtitle {
+      opacity: 0.75;
+      font-size: 0.95rem;
+      margin-top: 12px;
+    }
+
+    /* ── Main card grid ── */
+    main {
+      max-width: 840px;
+      margin: -28px auto 0;
+      padding: 0 20px 60px;
+    }
+
+    .lang-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 36px;
+    }
+
+    @media (max-width: 560px) {
+      .lang-cards { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 4px 18px rgba(47,84,235,0.10);
+      padding: 32px 28px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(47,84,235,0.18);
+    }
+
+    .card .flag {
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .card h2 {
+      font-size: 1.25rem;
+      color: var(--brand);
+      font-weight: 700;
+    }
+
+    .card p {
+      font-size: 0.88rem;
+      color: #555;
+      line-height: 1.55;
+      flex: 1;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 9px 20px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+
+    .btn-primary {
+      background: var(--brand);
+      color: #fff;
+    }
+
+    .btn-primary:hover { background: #1a3cbf; }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid var(--brandL);
+      color: var(--brand);
+    }
+
+    .btn-outline:hover { background: #eef2ff; }
+
+    /* ── Course outline ── */
+    .outline-card {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 4px 18px rgba(47,84,235,0.07);
+      padding: 28px 32px;
+    }
+
+    .outline-card h3 {
+      color: var(--brand);
+      font-size: 1.05rem;
+      margin-bottom: 18px;
+      border-bottom: 2px solid #dce6ff;
+      padding-bottom: 8px;
+    }
+
+    .week-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .week-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 0.92rem;
+    }
+
+    .week-badge {
+      flex-shrink: 0;
+      background: var(--brand);
+      color: #fff;
+      border-radius: 6px;
+      padding: 3px 10px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    .week-list li .desc {
+      color: #333;
+    }
+
+    .week-list li .desc .jp {
+      display: block;
+      color: #888;
+      font-size: 0.83rem;
+      margin-top: 1px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 0.8rem;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="badge">UTokyo · Precision Engineering · 2026</div>
+  <h1>
+    Fabrication of Wheeled Inverted Pendulum
+    <span class="jp">自走式倒立振子の製作</span>
+  </h1>
+  <p class="subtitle">Department of Precision Engineering &nbsp;·&nbsp; 精密工学科</p>
+</header>
+
+<main>
+
+  <!-- Language selection cards -->
+  <div class="lang-cards">
+    <div class="card">
+      <div class="flag">🇬🇧</div>
+      <h2>English</h2>
+      <p>Full course text in English — theory, weekly tasks, submission guidelines, and MATLAB exercises.</p>
+      <div class="card-actions">
+        <a href="en.html" class="btn btn-primary">Read Online</a>
+        <a href="text2026_en.pdf" class="btn btn-outline" target="_blank">PDF</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="flag">🇯🇵</div>
+      <h2>日本語</h2>
+      <p>日本語版テキスト — 理論解説、週別タスク、提出物の説明、MATLAB演習を収録。</p>
+      <div class="card-actions">
+        <a href="jp.html" class="btn btn-primary">オンラインで読む</a>
+        <a href="text2026_jp.pdf" class="btn btn-outline" target="_blank">PDF</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Course outline -->
+  <div class="outline-card">
+    <h3>Course Outline &nbsp;/&nbsp; 授業構成</h3>
+    <ul class="week-list">
+      <li>
+        <span class="week-badge">Intro</span>
+        <span class="desc">
+          Overview of Inverted Pendulum Control · Model, PD control, motor torque
+          <span class="jp">倒立振子制御の概要 · モデル、PD制御、モータトルク</span>
+        </span>
+      </li>
+      <li>
+        <span class="week-badge">Week 1</span>
+        <span class="desc">
+          Assembly &amp; Bring-up · Electronics, circuit assembly, initial testing
+          <span class="jp">組立と立ち上げ · 電子部品、回路組立、初期動作確認</span>
+        </span>
+      </li>
+      <li>
+        <span class="week-badge">Week 2</span>
+        <span class="desc">
+          Encoder &amp; Position Control · Encoder fabrication, feedback coding, MATLAB simulation
+          <span class="jp">エンコーダと位置制御 · エンコーダ製作、フィードバック実装、シミュレーション</span>
+        </span>
+      </li>
+      <li>
+        <span class="week-badge">Week 3</span>
+        <span class="desc">
+          Advanced Modeling &amp; Load Testing · Wheel dynamics, PID tuning, friction modeling
+          <span class="jp">高度なモデル化と負荷試験 · 車輪ダイナミクス、PID調整、摩擦モデル</span>
+        </span>
+      </li>
+      <li>
+        <span class="week-badge">Week 4</span>
+        <span class="desc">
+          Final Presentation · Demonstration and report submission
+          <span class="jp">最終発表 · 実演とレポート提出</span>
+        </span>
+      </li>
+    </ul>
+  </div>
+
+</main>
+
+<footer>
+  UTokyo Control Practice 2026 &nbsp;·&nbsp; Precision Engineering
+</footer>
+
+</body>
+</html>
